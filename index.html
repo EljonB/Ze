@@ -38,11 +38,28 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .menu-icon, .cart-icon {
             font-size: 20px;
             cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #000;
+            color: #fff;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo {
@@ -130,7 +147,18 @@
             width: 100%;
             height: 320px;
             background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+        }
+
+        /* Brand Intro Description */
+        .brand-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+            font-size: 15px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
 
         /* Section Title */
@@ -140,25 +168,39 @@
             font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        /* Product Grid (Latest Collection) */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
+        /* Horizontal Slider for Latest Collection */
+        .product-slider-container {
             padding: 0 6% 80px 6%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+
+        .product-slider-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .product-grid {
+            display: flex;
+            gap: 30px;
+            width: max-content;
         }
 
         .product-card {
             cursor: pointer;
             text-align: left;
+            width: 280px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
         }
 
         .product-img-box {
             background-color: var(--card-bg);
-            height: 400px;
+            height: 360px;
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 15px;
@@ -187,7 +229,7 @@
             color: var(--text-muted);
         }
 
-        /* Product Detail View Modal (Fiks si në foto) */
+        /* Modal i Produktit / Add to Cart */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -212,7 +254,7 @@
         .modal-box {
             background: #ffffff;
             width: 90%;
-            max-width: 500px;
+            max-width: 480px;
             max-height: 90vh;
             overflow-y: auto;
             padding: 30px;
@@ -233,41 +275,41 @@
 
         .modal-img {
             width: 100%;
-            height: 350px;
+            height: 300px;
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 20px;
         }
 
         .modal-title-price {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .modal-title-price h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 400;
             margin-bottom: 5px;
         }
 
         .modal-title-price p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-muted);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .form-group select, .qty-container {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 14px;
             border: 1px solid var(--border-color);
             background: #fff;
             font-size: 14px;
@@ -279,7 +321,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 140px;
+            width: 130px;
         }
 
         .qty-btn {
@@ -287,7 +329,7 @@
             border: none;
             font-size: 16px;
             cursor: pointer;
-            padding: 0 10px;
+            padding: 0 8px;
         }
 
         .add-to-cart-btn {
@@ -295,8 +337,8 @@
             background: #000;
             color: #fff;
             border: none;
-            padding: 15px;
-            font-size: 14px;
+            padding: 14px;
+            font-size: 13px;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -310,10 +352,120 @@
             background: #333;
         }
 
+        /* Cart Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 360px;
+            height: 100%;
+            background: #fff;
+            z-index: 1200;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.05);
+            transition: 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .cart-item-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: #fafafa;
+        }
+
+        .whatsapp-checkout-btn {
+            display: block;
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            text-align: center;
+            padding: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 6%;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 25px;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .footer-socials a {
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--text-muted);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-banner {
-                height: 220px;
+                height: 200px;
+            }
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
             }
         }
     </style>
@@ -326,12 +478,13 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <a href="#" class="logo">eBOSS</a>
-        <div class="cart-icon" onclick="alert('Shporta juaj është boshe.')">
+        <div class="cart-icon" onclick="toggleCart()">
             <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count" id="cartCount">0</span>
         </div>
     </header>
 
-    <!-- Drawer Menu (Fiks si te fotoja e dyte) -->
+    <!-- Drawer Menu -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -350,51 +503,102 @@
         </ul>
     </div>
 
-    <!-- Hero Banner (Vjeshta / Imazhi i parë) -->
-    <div class="hero-banner"></div>
-
-    <div class="section-title" id="sectionTitle">Latest Collection</div>
-
-    <!-- Produktet -->
-    <div class="product-grid" id="productGrid">
-        <!-- Produkt 1 -->
-        <div class="product-card" data-brand="UGG" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
-            <div class="product-img-box">
-                <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800" alt="Ugg Taz">
-            </div>
-            <div class="product-name">Ugg Taz</div>
-            <div class="product-price">ALL 6,000.00</div>
+    <!-- Cart Drawer -->
+    <div class="drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Shporta Juaj</h3>
+            <button class="drawer-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
-        <!-- Produkt 2 -->
-        <div class="product-card" data-brand="Nike" onclick="openProductModal('On Cloud Sneaker', 'ALL 5,000.00', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800')">
-            <div class="product-img-box">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" alt="On Cloud">
-            </div>
-            <div class="product-name">On Cloud Sneaker</div>
-            <div class="product-price">ALL 5,000.00</div>
+        <div class="cart-body" id="cartBody">
+            <p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>
         </div>
-
-        <!-- Produkt 3 -->
-        <div class="product-card" data-brand="New Balance" onclick="openProductModal('New Balance 530', 'ALL 5,500.00', 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800')">
-            <div class="product-img-box">
-                <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800" alt="New Balance">
-            </div>
-            <div class="product-name">New Balance 530</div>
-            <div class="product-price">ALL 5,500.00</div>
-        </div>
-
-        <!-- Produkt 4 -->
-        <div class="product-card" data-brand="Adidas" onclick="openProductModal('Adidas Spezial', 'ALL 5,200.00', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800')">
-            <div class="product-img-box">
-                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800" alt="Adidas">
-            </div>
-            <div class="product-name">Adidas Spezial</div>
-            <div class="product-price">ALL 5,200.00</div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <a href="#" id="whatsappBtn" class="whatsapp-checkout-btn" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Porosit në WhatsApp
+            </a>
         </div>
     </div>
 
-    <!-- Modal i Produktit / Add to Cart (Fiks si te fotoja e tretë) -->
+    <!-- Hero Banner -->
+    <div class="hero-banner"></div>
+
+    <!-- Brand Intro Text -->
+    <div class="brand-intro">
+        Stil modern, rehati dhe elegancë në çdo hap për stilin tuaj të jetesës nga eBOSS Brand.
+    </div>
+
+    <div class="section-title" id="sectionTitle">Latest Collection</div>
+
+    <!-- Produktet me Slide Horizontal -->
+    <div class="product-slider-container">
+        <div class="product-grid" id="productGrid">
+            <!-- Produkt UGG -->
+            <div class="product-card" data-brand="UGG" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800" alt="Ugg Taz">
+                </div>
+                <div class="product-name">Ugg Taz</div>
+                <div class="product-price">ALL 6,000.00</div>
+            </div>
+
+            <!-- Produkt Nike -->
+            <div class="product-card" data-brand="Nike" onclick="openProductModal('On Cloud Sneaker', 'ALL 5,000.00', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" alt="On Cloud">
+                </div>
+                <div class="product-name">On Cloud Sneaker</div>
+                <div class="product-price">ALL 5,000.00</div>
+            </div>
+
+            <!-- Produkt New Balance -->
+            <div class="product-card" data-brand="New Balance" onclick="openProductModal('New Balance 530', 'ALL 5,500.00', 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800" alt="New Balance">
+                </div>
+                <div class="product-name">New Balance 530</div>
+                <div class="product-price">ALL 5,500.00</div>
+            </div>
+
+            <!-- Produkt Adidas -->
+            <div class="product-card" data-brand="Adidas" onclick="openProductModal('Adidas Spezial', 'ALL 5,200.00', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800" alt="Adidas">
+                </div>
+                <div class="product-name">Adidas Spezial</div>
+                <div class="product-price">ALL 5,200.00</div>
+            </div>
+
+            <!-- Produkt Puma -->
+            <div class="product-card" data-brand="Puma" onclick="openProductModal('Puma Palermo', 'ALL 4,800.00', 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800" alt="Puma">
+                </div>
+                <div class="product-name">Puma Palermo</div>
+                <div class="product-price">ALL 4,800.00</div>
+            </div>
+
+            <!-- Produkt Asics -->
+            <div class="product-card" data-brand="Asics" onclick="openProductModal('Asics Gel-Kayano', 'ALL 5,800.00', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800" alt="Asics">
+                </div>
+                <div class="product-name">Asics Gel-Kayano</div>
+                <div class="product-price">ALL 5,800.00</div>
+            </div>
+
+            <!-- Produkt MiuMiu -->
+            <div class="product-card" data-brand="MiuMiu" onclick="openProductModal('MiuMiu Leather Loafer', 'ALL 6,500.00', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800" alt="MiuMiu">
+                </div>
+                <div class="product-name">MiuMiu Leather Loafer</div>
+                <div class="product-price">ALL 6,500.00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal i Produktit -->
     <div class="modal-overlay" id="productModal" onclick="closeModalOutside(event)">
         <div class="modal-box">
             <button class="modal-close-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -433,15 +637,33 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 All rights reserved to eBOSS brand</p>
+            <div class="footer-socials">
+                <a href="tel:+355690000000" title="Phone"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://instagram.com/ebossbrand" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/355690000000" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <!-- JavaScript -->
     <script>
-        // Hapja dhe mbyllja e menusë anësore (Drawer)
+        let cart = [];
+        let currentProduct = {};
+
         function toggleDrawer() {
             document.getElementById('sideDrawer').classList.toggle('active');
             document.getElementById('drawerOverlay').classList.toggle('active');
         }
 
-        // Filtra produktet sipas markës kur zgjidhet nga menuja
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('active');
+            document.getElementById('cartOverlay').classList.toggle('active');
+        }
+
         function filterProducts(brand) {
             const cards = document.querySelectorAll('.product-card');
             const title = document.getElementById('sectionTitle');
@@ -457,8 +679,8 @@
             });
         }
 
-        // Hapja e modalit të produktit
         function openProductModal(title, price, imgSrc) {
+            currentProduct = { title, price, imgSrc };
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalPrice').innerText = price;
             document.getElementById('modalImg').src = imgSrc;
@@ -467,7 +689,6 @@
             document.getElementById('productModal').classList.add('active');
         }
 
-        // Mbyllja e modalit
         function closeProductModal() {
             document.getElementById('productModal').classList.remove('active');
         }
@@ -478,7 +699,6 @@
             }
         }
 
-        // Menaxhimi i sasisë (Quantity + / -)
         function incrementQty() {
             let qty = document.getElementById('qtyValue');
             qty.innerText = parseInt(qty.innerText) + 1;
@@ -492,15 +712,66 @@
             }
         }
 
-        // Butoni Add to Cart
         function addToCart() {
             let size = document.getElementById('sizeSelect').value;
             if (!size) {
                 alert('Ju lutemi zgjidhni masën (Size) para se të vazhdoni!');
                 return;
             }
-            alert('Produkti u shtua me sukses në shportë!');
+            let quantity = parseInt(document.getElementById('qtyValue').innerText);
+
+            cart.push({
+                title: currentProduct.title,
+                price: currentProduct.price,
+                size: size,
+                quantity: quantity
+            });
+
+            updateCartUI();
             closeProductModal();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const cartBody = document.getElementById('cartBody');
+            const cartCount = document.getElementById('cartCount');
+            const cartFooter = document.getElementById('cartFooter');
+
+            cartCount.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartBody.innerHTML = '<p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>';
+                cartFooter.style.display = 'none';
+                return;
+            }
+
+            let html = '';
+            let whatsappText = "Përshëndetje, dëshiroj të bëj këtë porosi nga eBOSS Brand:\n\n";
+
+            cart.forEach((item, index) => {
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.title}</h4>
+                            <p>Masa: ${item.size} | Sasia: ${item.quantity}</p>
+                            <p>${item.price}</p>
+                        </div>
+                        <i class="fa-solid fa-trash" style="cursor: pointer; color: #999; font-size: 14px;" onclick="removeFromCart(${index})"></i>
+                    </div>
+                `;
+                whatsappText += `- ${item.title} (Masa: ${item.size}, Sasia: ${item.quantity}) - ${item.price}\n`;
+            });
+
+            cartBody.innerHTML = html;
+            cartFooter.style.display = 'block';
+
+            let encodedMessage = encodeURIComponent(whatsappText);
+            document.getElementById('whatsappBtn').href = `https://wa.me/355690000000?text=${encodedMessage}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
         }
     </script>
 </body>
