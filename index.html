@@ -251,7 +251,7 @@
             display: block;
         }
 
-        /* Hero Image 1 (I zmadhuar ndjeshëm, me butonin Shop Now në mes) */
+        /* Hero Image 1 */
         .hero-banner-img {
             width: 100%;
             height: 75vh;
@@ -366,12 +366,78 @@
             margin-bottom: 40px;
         }
 
-        /* Catalog Grid View (2 per row) */
+        /* Catalog View Styles */
         .catalog-container {
-            padding: 20px 6% 80px 6%;
+            padding: 30px 6% 80px 6%;
         }
 
-        .catalog-header-bar {
+        .breadcrumb-path {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb-path a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .catalog-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .catalog-main-title {
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .catalog-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .filter-sort-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Filter & Sort Drawer / Modal */
+        .filter-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            z-index: 2200;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.08);
+            transition: 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .filter-drawer.active {
+            right: 0;
+        }
+
+        .filter-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -380,28 +446,55 @@
             padding-bottom: 15px;
         }
 
-        .back-home-link {
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .filter-section select, .filter-section input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .apply-filter-btn {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 14px;
             font-size: 13px;
             font-weight: 500;
-            text-decoration: none;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .catalog-title {
-            font-size: 18px;
-            font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
         }
 
+        /* Grid 2 Columns with 4:3 Image Format */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
         }
 
         .product-card {
@@ -418,10 +511,10 @@
 
         .product-img-box {
             background-color: var(--card-bg);
-            height: 360px;
-            border-radius: 4px;
+            aspect-ratio: 4 / 3; /* Format 4:3 fiks si në foto */
+            border-radius: 12px; /* Qoshe të rrumbullakosura fiks si në imazh */
             overflow: hidden;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .product-img-box img {
@@ -493,9 +586,9 @@
 
         .modal-img {
             width: 100%;
-            height: 300px;
+            aspect-ratio: 4/3;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-bottom: 20px;
         }
 
@@ -684,7 +777,7 @@
             .hero-banner-img-2 {
                 height: 400px;
             }
-            .cart-drawer {
+            .cart-drawer, .filter-drawer {
                 width: 100%;
                 right: -100%;
             }
@@ -765,20 +858,47 @@
         </div>
     </div>
 
+    <!-- Filter & Sort Drawer -->
+    <div class="drawer-overlay" id="filterOverlay" onclick="toggleFilterDrawer()"></div>
+    <div class="filter-drawer" id="filterDrawer">
+        <div class="filter-header">
+            <h3>Filter & Sort</h3>
+            <button class="drawer-close" onclick="toggleFilterDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="filter-section">
+            <label>Renditja (Sort By)</label>
+            <select id="sortSelect">
+                <option value="default">Zgjidh...</option>
+                <option value="low-high">Çmimi: I ulët në të lartë</option>
+                <option value="high-low">Çmimi: I lartë në të ulët</option>
+            </select>
+        </div>
+
+        <div class="filter-section">
+            <label>Çmimi (Price Range - ALL)</label>
+            <div class="price-inputs">
+                <input type="number" id="minPrice" placeholder="Min (psh 500)">
+                <span>-</span>
+                <input type="number" id="maxPrice" placeholder="Max (psh 6000)">
+            </div>
+        </div>
+
+        <button class="apply-filter-btn" onclick="applyFilters()">Apliko</button>
+    </div>
+
     <!-- ================= 1. HOME VIEW ================= -->
     <div id="homeView" class="page-view active">
-        <!-- Hero Image 1 (Zmadhuar & me butonin Shop Now në mes) -->
         <div class="hero-banner-img">
             <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Now</a>
         </div>
 
         <div class="section-title">Latest Collection</div>
 
-        <!-- Slider horizontal -->
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
                 <!-- Produkt UGG -->
-                <div class="product-card" data-brand="UGG" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="UGG" data-price="6000" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800" alt="Ugg Taz">
                     </div>
@@ -787,7 +907,7 @@
                 </div>
 
                 <!-- Produkt Nike -->
-                <div class="product-card" data-brand="Nike" onclick="openProductModal('On Cloud Sneaker', 'ALL 5,000.00', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="Nike" data-price="5000" onclick="openProductModal('On Cloud Sneaker', 'ALL 5,000.00', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" alt="On Cloud">
                     </div>
@@ -796,7 +916,7 @@
                 </div>
 
                 <!-- Produkt New Balance -->
-                <div class="product-card" data-brand="New Balance" onclick="openProductModal('New Balance 530', 'ALL 5,500.00', 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="New Balance" data-price="5500" onclick="openProductModal('New Balance 530', 'ALL 5,500.00', 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800" alt="New Balance">
                     </div>
@@ -805,7 +925,7 @@
                 </div>
 
                 <!-- Produkt Adidas -->
-                <div class="product-card" data-brand="Adidas" onclick="openProductModal('Adidas Spezial', 'ALL 5,200.00', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="Adidas" data-price="5200" onclick="openProductModal('Adidas Spezial', 'ALL 5,200.00', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800" alt="Adidas">
                     </div>
@@ -814,7 +934,7 @@
                 </div>
 
                 <!-- Produkt Puma -->
-                <div class="product-card" data-brand="Puma" onclick="openProductModal('Puma Palermo', 'ALL 4,800.00', 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="Puma" data-price="4800" onclick="openProductModal('Puma Palermo', 'ALL 4,800.00', 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800" alt="Puma">
                     </div>
@@ -823,7 +943,7 @@
                 </div>
 
                 <!-- Produkt Asics -->
-                <div class="product-card" data-brand="Asics" onclick="openProductModal('Asics Gel-Kayano', 'ALL 5,800.00', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="Asics" data-price="5800" onclick="openProductModal('Asics Gel-Kayano', 'ALL 5,800.00', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800" alt="Asics">
                     </div>
@@ -832,7 +952,7 @@
                 </div>
 
                 <!-- Produkt MiuMiu -->
-                <div class="product-card" data-brand="MiuMiu" onclick="openProductModal('MiuMiu Leather Loafer', 'ALL 6,500.00', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="MiuMiu" data-price="6500" onclick="openProductModal('MiuMiu Leather Loafer', 'ALL 6,500.00', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800')">
                     <div class="product-img-box">
                         <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800" alt="MiuMiu">
                     </div>
@@ -842,24 +962,30 @@
             </div>
         </div>
 
-        <!-- Brand Story Section -->
         <div class="brand-story-section">
             <h2>eBOSS Brand</h2>
             <h4>Designed for your everyday style</h4>
             <p>eBOSS is built around carefully curated sneaker collections, designed for effortless everyday style and long-lasting comfort. Each pair is selected with attention to detail, quality and wearability. Our goal is to offer sneakers that feel as good as they look. We introduce new styles weekly, bringing you the latest releases and the most in-demand viral sneaker trends.</p>
         </div>
 
-        <!-- Hero Image 2 -->
         <div class="hero-banner-img-2"></div>
     </div>
 
     <!-- ================= 2. CATALOG VIEW ================= -->
     <div id="catalogView" class="page-view">
         <div class="catalog-container">
-            <div class="catalog-header-bar">
-                <a class="back-home-link" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Kryefaqja</a>
-                <div class="catalog-title" id="catalogTitle">All Products</div>
-                <div style="width: 70px;"></div>
+            <!-- Breadcrumbs -->
+            <div class="breadcrumb-path">
+                <a href="#" onclick="goHome(); return false;">Home</a> > <span id="breadcrumbCategory">All Products</span>
+            </div>
+
+            <div class="catalog-header-top">
+                <div class="catalog-main-title" id="catalogTitle">All Products</div>
+            </div>
+
+            <div class="catalog-meta-bar">
+                <span id="productCount">0 products</span>
+                <button class="filter-sort-btn" onclick="toggleFilterDrawer()">Filter & Sort</button>
             </div>
 
             <div class="product-grid" id="catalogGrid"></div>
@@ -921,6 +1047,7 @@
     <script>
         let cart = [];
         let currentProduct = {};
+        let currentBrand = 'all';
 
         function toggleDrawer() {
             document.getElementById('sideDrawer').classList.toggle('active');
@@ -940,6 +1067,11 @@
             }
         }
 
+        function toggleFilterDrawer() {
+            document.getElementById('filterDrawer').classList.toggle('active');
+            document.getElementById('filterOverlay').classList.toggle('active');
+        }
+
         function goHome() {
             document.getElementById('homeView').classList.add('active');
             document.getElementById('catalogView').classList.remove('active');
@@ -947,28 +1079,64 @@
         }
 
         function openCatalog(brand) {
+            currentBrand = brand;
             const catalogView = document.getElementById('catalogView');
             const homeView = document.getElementById('homeView');
-            const catalogGrid = document.getElementById('catalogGrid');
             const catalogTitle = document.getElementById('catalogTitle');
+            const breadcrumb = document.getElementById('breadcrumbCategory');
 
             homeView.classList.remove('active');
             catalogView.classList.add('active');
 
-            catalogTitle.innerText = brand === 'all' ? 'All Products' : brand;
+            let title = brand === 'all' ? 'All Products' : brand;
+            catalogTitle.innerText = title;
+            breadcrumb.innerText = title;
 
-            const allCards = document.querySelectorAll('#homeSlider .product-card');
-            catalogGrid.innerHTML = '';
+            // Reset filters
+            document.getElementById('sortSelect').value = 'default';
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
 
-            allCards.forEach(card => {
-                const cardBrand = card.getAttribute('data-brand');
-                if (brand === 'all' || cardBrand === brand) {
-                    const clone = card.cloneNode(true);
-                    catalogGrid.appendChild(clone);
-                }
+            renderCatalogProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderCatalogProducts() {
+            const catalogGrid = document.getElementById('catalogGrid');
+            const productCount = document.getElementById('productCount');
+            const allCards = Array.from(document.querySelectorAll('#homeSlider .product-card'));
+            
+            const sortVal = document.getElementById('sortSelect').value;
+            const minP = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxP = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+
+            let filtered = allCards.filter(card => {
+                let cardBrand = card.getAttribute('data-brand');
+                let cardPrice = parseFloat(card.getAttribute('data-price'));
+
+                let matchBrand = (currentBrand === 'all' || cardBrand === currentBrand);
+                let matchPrice = (cardPrice >= minP && cardPrice <= maxP);
+                return matchBrand && matchPrice;
             });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Sort
+            if (sortVal === 'low-high') {
+                filtered.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
+            } else if (sortVal === 'high-low') {
+                filtered.sort((a, b) => parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price')));
+            }
+
+            catalogGrid.innerHTML = '';
+            filtered.forEach(card => {
+                catalogGrid.appendChild(card.cloneNode(true));
+            });
+
+            productCount.innerText = `${filtered.length} products`;
+        }
+
+        function applyFilters() {
+            renderCatalogProducts();
+            toggleFilterDrawer();
         }
 
         function handleSearch(query) {
