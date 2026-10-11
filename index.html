@@ -417,7 +417,7 @@
             text-decoration: underline;
         }
 
-        /* Filter & Sort Drawer / Modal */
+        /* Filter & Sort Drawer */
         .filter-drawer {
             position: fixed;
             top: 0;
@@ -490,7 +490,7 @@
             margin-top: 20px;
         }
 
-        /* Grid 2 Columns with 4:3 Image Format */
+        /* Grid 2 Columns - Format 3:4, Qoshe të drejta dhe Hije e lehtë */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -511,10 +511,16 @@
 
         .product-img-box {
             background-color: var(--card-bg);
-            aspect-ratio: 4 / 3; /* Format 4:3 fiks si në foto */
-            border-radius: 12px; /* Qoshe të rrumbullakosura fiks si në imazh */
+            aspect-ratio: 3 / 4; /* Formati 3:4 i kërkuar */
+            border-radius: 0px;  /* Pa qoshe të rrumbullakosura (qoshe të drejta) */
             overflow: hidden;
             margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Hije e lehtë elegante */
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover .product-img-box {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .product-img-box img {
@@ -586,9 +592,10 @@
 
         .modal-img {
             width: 100%;
-            aspect-ratio: 4/3;
+            aspect-ratio: 3/4;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 0px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
         }
 
@@ -974,7 +981,6 @@
     <!-- ================= 2. CATALOG VIEW ================= -->
     <div id="catalogView" class="page-view">
         <div class="catalog-container">
-            <!-- Breadcrumbs -->
             <div class="breadcrumb-path">
                 <a href="#" onclick="goHome(); return false;">Home</a> > <span id="breadcrumbCategory">All Products</span>
             </div>
@@ -1045,9 +1051,20 @@
 
     <!-- JavaScript -->
     <script>
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('eboss_cart')) || [];
         let currentProduct = {};
-        let currentBrand = 'all';
+        let currentBrand = localStorage.getItem('eboss_brand') || 'all';
+        let currentView = localStorage.getItem('eboss_view') || 'home';
+
+        // Inicializimi i faqes në bazë të gjendjes së ruajtur
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+            if (currentView === 'catalog') {
+                openCatalog(currentBrand, false);
+            } else {
+                goHome(false);
+            }
+        });
 
         function toggleDrawer() {
             document.getElementById('sideDrawer').classList.toggle('active');
@@ -1072,14 +1089,24 @@
             document.getElementById('filterOverlay').classList.toggle('active');
         }
 
-        function goHome() {
+        function goHome(smooth = true) {
+            currentView = 'home';
+            localStorage.setItem('eboss_view', 'home');
+            localStorage.setItem('eboss_brand', 'all');
+
             document.getElementById('homeView').classList.add('active');
             document.getElementById('catalogView').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(smooth) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
-        function openCatalog(brand) {
+        function openCatalog(brand, smooth = true) {
             currentBrand = brand;
+            currentView = 'catalog';
+            localStorage.setItem('eboss_view', 'catalog');
+            localStorage.setItem('eboss_brand', brand);
+
             const catalogView = document.getElementById('catalogView');
             const homeView = document.getElementById('homeView');
             const catalogTitle = document.getElementById('catalogTitle');
@@ -1092,13 +1119,10 @@
             catalogTitle.innerText = title;
             breadcrumb.innerText = title;
 
-            // Reset filters
-            document.getElementById('sortSelect').value = 'default';
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
-
             renderCatalogProducts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(smooth) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         function renderCatalogProducts() {
@@ -1119,7 +1143,6 @@
                 return matchBrand && matchPrice;
             });
 
-            // Sort
             if (sortVal === 'low-high') {
                 filtered.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
             } else if (sortVal === 'high-low') {
@@ -1219,6 +1242,7 @@
                 quantity: quantity
             });
 
+            localStorage.setItem('eboss_cart', JSON.stringify(cart));
             updateCartUI();
             closeProductModal();
             toggleCart();
@@ -1263,6 +1287,7 @@
 
         function removeFromCart(index) {
             cart.splice(index, 1);
+            localStorage.setItem('eboss_cart', JSON.stringify(cart));
             updateCartUI();
         }
     </script>
