@@ -142,23 +142,47 @@
             background: var(--card-bg);
         }
 
-        /* Hero Banner Section */
+        /* Hero Banner Section with Shop Now Button */
         .hero-banner {
             width: 100%;
-            height: 320px;
+            height: 400px;
             background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
-            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        /* Brand Intro Description */
-        .brand-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 40px auto;
-            padding: 0 20px;
-            font-size: 15px;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .shop-now-btn {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            color: #111111;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .shop-now-btn:hover {
+            background: #111111;
+            color: #ffffff;
         }
 
         /* Section Title */
@@ -171,23 +195,36 @@
             margin-bottom: 30px;
         }
 
-        /* Horizontal Slider for Latest Collection */
+        /* Slider for Latest Collection (Home View) */
         .product-slider-container {
             padding: 0 6% 80px 6%;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            scrollbar-width: none;
         }
 
         .product-slider-container::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
+            display: none;
         }
 
         .product-grid {
             display: flex;
             gap: 30px;
             width: max-content;
+        }
+
+        /* Grid View for Filtered / All Products (2 items per row) */
+        .product-grid.grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            padding: 0 6% 80px 6%;
+        }
+
+        .product-grid.grid-layout .product-card {
+            width: 100%;
         }
 
         .product-card {
@@ -203,7 +240,7 @@
             height: 360px;
             border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .product-img-box img {
@@ -218,14 +255,14 @@
         }
 
         .product-name {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 400;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: var(--text-main);
         }
 
         .product-price {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
         }
 
@@ -461,7 +498,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-banner {
-                height: 200px;
+                height: 300px;
             }
             .cart-drawer {
                 width: 100%;
@@ -477,7 +514,7 @@
         <div class="menu-icon" onclick="toggleDrawer()">
             <i class="fa-solid fa-bars"></i>
         </div>
-        <a href="#" class="logo">eBOSS</a>
+        <a href="#" class="logo" onclick="goHome()">eBOSS</a>
         <div class="cart-icon" onclick="toggleCart()">
             <i class="fa-solid fa-bag-shopping"></i>
             <span class="cart-count" id="cartCount">0</span>
@@ -491,7 +528,7 @@
             <button class="drawer-close" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <ul class="drawer-links">
-            <li><a href="#" onclick="filterProducts('all'); toggleDrawer();">Home</a></li>
+            <li><a href="#" onclick="goHome(); toggleDrawer();">Home</a></li>
             <li><a href="#" onclick="filterProducts('all'); toggleDrawer();">All Products</a></li>
             <li><a href="#" onclick="filterProducts('New Balance'); toggleDrawer();">New Balance</a></li>
             <li><a href="#" onclick="filterProducts('Adidas'); toggleDrawer();">Adidas</a></li>
@@ -520,18 +557,15 @@
         </div>
     </div>
 
-    <!-- Hero Banner -->
-    <div class="hero-banner"></div>
-
-    <!-- Brand Intro Text -->
-    <div class="brand-intro">
-        Stil modern, rehati dhe elegancë në çdo hap për stilin tuaj të jetesës nga eBOSS Brand.
+    <!-- Hero Banner me Butonin Shop Now -->
+    <div class="hero-banner">
+        <a href="#" class="shop-now-btn" onclick="filterProducts('all')">Shop Now</a>
     </div>
 
     <div class="section-title" id="sectionTitle">Latest Collection</div>
 
-    <!-- Produktet me Slide Horizontal -->
-    <div class="product-slider-container">
+    <!-- Produktet (Slider në Home, Grid 2-kolona kur filtrohet) -->
+    <div id="mainContainer" class="product-slider-container">
         <div class="product-grid" id="productGrid">
             <!-- Produkt UGG -->
             <div class="product-card" data-brand="UGG" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
@@ -664,11 +698,31 @@
             document.getElementById('cartOverlay').classList.toggle('active');
         }
 
-        function filterProducts(brand) {
-            const cards = document.querySelectorAll('.product-card');
+        function goHome() {
+            const container = document.getElementById('mainContainer');
+            const grid = document.getElementById('productGrid');
             const title = document.getElementById('sectionTitle');
+
+            container.className = 'product-slider-container';
+            grid.className = 'product-grid';
+            title.innerText = 'Latest Collection';
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => card.style.display = 'block');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterProducts(brand) {
+            const container = document.getElementById('mainContainer');
+            const grid = document.getElementById('productGrid');
+            const title = document.getElementById('sectionTitle');
+            const cards = document.querySelectorAll('.product-card');
+
+            // Ndryshon stilin në grid me 2 kolona për rresht
+            container.className = '';
+            grid.className = 'product-grid grid-layout';
             
-            title.innerText = brand === 'all' ? 'Latest Collection' : brand;
+            title.innerText = brand === 'all' ? 'All Products' : brand;
 
             cards.forEach(card => {
                 if (brand === 'all' || card.getAttribute('data-brand') === brand) {
@@ -677,6 +731,9 @@
                     card.style.display = 'none';
                 }
             });
+
+            // Lëviz pamjen te seksioni i produkteve
+            title.scrollIntoView({ behavior: 'smooth' });
         }
 
         function openProductModal(title, price, imgSrc) {
