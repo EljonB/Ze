@@ -25,7 +25,18 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-announcement {
+            background-color: #f4f1ea;
+            color: #333;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 8px 15px;
+            text-transform: uppercase;
         }
 
         /* Header */
@@ -41,8 +52,19 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .menu-icon, .cart-icon {
+        .menu-icon {
             font-size: 20px;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            align-items: center;
+        }
+
+        .search-icon, .cart-icon {
             cursor: pointer;
             position: relative;
         }
@@ -63,9 +85,9 @@
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: 500;
-            letter-spacing: 3px;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 4px;
             text-transform: uppercase;
             text-decoration: none;
             color: var(--text-main);
@@ -142,6 +164,85 @@
             background: var(--card-bg);
         }
 
+        /* Search Overlay Modal */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 2500;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 8%;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
+
+        .search-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .search-input-box {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-input-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            font-size: 18px;
+            border: none;
+            border-bottom: 2px solid var(--text-main);
+            background: transparent;
+            outline: none;
+        }
+
+        .search-input-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .search-results {
+            max-width: 700px;
+            margin: 30px auto 0 auto;
+            width: 100%;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .search-result-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
         /* Views management */
         .page-view {
             display: none;
@@ -150,46 +251,11 @@
             display: block;
         }
 
-        /* Hero Banner Section with Shop Now Button */
-        .hero-banner {
+        /* Hero Image 1 (Fiks si në foto) */
+        .hero-banner-img {
             width: 100%;
-            height: 450px;
+            height: 600px;
             background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hero-banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.15);
-        }
-
-        .shop-now-btn {
-            position: relative;
-            z-index: 2;
-            background: #ffffff;
-            color: #111111;
-            padding: 14px 32px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .shop-now-btn:hover {
-            background: #111111;
-            color: #ffffff;
         }
 
         /* Section Title */
@@ -197,14 +263,14 @@
             text-align: center;
             font-size: 18px;
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin: 40px 0 30px 0;
+            margin: 60px 0 35px 0;
         }
 
-        /* Slider for Latest Collection (Home View) */
+        /* Slider for Latest Collection */
         .product-slider-container {
-            padding: 0 6% 80px 6%;
+            padding: 0 6% 60px 6%;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
@@ -219,6 +285,49 @@
             display: flex;
             gap: 30px;
             width: max-content;
+        }
+
+        /* Brand Story Section (Fiks si në foto) */
+        .brand-story-section {
+            padding: 80px 10%;
+            text-align: center;
+            background: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .brand-story-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .brand-story-section h4 {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .brand-story-section p {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.8;
+            font-style: italic;
+            font-family: serif;
+        }
+
+        /* Hero Image 2 (Fiks si në foto e fundit me kalin) */
+        .hero-banner-img-2 {
+            width: 100%;
+            height: 650px;
+            background: url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            margin-bottom: 40px;
         }
 
         /* Catalog Grid View (2 items per row for Category / All Products View) */
@@ -246,10 +355,6 @@
             cursor: pointer;
         }
 
-        .back-home-link:hover {
-            color: var(--text-muted);
-        }
-
         .catalog-title {
             font-size: 18px;
             font-weight: 400;
@@ -269,7 +374,6 @@
             width: 100%;
         }
 
-        /* Specific sizing for home slider cards */
         .product-slider-container .product-card {
             width: 280px;
             scroll-snap-align: start;
@@ -278,7 +382,7 @@
 
         .product-img-box {
             background-color: var(--card-bg);
-            height: 340px;
+            height: 360px;
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 10px;
@@ -538,23 +642,21 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-banner {
-                height: 350px;
+            .hero-banner-img, .hero-banner-img-2 {
+                height: 400px;
             }
             .cart-drawer {
                 width: 100%;
                 right: -100%;
             }
-            .product-grid {
-                gap: 12px;
-            }
-            .product-img-box {
-                height: 240px;
-            }
         }
     </style>
 </head>
 <body>
+
+    <div class="top-announcement">
+        New Collection Available
+    </div>
 
     <!-- Header -->
     <header>
@@ -562,9 +664,14 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <a href="#" class="logo" onclick="goHome(); return false;">eBOSS</a>
-        <div class="cart-icon" onclick="toggleCart()">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="cart-count" id="cartCount">0</span>
+        <div class="header-right">
+            <div class="search-icon" onclick="toggleSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
         </div>
     </header>
 
@@ -587,6 +694,21 @@
         </ul>
     </div>
 
+    <!-- Search Modal (Aktiv dhe Funksional) -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-top">
+            <a href="#" class="logo" onclick="toggleSearch(); return false;">eBOSS</a>
+            <button class="drawer-close" onclick="toggleSearch()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-input-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Kërko produkt ose markë..." oninput="handleSearch(this.value)">
+        </div>
+        <div class="search-results" id="searchResults">
+            <p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Shkruani emrin e produktit për të kërkuar...</p>
+        </div>
+    </div>
+
     <!-- Cart Drawer -->
     <div class="drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
@@ -604,14 +726,14 @@
         </div>
     </div>
 
-    <!-- ================= 1. HOME VIEW ================= -->
+    <!-- ================= 1. HOME VIEW (Index i personalizuar si në foto) ================= -->
     <div id="homeView" class="page-view active">
-        <div class="hero-banner">
-            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Now</a>
-        </div>
+        <!-- Hero Image 1 -->
+        <div class="hero-banner-img"></div>
 
         <div class="section-title">Latest Collection</div>
 
+        <!-- Slider horizontal i produkteve -->
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
                 <!-- Produkt UGG -->
@@ -678,6 +800,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Brand Story Section (Fiks si në foto) -->
+        <div class="brand-story-section">
+            <h2>eBOSS Brand</h2>
+            <h4>Designed for your everyday style</h4>
+            <p>eBOSS is built around carefully curated sneaker collections, designed for effortless everyday style and long-lasting comfort. Each pair is selected with attention to detail, quality and wearability. Our goal is to offer sneakers that feel as good as they look. We introduce new styles weekly, bringing you the latest releases and the most in-demand viral sneaker trends.</p>
+        </div>
+
+        <!-- Hero Image 2 -->
+        <div class="hero-banner-img-2"></div>
     </div>
 
     <!-- ================= 2. CATALOG VIEW (2 per row) ================= -->
@@ -686,12 +818,10 @@
             <div class="catalog-header-bar">
                 <a class="back-home-link" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Kryefaqja</a>
                 <div class="catalog-title" id="catalogTitle">All Products</div>
-                <div style="width: 70px;"></div> <!-- Për balancim vizual -->
+                <div style="width: 70px;"></div>
             </div>
 
-            <div class="product-grid" id="catalogGrid">
-                <!-- Produktet klonohen ose shfaqen këtu automatikisht në 2 kolona -->
-            </div>
+            <div class="product-grid" id="catalogGrid"></div>
         </div>
     </div>
 
@@ -761,6 +891,14 @@
             document.getElementById('cartOverlay').classList.toggle('active');
         }
 
+        function toggleSearch() {
+            const modal = document.getElementById('searchModal');
+            modal.classList.toggle('active');
+            if(modal.classList.contains('active')) {
+                document.getElementById('searchInput').focus();
+            }
+        }
+
         function goHome() {
             document.getElementById('homeView').classList.add('active');
             document.getElementById('catalogView').classList.remove('active');
@@ -778,20 +916,51 @@
 
             catalogTitle.innerText = brand === 'all' ? 'All Products' : brand;
 
-            // Merr të gjitha produktet nga slideri kryesor
             const allCards = document.querySelectorAll('#homeSlider .product-card');
             catalogGrid.innerHTML = '';
 
             allCards.forEach(card => {
                 const cardBrand = card.getAttribute('data-brand');
                 if (brand === 'all' || cardBrand === brand) {
-                    // Klonojmë kartën për te katalogu me 2 kolona
                     const clone = card.cloneNode(true);
                     catalogGrid.appendChild(clone);
                 }
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Funksioni aktiv i kërkimit në kohë reale
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            const allCards = document.querySelectorAll('#homeSlider .product-card');
+            
+            if(!query.trim()) {
+                resultsContainer.innerHTML = '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Shkruani emrin e produktit për të kërkuar...</p>';
+                return;
+            }
+
+            let html = '';
+            allCards.forEach(card => {
+                const name = card.querySelector('.product-name').innerText;
+                const price = card.querySelector('.product-price').innerText;
+                const img = card.querySelector('img').src;
+                const brand = card.getAttribute('data-brand');
+
+                if(name.toLowerCase().includes(query.toLowerCase()) || brand.toLowerCase().includes(query.toLowerCase())) {
+                    html += `
+                        <div class="search-result-item" onclick="toggleSearch(); openProductModal('${name}', '${price}', '${img}')">
+                            <img src="${img}" alt="${name}">
+                            <div>
+                                <h4 style="font-size: 14px; font-weight: 500;">${name}</h4>
+                                <p style="font-size: 12px; color: #666;">${price}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            resultsContainer.innerHTML = html || '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Nuk u gjet asnjë produkt.</p>';
         }
 
         function openProductModal(title, price, imgSrc) {
