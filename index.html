@@ -251,11 +251,47 @@
             display: block;
         }
 
-        /* Hero Image 1 (Fiks si në foto) */
+        /* Hero Image 1 (I zmadhuar ndjeshëm, me butonin Shop Now në mes) */
         .hero-banner-img {
             width: 100%;
-            height: 600px;
-            background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            height: 75vh;
+            min-height: 550px;
+            background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1400') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-banner-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .shop-now-btn {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            color: #111111;
+            padding: 16px 36px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .shop-now-btn:hover {
+            background: #111111;
+            color: #ffffff;
         }
 
         /* Section Title */
@@ -287,7 +323,7 @@
             width: max-content;
         }
 
-        /* Brand Story Section (Fiks si në foto) */
+        /* Brand Story Section */
         .brand-story-section {
             padding: 80px 10%;
             text-align: center;
@@ -322,7 +358,7 @@
             font-family: serif;
         }
 
-        /* Hero Image 2 (Fiks si në foto e fundit me kalin) */
+        /* Hero Image 2 */
         .hero-banner-img-2 {
             width: 100%;
             height: 650px;
@@ -330,7 +366,7 @@
             margin-bottom: 40px;
         }
 
-        /* Catalog Grid View (2 items per row for Category / All Products View) */
+        /* Catalog Grid View (2 per row) */
         .catalog-container {
             padding: 20px 6% 80px 6%;
         }
@@ -642,7 +678,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-banner-img, .hero-banner-img-2 {
+            .hero-banner-img {
+                height: 50vh;
+            }
+            .hero-banner-img-2 {
                 height: 400px;
             }
             .cart-drawer {
@@ -694,7 +733,7 @@
         </ul>
     </div>
 
-    <!-- Search Modal (Aktiv dhe Funksional) -->
+    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-top">
             <a href="#" class="logo" onclick="toggleSearch(); return false;">eBOSS</a>
@@ -726,14 +765,16 @@
         </div>
     </div>
 
-    <!-- ================= 1. HOME VIEW (Index i personalizuar si në foto) ================= -->
+    <!-- ================= 1. HOME VIEW ================= -->
     <div id="homeView" class="page-view active">
-        <!-- Hero Image 1 -->
-        <div class="hero-banner-img"></div>
+        <!-- Hero Image 1 (Zmadhuar & me butonin Shop Now në mes) -->
+        <div class="hero-banner-img">
+            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Now</a>
+        </div>
 
         <div class="section-title">Latest Collection</div>
 
-        <!-- Slider horizontal i produkteve -->
+        <!-- Slider horizontal -->
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
                 <!-- Produkt UGG -->
@@ -801,7 +842,7 @@
             </div>
         </div>
 
-        <!-- Brand Story Section (Fiks si në foto) -->
+        <!-- Brand Story Section -->
         <div class="brand-story-section">
             <h2>eBOSS Brand</h2>
             <h4>Designed for your everyday style</h4>
@@ -812,7 +853,7 @@
         <div class="hero-banner-img-2"></div>
     </div>
 
-    <!-- ================= 2. CATALOG VIEW (2 per row) ================= -->
+    <!-- ================= 2. CATALOG VIEW ================= -->
     <div id="catalogView" class="page-view">
         <div class="catalog-container">
             <div class="catalog-header-bar">
@@ -869,9 +910,9 @@
         <div class="footer-content">
             <p>&copy; 2026 All rights reserved to eBOSS brand</p>
             <div class="footer-socials">
-                <a href="tel:+355690000000" title="Phone"><i class="fa-solid fa-phone"></i></a>
-                <a href="https://instagram.com/ebossbrand" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/355690000000" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="tel:+355686694729" title="Phone"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://instagram.com/eboss_brand_al" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/355686694729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
@@ -930,7 +971,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Funksioni aktiv i kërkimit në kohë reale
         function handleSearch(query) {
             const resultsContainer = document.getElementById('searchResults');
             const allCards = document.querySelectorAll('#homeSlider .product-card');
@@ -1050,7 +1090,7 @@
             cartFooter.style.display = 'block';
 
             let encodedMessage = encodeURIComponent(whatsappText);
-            document.getElementById('whatsappBtn').href = `https://wa.me/355690000000?text=${encodedMessage}`;
+            document.getElementById('whatsappBtn').href = `https://wa.me/355686694729?text=${encodedMessage}`;
         }
 
         function removeFromCart(index) {
