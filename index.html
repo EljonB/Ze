@@ -1,88 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zeus Hotel</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eboss brand — Home & Kitchen Essentials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --accent: #111111;
+            --border-color: #eaeaea;
+            --card-bg: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+            padding: 8px 15px;
+            text-transform: uppercase;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-muted);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 5% 50px 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 400;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        /* Category Filter Tabs */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 5%;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--text-main);
+            color: #fff;
+            border-color: var(--text-main);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 5% 80px 5%;
+        }
+
+        .product-card {
+            background: var(--bg-color);
+            cursor: pointer;
+            group: true;
+        }
+
+        .product-image {
+            background-color: var(--card-bg);
+            height: 350px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.03);
+        }
+
+        .product-info {
+            padding: 15px 0;
+            text-align: left;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 50px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">Zeus Hotel</div>
-    <nav id="navbar">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Zeus Hotel</h1>
-      <p>Luxury & comfort await you in the heart of paradise.</p>
-      <a href="https://www.booking.com/hotel/al/zeus.fr.html" target="_blank" class="book-btn">Book Now</a>
+    <div class="top-bar">
+        Koleksioni i Ri — Cilësi dhe Stil për Shtëpinë Tuaj
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>Rreth Nesh</h2>
-    <p>
-Mirësevini në Zeus Hotel, destinacioni juaj ideal buzë detit në Shengjin. Vetëm disa hapa larg valëve të Adriatikut, hoteli ynë kombinon komoditetin modern me mikpritjen shqiptare, duke krijuar një përvojë të paharrueshme për çdo mysafir.
+    <header>
+        <a href="#" class="logo">eBOSS</a>
+        <nav>
+            <ul>
+                <li><a href="#">Kryefaqja</a></li>
+                <li><a href="#">Kuzhinë</a></li>
+                <li><a href="#">Pajisje Shtëpiake</a></li>
+                <li><a href="#">Rreth Nesh</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+    </header>
 
-Çdo dhomë është e dizajnuar me stil dhe rehati, duke ofruar pamje magjike nga deti dhe ambient të qetë për relaks total. Ekipi ynë i përkushtuar është gjithmonë në dispozicion për t’ju siguruar shërbim personal dhe kujdes të veçantë në çdo detaj.
+    <section class="hero">
+        <h1>Essential Home & Kitchen</h1>
+        <p>E krijuar për rehati, funksionalitet dhe estetikë moderne në çdo ambient shtëpiak.</p>
+    </section>
 
-Qoftë për pushime romantike, aventura familjare apo ditë relaksi, Zeus Hotel ju ofron luksin e një qëndrimi komod, shërbim të shkëlqyer dhe eksperiencën e veçantë të Shengjinit buzë detit. Lejoni që çdo moment të jetë i mbushur me relaks, bukuri dhe kujtime të paharrueshme.
-    </p>
-  </section>
-
-  <!-- ROOMS -->
-  <section id="rooms">
-    <h2>Our Rooms</h2>
-    <div class="rooms-container">
-      <div class="room">
-        <img src="images/IMG2.jpg" alt="Deluxe Room">
-        <h3>Sea View Room</h3>
-        <p>Elegant interiors and a scenic balcony view.</p>
-      </div>
-      <div class="room">
-        <img src="images/IMG3.jpg" alt="Suite">
-        <h3>Deluxe Room</h3>
-        <p>Spacious comfort with a touch of luxury and style.</p>
-      </div>
-      <div class="room">
-        <img src="images/IMG4.jpg" alt="Family Room">
-        <h3>Family Room</h3>
-        <p>Perfect for families seeking comfort and peace.</p>
-      </div>
+    <div class="filters">
+        <button class="filter-btn active">Të Gjitha</button>
+        <button class="filter-btn">Kuzhinë</button>
+        <button class="filter-btn">Pajisje Elektrogesht</i></button>
+        <button class="filter-btn">Aksesorë</button>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>📍 Shengjin - Kune Str, Shëngjin</p>
-    <p>📞 +355684351940</p>
-    <p>📧 info@zeushotel.com</p>
-  </section>
+    <div class="product-grid">
+        <!-- Produkt 1 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800" alt="Multicooker">
+            </div>
+            <div class="product-info">
+                <div class="product-category">Kuzhinë</div>
+                <div class="product-title">Smart Multi-Functional Cooker</div>
+            </div>
+        </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/_zeus_hotel_/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/+355684351940" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <!-- Produkt 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1570222094114-d074f7e1e6e0?auto=format&fit=crop&q=80&w=800" alt="Blender">
+            </div>
+            <div class="product-info">
+                <div class="product-category">Pajisje Shtëpiake</div>
+                <div class="product-title">Pro Nutrient Blender</div>
+            </div>
+        </div>
+
+        <!-- Produkt 3 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800" alt="Coffee Maker">
+            </div>
+            <div class="product-info">
+                <div class="product-category">Kuzhinë</div>
+                <div class="product-title">Minimalist Electric Coffee Pot</div>
+            </div>
+        </div>
+
+        <!-- Produkt 4 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&q=80&w=800" alt="Chopper">
+            </div>
+            <div class="product-info">
+                <div class="product-category">Aksesorë</div>
+                <div class="product-title">Precision Vegetable Chopper</div>
+            </div>
+        </div>
     </div>
-    <p>© 2025 Zeus Hotel | All Rights Reserved</p>
-  </footer>
 
-  <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2026 eBOSS BRAND. Të gjitha të drejtat e rezervuara.</p>
+        <p>Dizenjuar për stil dhe elegancë në çdo shtëpi.</p>
+    </footer>
+
 </body>
 </html>
