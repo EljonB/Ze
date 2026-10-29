@@ -1,652 +1,1002 @@
 <!DOCTYPE html>
-<html lang="sq">
+<html lang="sq" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delulu Boutique | UGGs & Sneakers</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #d4a373;
-            --primary-dark: #b07d4b;
-            --accent: #fefae0;
-            --bg-color: #faf9f6;
-            --card-bg: #ffffff;
-            --text-main: #2b2b2b;
-            --text-muted: #777777;
-            --border: #e7e5df;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            background: #ffffff;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-
-        .nav-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: var(--transition);
-            padding: 5px 0;
-            position: relative;
-        }
-
-        .nav-links a.active, .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            cursor: pointer;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .icon-btn:hover {
-            color: var(--primary);
-        }
-
-        .badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: var(--primary);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 50%;
-            font-weight: 600;
-        }
-
-        /* MAIN CONTENT AREA (PAGES CONTAINER) */
-        main {
-            flex: 1;
-            max-width: 1300px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* HOME / HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, #fbf7f0 0% , #f4ebe1 100%);
-            border-radius: 20px;
-            padding: 4rem 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* CATALOG / PRODUCTS SECTION */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .search-filter-bar {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            padding: 0.7rem 1rem 0.7rem 2.5rem;
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            outline: none;
-            font-size: 0.95rem;
-            width: 260px;
-            background: white;
-            transition: var(--transition);
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: var(--primary);
-        }
-
-        .product-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            background: #f4f4f4;
-            overflow: hidden;
-        }
-
-        .product-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .product-card:hover .product-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .product-tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: white;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            color: var(--primary-dark);
-        }
-
-        .product-info {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
-        }
-
-        .product-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .product-price {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-            background: var(--text-main);
-            color: white;
-            border: none;
-            padding: 0.7rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-add-cart:hover {
-            background: var(--primary);
-        }
-
-        /* CART & CHECKOUT PAGE */
-        .cart-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        @media(max-width: 900px) {
-            .cart-layout {
-                grid-template-columns: 1fr;
+    <title>Delulu Boutique | Luxury Footwear & Streetwear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#FAF7F2',
+                            100: '#F4EFEA',
+                            200: '#E8DFD5',
+                            300: '#D9C8B7',
+                            400: '#C88D66',
+                            500: '#B87B52',
+                            600: '#9E623B',
+                            700: '#7F4C2C',
+                            800: '#4A2E1B',
+                            900: '#1C1917',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
             }
         }
-
-        .cart-items-container {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&display=display" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .font-serif-title { font-family: 'Playfair Display', serif; }
+        .glass-header {
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
         }
-
-        .cart-item:last-child {
-            border-bottom: none;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F4EFEA;
         }
-
-        .cart-item-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: #eee;
-        }
-
-        .cart-item-details h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .cart-item-details p {
-            color: var(--primary-dark);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .quantity-control button {
-            background: #f9f9f9;
-            border: none;
-            padding: 4px 10px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .quantity-control span {
-            padding: 0 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .remove-item {
-            background: none;
-            border: none;
-            color: #e63946;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .remove-item:hover {
-            color: #d62828;
-        }
-
-        .cart-summary {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            height: fit-content;
-        }
-
-        .cart-summary h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .summary-row.total {
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 1.15rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-
-        .checkout-form {
-            margin-top: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .checkout-form input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .checkout-form input:focus {
-            border-color: var(--primary);
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 0.9rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition);
-            margin-top: 1rem;
-        }
-
-        .btn-whatsapp:hover {
-            background: #20ba5a;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-        }
-
-        .empty-cart i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--border);
-        }
-
-        /* FOOTER */
-        footer {
-            background: #ffffff;
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: auto;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D9C8B7;
+            border-radius: 9999px;
         }
     </style>
 </head>
-<body>
+<body class="bg-brand-50 text-brand-900 antialiased selection:bg-brand-400 selection:text-white flex flex-col min-h-screen">
 
-    <!-- HEADER -->
-    <header>
-        <div class="nav-container">
-            <a class="logo" onclick="switchPage('home')">
-                <i class="fa-solid fa-shoe-prints" style="color: var(--primary);"></i> Delulu<span>Boutique</span>
-            </a>
-            <ul class="nav-links">
-                <li><a id="nav-home" class="active" onclick="switchPage('home')">Kryefaqja</a></li>
-                <li><a id="nav-uggs" onclick="switchPage('uggs')">UGG Boots</a></li>
-                <li><a id="nav-sneakers" onclick="switchPage('sneakers')">Atlete</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button class="icon-btn" onclick="switchPage('cart')" title="Shporta">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="badge" id="cart-badge">0</span>
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-brand-900 text-brand-50 px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 text-sm border border-brand-700/50">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-brand-400 text-lg"></i>
+        <span id="toast-msg" class="font-medium">Veprimi u krye me sukses!</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-header border-b border-brand-200/60 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <button onclick="navigateTo('home')" class="text-left focus:outline-none group">
+                <span class="block text-2xl sm:text-3xl font-black font-serif-title tracking-widest text-brand-900 uppercase group-hover:text-brand-400 transition-colors">
+                    Delulu
+                </span>
+                <span class="block text-[10px] tracking-[0.3em] font-semibold uppercase text-brand-400 -mt-1">
+                    Boutique
+                </span>
+            </button>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm tracking-wide">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn hover:text-brand-400 transition-colors text-brand-400 font-semibold">Kryefaqja</button>
+                <button onclick="navigateTo('collection')" id="nav-collection" class="nav-btn hover:text-brand-400 transition-colors">Koleksioni</button>
+                <button onclick="scrollToSection('about')" class="hover:text-brand-400 transition-colors">Rreth Nesh</button>
+                <button onclick="scrollToSection('reviews')" class="hover:text-brand-400 transition-colors">Vlerësimet</button>
+                <button onclick="scrollToSection('wishlist')" class="hover:text-brand-400 transition-colors">Ulja 10%</button>
+            </nav>
+
+            <!-- Actions (Collection Button + Cart Button) -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <button onclick="navigateTo('collection')" class="hidden sm:inline-flex items-center space-x-2 bg-brand-900 hover:bg-brand-400 text-white text-xs uppercase tracking-wider font-semibold px-4 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>Shiko Koleksionin</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative bg-brand-100 hover:bg-brand-200 text-brand-900 p-3 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-brand-400">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md scale-0 transition-transform">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN PAGES CONTAINER -->
-    <main>
-        <!-- 1. HOME PAGE -->
-        <div id="page-home" class="page active">
-            <div class="hero">
-                <div class="hero-content">
-                    <h1>Stil dhe Rehati për Çdo Hap</h1>
-                    <p>Eksploro koleksionin tonë ekskluziv me 20 modelet më të reja dhe trendy të UGGs dhe atleteve të markave më të kërkuara.</p>
-                    <button class="btn-primary" onclick="switchPage('uggs')">Shiko Koleksionin</button>
-                </div>
-            </div>
+    <!-- VIEW 1: HOME PAGE (INDEX) -->
+    <div id="view-home" class="view-section transition-opacity duration-300">
+        
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-brand-100/50 via-brand-50 to-brand-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Text -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-brand-200/60 border border-brand-300/40 text-brand-800 text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest">
+                            <i class="fa-solid fa-gem text-brand-400"></i>
+                            <span>Koleksioni i Ri 2026</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold font-serif-title tracking-tight leading-[1.1] text-brand-900">
+                            Stili që me të vërtetë <span class="italic font-normal text-brand-400">meriton</span> të vishet.
+                        </h1>
 
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>Zgjedhjet e Muajit</h2>
-                </div>
-            </div>
-            
-            <div class="products-grid" id="featured-products">
-                <!-- Javascript do ngarkojë produktet e zgjedhura këtu -->
-            </div>
-        </div>
+                        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            Mirësevini në <strong>Delulu Boutique</strong>. Koleksionet më ekskluzive të UGGs komode dhe atleteve më me trend të momentit, të zgjedhura me delikatesë për stilin tuaj të përditshëm.
+                        </p>
 
-        <!-- 2. UGG BOOTS PAGE -->
-        <div id="page-uggs" class="page">
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>Koleksioni UGG Boots</h2>
+                        <!-- Call to Action Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="navigateTo('collection')" class="w-full sm:w-auto bg-brand-900 hover:bg-brand-400 text-white font-semibold text-sm uppercase tracking-wider px-9 py-4 rounded-2xl shadow-xl shadow-brand-900/10 transition-all duration-300 flex items-center justify-center space-x-3 group">
+                                <span>Eksploro Koleksionin</span>
+                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+
+                            <button onclick="scrollToSection('wishlist')" class="w-full sm:w-auto bg-white hover:bg-brand-100 text-brand-900 border border-brand-300/80 font-semibold text-sm uppercase tracking-wider px-8 py-4 rounded-2xl transition-all duration-300 text-center">
+                                Merr 10% Ulje
+                            </button>
+                        </div>
+
+                        <!-- Highlights list -->
+                        <div class="pt-8 border-t border-brand-200/60 grid grid-cols-3 gap-4 text-center lg:text-left">
+                            <div>
+                                <span class="block text-2xl font-bold font-serif-title text-brand-900">100%</span>
+                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Cilësi Originale</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-bold font-serif-title text-brand-900">24-48h</span>
+                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Dërgesë e Shpejtë</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-bold font-serif-title text-brand-900">5.0 ★</span>
+                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Klientë të Kënaqur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visual Collage -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -inset-2 bg-gradient-to-tr from-brand-400 to-brand-300 rounded-[2.5rem] blur-2xl opacity-30"></div>
+                            <div class="relative bg-white p-3 rounded-[2rem] shadow-2xl border border-brand-200/80">
+                                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1000&q=80" alt="Delulu Luxury Boots" class="rounded-[1.5rem] object-cover h-[420px] w-full" onerror="this.src='https://placehold.co/600x700/f4efea/1c1917?text=Delulu+Boutique'">
+                                <div class="absolute bottom-7 left-7 right-7 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-brand-100 flex items-center justify-between shadow-lg">
+                                    <div>
+                                        <p class="text-xs text-brand-400 uppercase tracking-widest font-semibold">UGGs & Atlete Ekskluzive</p>
+                                        <p class="font-bold font-serif-title text-brand-900 text-lg">Porosit direkt në WhatsApp</p>
+                                    </div>
+                                    <button onclick="navigateTo('collection')" class="w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center hover:bg-brand-400 transition-colors">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="search-filter-bar">
-                    <div class="search-box">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-uggs" placeholder="Kërko UGGs..." oninput="filterProducts('uggs')">
+            </div>
+        </section>
+
+        <!-- About Us / Features Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-100 px-3.5 py-1.5 rounded-full">Pse Delulu Boutique?</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-brand-900 mt-4">Përkushtimi ynë ndaj stilit tuaj</h2>
+                    <p class="text-gray-500 mt-2 font-light">Zbuloni përvojën e blerjes ku cilësia takon komoditetin absolut.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
+                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">UGGs & Atlete Trending</h3>
+                        <p class="text-gray-600 text-sm font-light leading-relaxed">
+                            Përzgjedhje e veçantë nga modelet më të kërkuara botërore, nga UGG Ultra Mini deri te atletet më ikonike.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
+                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">Dërgesa në të gjithë Rajonin</h3>
+                        <p class="text-gray-600 text-sm font-light leading-relaxed">
+                            Shërbim i shpejtë dhe i sigurt në Shqipëri, Kosovë dhe Maqedoninë e Veriut me pagesë në dorëzim.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
+                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">Porosi me 1 Klik ne WhatsApp</h3>
+                        <p class="text-gray-600 text-sm font-light leading-relaxed">
+                            Proces blerjeje i thjeshtësuar maksimalisht pa regjistrime të ndërlikuara. Porositni direkt me mesazh.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Banner CTA Prompt inside Home -->
+                <div class="mt-16 bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div>
+                        <h3 class="text-2xl sm:text-3xl font-bold font-serif-title">Gati për të rinovuar garderobën?</h3>
+                        <p class="text-brand-200 text-sm mt-1 font-light">Shikoni modelet tona të reja UGGs dhe Atlete tani.</p>
+                    </div>
+                    <button onclick="navigateTo('collection')" class="bg-brand-400 hover:bg-white hover:text-brand-900 text-white font-semibold text-xs uppercase tracking-widest px-8 py-4 rounded-xl transition-all duration-300 whitespace-nowrap shadow-md">
+                        Hap Koleksionin
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Reviews Section -->
+        <section id="reviews" class="py-20 bg-brand-100/40 border-y border-brand-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-white border border-brand-200 px-3.5 py-1.5 rounded-full">Eksperienca e Klientëve</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-brand-900 mt-4">Përshtypjet nga vajzat tona</h2>
+                    <p class="text-gray-500 mt-2 font-light">Lexoni çfarë thonë klientët tanë të verifikuar për produktet Delulu.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Review Card 1 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
+                                "UGGs Platform që porosita te Delulu janë absolutisht perfektet! Super të ngrohta, masa ishte fiks dhe dërgesa erdhi brenda 24 orëve."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
+                                A
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brand-900">Anxhela K.</h4>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Tiranë)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
+                                "Atletet erdhën fiks si në foto. Përdora edhe kodin e uljes 10% nga wishlist dhe porosia në WhatsApp ishte super e thjeshtë!"
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
+                                S
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brand-900">Sara M.</h4>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Durrës)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
+                                "Shërbimi ndaj klientit te Delulu është 10/10. Më ndihmuan të zgjidh masën e saktë dhe këpucët janë super cilësore."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
+                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
+                                K
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brand-900">Kristina B.</h4>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Prishtinë)
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="products-grid" id="uggs-grid"></div>
-        </div>
+        </section>
 
-        <!-- 3. SNEAKERS / ATLETE PAGE -->
-        <div id="page-sneakers" class="page">
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>Koleksioni Atletet</h2>
-                </div>
-                <div class="search-filter-bar">
-                    <div class="search-box">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-sneakers" placeholder="Kërko atlete..." oninput="filterProducts('sneakers')">
+        <!-- Wishlist & Discount Section -->
+        <section id="wishlist" class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-brand-900 text-white rounded-[2.5rem] p-8 sm:p-14 shadow-2xl relative overflow-hidden text-center border border-brand-800">
+                    <!-- Subtle Glow Shapes -->
+                    <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="relative z-10 max-w-xl mx-auto space-y-6">
+                        <span class="inline-block bg-white/10 text-brand-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest border border-white/10">
+                            Përfitoni Ulje Ekskluzive
+                        </span>
+                        
+                        <h2 class="text-3xl sm:text-4xl font-bold font-serif-title tracking-tight">
+                            Regjistrohu në Wishlist & Merr 10% Ulje
+                        </h2>
+
+                        <p class="text-brand-200 text-sm font-light leading-relaxed">
+                            Shkruani email-in tuaj për t'u bërë pjesë e listës sonë VIP. Do të merrni menjëherë kodin tuaj të uljes 10% për çdo porosi!
+                        </p>
+
+                        <!-- Wishlist Form -->
+                        <form id="wishlist-form" onsubmit="handleWishlistSubmit(event)" class="flex flex-col sm:flex-row gap-3 pt-2">
+                            <input type="email" id="wishlist-email" required placeholder="Email-i juaj këtu..." class="flex-grow px-6 py-4 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm bg-brand-50 border-0">
+                            <button type="submit" class="bg-brand-400 hover:bg-brand-500 text-white font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-2xl shadow-lg transition-all whitespace-nowrap">
+                                Regjistrohu
+                            </button>
+                        </form>
+
+                        <!-- Success Voucher Box -->
+                        <div id="wishlist-success" class="hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 text-left text-white text-sm space-y-2">
+                            <div class="flex items-center space-x-2 text-green-400 font-bold">
+                                <i class="fa-solid fa-circle-check text-lg"></i>
+                                <span>Urime! U regjistruat me sukses ne Wishlist.</span>
+                            </div>
+                            <p class="text-brand-200 text-xs">Përdorni kodin më poshtë gjatë porosisë ose në Shportë:</p>
+                            <div class="flex items-center justify-between bg-brand-950/80 px-4 py-3 rounded-xl border border-white/10 font-mono text-base font-bold text-brand-300">
+                                <span>DELULU10</span>
+                                <button onclick="copyDiscountCode()" class="text-xs bg-brand-400/30 hover:bg-brand-400 text-white px-3 py-1.5 rounded-lg transition-all font-sans font-normal">
+                                    <i class="fa-regular fa-copy"></i> Kopjo
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="products-grid" id="sneakers-grid"></div>
-        </div>
+        </section>
 
-        <!-- 4. CART & CHECKOUT PAGE -->
-        <div id="page-cart" class="page">
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>Shporta Jote</h2>
+    </div>
+
+    <!-- VIEW 2: DEDICATED COLLECTION PAGE (KOLEKSIONI) -->
+    <div id="view-collection" class="view-section hidden transition-opacity duration-300 flex-grow py-10 bg-brand-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Collection Header & Breadcrumb -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-brand-200/80 pb-8 mb-8 gap-6">
+                <div>
+                    <div class="flex items-center space-x-2 text-xs text-brand-400 font-semibold uppercase tracking-widest mb-2">
+                        <button onclick="navigateTo('home')" class="hover:underline">Kryefaqja</button>
+                        <span>/</span>
+                        <span class="text-brand-900">Koleksioni Zyrtar</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-bold font-serif-title text-brand-900">UGGs & Atlete Trending</h1>
+                    <p class="text-gray-500 text-sm font-light mt-1">Zgjidhni modelin tuaj të preferuar dhe masën për të porositur.</p>
+                </div>
+
+                <!-- Back to Home Button -->
+                <button onclick="navigateTo('home')" class="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-brand-800 bg-white border border-brand-200 px-5 py-3 rounded-xl hover:bg-brand-100 transition-all self-start md:self-auto">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kthehu në Kryefaqe</span>
+                </button>
+            </div>
+
+            <!-- Toolbar: Filter Tabs & Active Search -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-10">
+                <!-- Category Buttons -->
+                <div class="flex items-center space-x-2 bg-brand-100/70 p-1.5 rounded-2xl border border-brand-200/60 w-full lg:w-auto overflow-x-auto">
+                    <button onclick="filterProducts('all')" id="filter-all" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all bg-brand-900 text-white shadow-sm whitespace-nowrap">
+                        Të Gjitha
+                    </button>
+                    <button onclick="filterProducts('uggs')" id="filter-uggs" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all text-gray-600 hover:text-brand-900 whitespace-nowrap">
+                        Koleksioni UGGs
+                    </button>
+                    <button onclick="filterProducts('sneakers')" id="filter-sneakers" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all text-gray-600 hover:text-brand-900 whitespace-nowrap">
+                        Atlete (Sneakers)
+                    </button>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative w-full lg:w-80">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Kërko me emër (p.sh. Ultra Mini, Samba)..." class="w-full pl-11 pr-4 py-3 bg-white border border-brand-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm shadow-sm">
                 </div>
             </div>
-            
-            <div id="cart-content-wrapper">
-                <!-- Dinamikisht përmes JS -->
-            </div>
-        </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Delulu Boutique. Të gjitha të drejtat e rezervuara. | Tel / WhatsApp: +355 68 444 5489</p>
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JavaScript renders items here -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="no-products" class="hidden text-center py-20 bg-white rounded-3xl border border-brand-200/60">
+                <i class="fa-solid fa-box-open text-5xl text-brand-300 mb-4"></i>
+                <h3 class="text-xl font-bold font-serif-title text-brand-900">Nuk u gjet asnjë produkt</h3>
+                <p class="text-gray-500 text-sm mt-1">Provoni një fjalë tjetër kërkimi ose zgjidhni një kategori tjetër.</p>
+                <button onclick="resetFilters()" class="mt-4 bg-brand-100 text-brand-900 px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
+                    Pastro Kërkimin
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-brand-100 py-12 border-t border-brand-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Brand Info -->
+            <div class="text-center md:text-left space-y-1">
+                <span class="text-2xl font-bold font-serif-title tracking-widest text-white uppercase">Delulu Boutique</span>
+                <p class="text-xs text-brand-300 font-light">Eleganca dhe rehatia në çdo hap. Të gjitha të drejtat e rezervuara © 2026.</p>
+            </div>
+
+            <!-- Contact & Social Icons Only -->
+            <div class="flex items-center space-x-4">
+                <!-- Telephone Icon Button -->
+                <a href="tel:+355690000000" title="Telefononi" aria-label="Telefononi" class="w-12 h-12 bg-brand-800 hover:bg-brand-400 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
+                    <i class="fa-solid fa-phone text-base group-hover:scale-110 transition-transform"></i>
+                </a>
+
+                <!-- Instagram Icon Button -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram" class="w-12 h-12 bg-brand-800 hover:bg-brand-400 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
+                    <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
+                </a>
+
+                <!-- WhatsApp Quick Icon Button -->
+                <a href="https://wa.me/355690000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp" class="w-12 h-12 bg-brand-800 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
+                    <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
+                </a>
+            </div>
+
+        </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- Shopping Cart Slide-over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0"></div>
+
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div id="cart-panel" class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 border-b border-brand-100 flex items-center justify-between bg-brand-50">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-bag-shopping text-brand-400 text-xl"></i>
+                        <h2 class="font-bold text-lg font-serif-title text-brand-900">Shporta Juaj</h2>
+                    </div>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-brand-900 p-2 rounded-full hover:bg-brand-100 transition-all">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                    <!-- JavaScript populates elements -->
+                </div>
+
+                <!-- Cart Empty View -->
+                <div id="cart-empty" class="hidden flex-grow flex flex-col items-center justify-center p-6 text-center">
+                    <div class="w-20 h-20 bg-brand-100 text-brand-400 rounded-full flex items-center justify-center text-3xl mb-4">
+                        <i class="fa-solid fa-cart-flatbed-suitcases"></i>
+                    </div>
+                    <h3 class="font-bold font-serif-title text-brand-900 text-xl">Shporta është e zbrazët</h3>
+                    <p class="text-gray-500 text-sm mt-1 max-w-xs font-light">Eksploroni koleksionin tonë dhe shtoni modelet tuaja të preferuara.</p>
+                    <button onclick="toggleCart(); navigateTo('collection');" class="mt-6 bg-brand-900 text-white text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-xl shadow-md">
+                        Shiko Produktet
+                    </button>
+                </div>
+
+                <!-- Cart Footer / Summary -->
+                <div id="cart-footer" class="p-6 border-t border-brand-100 bg-brand-50 space-y-4">
+                    
+                    <!-- Coupon code input -->
+                    <div class="flex space-x-2">
+                        <input type="text" id="coupon-input" placeholder="Kodi i uljes (p.sh. DELULU10)" class="flex-grow text-xs uppercase px-4 py-3 bg-white border border-brand-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-400">
+                        <button onclick="applyCoupon()" class="bg-brand-200 hover:bg-brand-300 text-brand-900 font-semibold text-xs px-4 rounded-xl transition-all">
+                            Appliko
+                        </button>
+                    </div>
+                    <div id="coupon-badge" class="hidden text-xs text-green-700 bg-green-100 border border-green-200 p-2 rounded-lg flex items-center justify-between">
+                        <span><i class="fa-solid fa-ticket mr-1"></i> Ulja 10% u aplikua!</span>
+                        <button onclick="removeCoupon()" class="text-red-500 font-bold">&times;</button>
+                    </div>
+
+                    <!-- Totals Breakdown -->
+                    <div class="space-y-1.5 text-sm pt-2">
+                        <div class="flex justify-between text-gray-500">
+                            <span>Nëntotali:</span>
+                            <span id="cart-subtotal" class="font-semibold text-brand-900">0 Lekë</span>
+                        </div>
+                        <div id="discount-row" class="hidden flex justify-between text-green-600 font-medium">
+                            <span>Ulja (10%):</span>
+                            <span id="cart-discount">-0 Lekë</span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold text-brand-900 pt-2 border-t border-brand-200">
+                            <span>Totali Përfundimtar:</span>
+                            <span id="cart-total" class="text-brand-400 text-lg">0 Lekë</span>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Checkout CTA -->
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl shadow-lg shadow-green-600/20 flex items-center justify-center space-x-3 transition-all text-sm">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Porosit Tani ne WhatsApp</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Logic -->
     <script>
-        // 20 PRODUKTE: 10 UGGs & 10 ATLETE
+        // Catalog Products Database
         const products = [
-            // UGGs (10 produkte)
-            { id: 1, name: "UGG Classic Ultra Mini", category: "uggs", price: 165, image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80", tag: "Bestseller" },
-            { id: 2, name: "UGG Tasman Slipper", category: "uggs", price: 140, image: "
+            {
+                id: 1,
+                name: "UGG Ultra Mini Platform Chestnut",
+                category: "uggs",
+                price: 14500,
+                image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
+                badge: "Bestseller",
+                sizes: [36, 37, 38, 39, 40]
+            },
+            {
+                id: 2,
+                name: "UGG Tazz Slipper Black Warm",
+                category: "uggs",
+                price: 13900,
+                image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80",
+                badge: "E Re",
+                sizes: [36, 37, 38, 39, 41]
+            },
+            {
+                id: 3,
+                name: "Adidas Samba OG Soft Pink Edition",
+                category: "sneakers",
+                price: 11800,
+                image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
+                badge: "Trending",
+                sizes: [36, 37, 38, 39, 40]
+            },
+            {
+                id: 4,
+                name: "Nike Dunk Low Rose Whisper",
+                category: "sneakers",
+                price: 12500,
+                image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80",
+                badge: "Limituar",
+                sizes: [37, 38, 39, 40]
+            },
+            {
+                id: 5,
+                name: "UGG Classic Heritage Short Beige",
+                category: "uggs",
+                price: 16200,
+                image: "https://images.unsplash.com/photo-1512374382146-233842b6a83b?auto=format&fit=crop&w=800&q=80",
+                badge: "Premium",
+                sizes: [36, 37, 38, 39, 40, 41]
+            },
+            {
+                id: 6,
+                name: "New Balance 550 Neutral Cream",
+                category: "sneakers",
+                price: 13200,
+                image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
+                badge: "Klasike",
+                sizes: [36, 37, 38, 39, 40]
+            }
+        ];
+
+        // State Management
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let cart = [];
+        let selectedSizes = {}; // Maps productId -> chosen size
+        let isCouponApplied = false;
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set default sizes for product cards
+            products.forEach(p => {
+                selectedSizes[p.id] = p.sizes[0];
+            });
+            renderProducts();
+            updateCartUI();
+        });
+
+        // SPA Navigation Switcher (Index vs Collection)
+        function navigateTo(viewName) {
+            const homeView = document.getElementById('view-home');
+            const collectionView = document.getElementById('view-collection');
+            const navHome = document.getElementById('nav-home');
+            const navCollection = document.getElementById('nav-collection');
+
+            if (viewName === 'collection') {
+                homeView.classList.add('hidden');
+                collectionView.classList.remove('hidden');
+                
+                navHome.classList.remove('text-brand-400', 'font-semibold');
+                navCollection.classList.add('text-brand-400', 'font-semibold');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                renderProducts();
+            } else {
+                collectionView.classList.add('hidden');
+                homeView.classList.remove('hidden');
+
+                navCollection.classList.remove('text-brand-400', 'font-semibold');
+                navHome.classList.add('text-brand-400', 'font-semibold');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Smooth Scroll to Section on Home Page
+        function scrollToSection(sectionId) {
+            const homeView = document.getElementById('view-home');
+            if (homeView.classList.contains('hidden')) {
+                navigateTo('home');
+                setTimeout(() => {
+                    const el = document.getElementById(sectionId);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Render Collection Grid
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const noProducts = document.getElementById('no-products');
+
+            const filtered = products.filter(p => {
+                const matchCategory = currentFilter === 'all' || p.category === currentFilter;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noProducts.classList.remove('hidden');
+                return;
+            }
+
+            noProducts.classList.add('hidden');
+            grid.innerHTML = filtered.map(product => {
+                const currentSelectedSize = selectedSizes[product.id] || product.sizes[0];
+                return `
+                    <div class="bg-white rounded-3xl p-5 border border-brand-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        
+                        <!-- Image Container -->
+                        <div class="relative overflow-hidden rounded-2xl bg-brand-50 mb-5 h-72">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x700/f4efea/1c1917?text=Delulu+Product'">
+                            <span class="absolute top-3 left-3 bg-brand-900/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
+                                ${product.badge}
+                            </span>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="space-y-3 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[11px] font-semibold text-brand-400 uppercase tracking-widest">
+                                    ${product.category === 'uggs' ? 'Koleksioni UGGs' : 'Atlete Luxury'}
+                                </span>
+                                <h3 class="font-bold text-brand-900 text-lg leading-snug font-serif-title mt-0.5">
+                                    ${product.name}
+                                </h3>
+                            </div>
+
+                            <!-- Size Selector -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-1.5">Zgjidh Masën (EU):</label>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${product.sizes.map(size => `
+                                        <button onclick="selectProductSize(${product.id}, ${size})" class="px-2.5 py-1 text-xs font-semibold rounded-lg border transition-all ${size === currentSelectedSize ? 'bg-brand-900 text-white border-brand-900' : 'bg-brand-50 text-brand-900 border-brand-200 hover:border-brand-400'}">
+                                            ${size}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Price & Add Button -->
+                            <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                                <div>
+                                    <span class="text-xs text-gray-400 block font-light">Çmimi:</span>
+                                    <span class="text-xl font-black text-brand-900 font-serif-title">
+                                        ${product.price.toLocaleString('sq-AL')} Lekë
+                                    </span>
+                                </div>
+                                <button onclick="addToCart(${product.id})" class="bg-brand-400 hover:bg-brand-900 text-white font-semibold text-xs uppercase tracking-wider px-4 py-3 rounded-xl transition-all duration-300 shadow-md flex items-center space-x-2">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <span>Shto</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Set Product Size Option
+        function selectProductSize(productId, size) {
+            selectedSizes[productId] = size;
+            renderProducts();
+        }
+
+        // Filter Categories
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-900', 'text-white', 'shadow-sm');
+                btn.classList.add('text-gray-600');
+            });
+            const activeBtn = document.getElementById(`filter-${category}`);
+            activeBtn.classList.remove('text-gray-600');
+            activeBtn.classList.add('bg-brand-900', 'text-white', 'shadow-sm');
+
+            renderProducts();
+        }
+
+        // Search Handler
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value;
+            renderProducts();
+        }
+
+        function resetFilters() {
+            currentFilter = 'all';
+            searchQuery = '';
+            document.getElementById('search-input').value = '';
+            filterProducts('all');
+        }
+
+        // Add Product to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const size = selectedSizes[productId] || product.sizes[0];
+            const cartKey = `${productId}-${size}`;
+
+            const existingItem = cart.find(item => item.key === cartKey);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    key: cartKey,
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    size: size,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showToast(`Shtuar në shportë: ${product.name} (Masa: ${size})`);
+        }
+
+        // Update Item Quantities
+        function updateQuantity(cartKey, change) {
+            const item = cart.find(i => i.key === cartKey);
+            if (!item) return;
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.key !== cartKey);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(cartKey) {
+            cart = cart.filter(i => i.key !== cartKey);
+            updateCartUI();
+        }
+
+        // Cart UI Updates & Total Calculation
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const itemsContainer = document.getElementById('cart-items');
+            const emptyState = document.getElementById('cart-empty');
+            const footerState = document.getElementById('cart-footer');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const discountRow = document.getElementById('discount-row');
+            const discountEl = document.getElementById('cart-discount');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (totalItemsCount > 0) {
+                badge.innerText = totalItemsCount;
+                badge.classList.remove('scale-0');
+            } else {
+                badge.classList.add('scale-0');
+            }
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '';
+                itemsContainer.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                footerState.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            itemsContainer.classList.remove('hidden');
+            footerState.classList.remove('hidden');
+
+            let subtotal = 0;
+            itemsContainer.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                return `
+                    <div class="flex items-center space-x-4 py-3 border-b border-brand-100 last:border-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl bg-brand-50 flex-shrink-0" onerror="this.src='https://placehold.co/200x200/f4efea/1c1917?text=Product'">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-xs text-brand-900 leading-tight">${item.name}</h4>
+                            <p class="text-[11px] text-gray-500 mt-0.5">Masa: <span class="font-bold text-brand-400">${item.size}</span></p>
+                            <p class="text-xs font-bold text-brand-900 mt-1">${item.price.toLocaleString('sq-AL')} Lekë</p>
+                        </div>
+                        <div class="flex flex-col items-end space-y-2">
+                            <button onclick="removeFromCart('${item.key}')" class="text-gray-400 hover:text-red-500 text-xs">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <div class="flex items-center border border-brand-200 rounded-lg bg-white">
+                                <button onclick="updateQuantity('${item.key}', -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-brand-100">-</button>
+                                <span class="px-2 text-xs font-bold text-brand-900">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.key}', 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-brand-100">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = `${subtotal.toLocaleString('sq-AL')} Lekë`;
+
+            let discountAmount = 0;
+            if (isCouponApplied) {
+                discountAmount = subtotal * 0.10;
+                discountRow.classList.remove('hidden');
+                discountEl.innerText = `-${discountAmount.toLocaleString('sq-AL')} Lekë`;
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            const finalTotal = subtotal - discountAmount;
+            totalEl.innerText = `${finalTotal.toLocaleString('sq-AL')} Lekë`;
+        }
+
+        // Coupon Handling
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input').value.trim().toUpperCase();
+            if (input === 'DELULU10') {
+                isCouponApplied = true;
+                document.getElementById('coupon-badge').classList.remove('hidden');
+                updateCartUI();
+                showToast("Kodi i uljes 10% u aplikua!");
+            } else {
+                showToast("Kodi nuk është i vlefshëm!");
+            }
+        }
+
+        function removeCoupon() {
+            isCouponApplied = false;
+            document.getElementById('coupon-badge').classList.add('hidden');
+            document.getElementById('coupon-input').value = '';
+            updateCartUI();
+        }
+
+        // Cart Drawer Toggle
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const panel = document.getElementById('cart-panel');
+            const backdrop = document.getElementById('cart-backdrop');
+
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    panel.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                backdrop.classList.add('opacity-0');
+                panel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Wishlist Form Submit
+        function handleWishlistSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('wishlist-form');
+            const successBox = document.getElementById('wishlist-success');
+            form.classList.add('hidden');
+            successBox.classList.remove('hidden');
+            showToast("U regjistruat me sukses ne Wishlist!");
+        }
+
+        function copyDiscountCode() {
+            const textToCopy = "DELULU10";
+            const tempInput = document.createElement("input");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Kodi 'DELULU10' u kopjua!");
+        }
+
+        // WhatsApp Direct Checkout
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+
+            let message = "Përshëndetje Delulu Boutique! 🛍️\n\nDëshiroj të porosis me të dhënat më poshtë:\n\n";
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                const totalItemPrice = item.price * item.quantity;
+                subtotal += totalItemPrice;
+                message += `${index + 1}. *${item.name}*\n   • Masa: ${item.size}\n   • Sasia: ${item.quantity}\n   • Çmimi: ${totalItemPrice.toLocaleString('sq-AL')} Lekë\n\n`;
+            });
+
+            let finalTotal = subtotal;
+            if (isCouponApplied) {
+                const discount = subtotal * 0.10;
+                finalTotal = subtotal - discount;
+                message += `🎟️ *Kodi i uljes:* DELULU10 (-10%)\n`;
+            }
+
+            message += `💰 *Totali përfundimtar:* ${finalTotal.toLocaleString('sq-AL')} Lekë\n\n`;
+            message += `Ju lutem më udhëzoni me hapat e mëtejshëm për dërgesën!`;
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/355690000000?text=${encoded}`, '_blank');
+        }
+
+        // Toast Feedback System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-msg');
+            msgEl.innerText = message;
+
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3200);
+        }
+    </script>
+</body>
+</html>
