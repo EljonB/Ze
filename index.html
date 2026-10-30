@@ -1,1002 +1,1624 @@
 <!DOCTYPE html>
-<html lang="sq" class="scroll-smooth">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delulu Boutique | Luxury Footwear & Streetwear</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#FAF7F2',
-                            100: '#F4EFEA',
-                            200: '#E8DFD5',
-                            300: '#D9C8B7',
-                            400: '#C88D66',
-                            500: '#B87B52',
-                            600: '#9E623B',
-                            700: '#7F4C2C',
-                            800: '#4A2E1B',
-                            900: '#1C1917',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
+
+    <title>Delulu Boutique | Your Style, Your Rules</title>
+    <meta name="description" content="Zbulo koleksionin e atleteve dhe UGG nga Delulu Boutique. Zgjidh modelin tënd të preferuar dhe porosit online.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&display=display" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: 'Outfit', sans-serif; }
-        .font-serif-title { font-family: 'Playfair Display', serif; }
-        .glass-header {
-            background: rgba(250, 247, 242, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        :root {
+            --pink: #f5dce4;
+            --pink-dark: #e8b9ca;
+            --cream: #fffaf7;
+            --dark: #292323;
+            --muted: #827879;
+            --white: #ffffff;
+            --border: #eee5e5;
+            --sale: #a44461;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #F4EFEA;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #D9C8B7;
-            border-radius: 9999px;
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .announcement {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 12px;
+            letter-spacing: 1.4px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 250, 247, 0.97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: auto;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 29px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #c7839d;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--sale);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-button {
+            background: transparent;
+            border: 1px solid var(--border);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--sale);
+            color: white;
+            border-radius: 50%;
+            width: 19px;
+            height: 19px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .hero {
+            min-height: 600px;
+            padding: 80px 7%;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, rgba(255, 245, 246, 0.97) 0%, rgba(255, 245, 246, 0.82) 48%, rgba(255, 245, 246, 0.12) 100%),
+                url("Images1/ugglow1.jpeg") center 45% / cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sale);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(44px, 6vw, 76px);
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #b96f8b;
+        }
+
+        .hero p {
+            color: #625657;
+            line-height: 1.8;
+            font-size: 15px;
+            max-width: 450px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px 24px;
+            border: none;
+            background: var(--dark);
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.8px;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: var(--sale);
+            transform: translateY(-2px);
+        }
+
+        .button-light {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .button-light:hover {
+            color: white;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid var(--border);
+            background: white;
+        }
+
+        .benefit {
+            padding: 23px 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            border-right: 1px solid var(--border);
+        }
+
+        .benefit:last-child {
+            border-right: none;
+        }
+
+        .benefit span {
+            display: block;
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .section {
+            max-width: 1400px;
+            margin: auto;
+            padding: 85px 5%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(30px, 4vw, 44px);
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .category-card {
+            min-height: 320px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .category-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.68), transparent 75%);
+            z-index: -1;
+            transition: 0.3s;
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.05));
+        }
+
+        .category-card h3 {
+            color: white;
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .category-card p {
+            color: white;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .category-card .button {
+            background: white;
+            color: var(--dark);
+        }
+
+        .collection-section {
+            background: #fff;
+        }
+
+        .collection-section .section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .collection-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .collection-top h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 36px;
+        }
+
+        .collection-top p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .search-sort {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input,
+        .sort-select {
+            border: 1px solid var(--border);
+            background: var(--cream);
+            padding: 12px 14px;
+            font-size: 12px;
+            outline: none;
+            min-width: 170px;
+        }
+
+        .search-input:focus,
+        .sort-select:focus {
+            border-color: var(--pink-dark);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 25px 0 35px;
+        }
+
+        .filter-button {
+            border: 1px solid var(--border);
+            background: white;
+            padding: 11px 22px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .filter-button.active,
+        .filter-button:hover {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 28px 18px;
+        }
+
+        .product-card {
+            min-width: 0;
+            position: relative;
+        }
+
+        .product-image-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #f7f2ef;
+            aspect-ratio: 3 / 4;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.04);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: white;
+            color: var(--sale);
+            padding: 6px 9px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .wishlist-button {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 34px;
+            height: 34px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
+        .wishlist-button.liked {
+            color: #d24e77;
+        }
+
+        .product-info {
+            padding: 14px 2px 0;
+        }
+
+        .product-category {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .product-name {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 11px;
+            line-height: 1.5;
+            min-height: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .old-price {
+            font-size: 12px;
+            color: #9b9090;
+            text-decoration: line-through;
+        }
+
+        .size-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            background: white;
+            font-size: 12px;
+            margin-bottom: 9px;
+            outline: none;
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 12px 8px;
+            border: 1px solid var(--dark);
+            background: var(--dark);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+        }
+
+        .add-button:hover {
+            background: var(--sale);
+            border-color: var(--sale);
+        }
+
+        .empty-results {
+            text-align: center;
+            padding: 50px 10px;
+            color: var(--muted);
+            grid-column: 1 / -1;
+        }
+
+        .reviews {
+            background: var(--pink);
+        }
+
+        .reviews .section {
+            padding-top: 75px;
+            padding-bottom: 75px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 28px;
+        }
+
+        .stars {
+            color: #ba7a32;
+            letter-spacing: 3px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .review-card p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #5d5053;
+            margin-bottom: 20px;
+        }
+
+        .review-card h4 {
+            font-size: 12px;
+        }
+
+        .review-card small {
+            color: var(--muted);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .wishlist-section {
+            background: white;
+        }
+
+        .wishlist-box {
+            max-width: 720px;
+            margin: auto;
+            background: var(--cream);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .wishlist-box h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            margin-bottom: 14px;
+        }
+
+        .wishlist-box p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .wishlist-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .wishlist-form input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px;
+            border: 1px solid var(--border);
+            background: white;
+            outline: none;
+        }
+
+        .form-message {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #42744d;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 55px 5% 22px;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 45px;
+            padding-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+
+        .footer-logo span {
+            color: var(--pink-dark);
+        }
+
+        .footer-description {
+            color: #c5baba;
+            font-size: 12px;
+            line-height: 1.9;
+            max-width: 350px;
+        }
+
+        .footer-column h4 {
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c5baba;
+            font-size: 12px;
+            margin-bottom: 13px;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #494040;
+            padding-top: 20px;
+            text-align: center;
+            color: #b9adad;
+            font-size: 11px;
+        }
+
+        /* Cart drawer */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            z-index: 201;
+            top: 0;
+            right: 0;
+            width: min(440px, 100%);
+            height: 100%;
+            background: white;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-header h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+        }
+
+        .close-button {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--muted);
+            padding: 60px 15px;
+            line-height: 1.8;
+            font-size: 13px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 13px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 95px;
+            object-fit: cover;
+            background: #f7f2ef;
+        }
+
+        .cart-item h4 {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+
+        .cart-item p {
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid var(--border);
+            background: white;
+        }
+
+        .quantity-controls span {
+            font-size: 12px;
+        }
+
+        .remove-item {
+            border: none;
+            background: transparent;
+            color: var(--sale);
+            font-size: 11px;
+            margin-top: 9px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--border);
+            padding: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            margin-bottom: 17px;
+            font-size: 15px;
+        }
+
+        .cart-note {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .checkout-button {
+            width: 100%;
+        }
+
+        /* Checkout modal */
+        .modal {
+            position: fixed;
+            z-index: 300;
+            inset: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.55);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: min(480px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .modal-content > p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+            margin-bottom: 23px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            outline: none;
+            background: var(--cream);
+            font-size: 13px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 75px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--pink-dark);
+        }
+
+        .checkout-submit {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .toast {
+            position: fixed;
+            z-index: 500;
+            bottom: 25px;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            background: var(--dark);
+            color: white;
+            padding: 14px 22px;
+            font-size: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s;
+            text-align: center;
+            width: max-content;
+            max-width: 90%;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+
+        @media (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 14px 5%;
+                gap: 10px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 100%;
+                padding: 22px 5%;
+                background: var(--cream);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-actions {
+                gap: 7px;
+            }
+
+            .icon-button {
+                width: 38px;
+                height: 38px;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 55px 6%;
+                background-position: 58% center;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .hero p {
+                font-size: 13px;
+                max-width: 300px;
+            }
+
+            .benefit {
+                font-size: 10px;
+                padding: 18px 7px;
+            }
+
+            .section {
+                padding: 60px 5%;
+            }
+
+            .category-cards {
+                gap: 12px;
+            }
+
+            .category-card {
+                min-height: 245px;
+                padding: 17px;
+            }
+
+            .category-card h3 {
+                font-size: 26px;
+            }
+
+            .category-card p {
+                font-size: 11px;
+            }
+
+            .collection-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .collection-top h2 {
+                font-size: 31px;
+            }
+
+            .search-sort {
+                width: 100%;
+            }
+
+            .search-input,
+            .sort-select {
+                min-width: 0;
+                flex: 1;
+                width: 50%;
+            }
+
+            .filters {
+                justify-content: flex-start;
+                gap: 7px;
+                margin: 20px 0 25px;
+            }
+
+            .filter-button {
+                padding: 10px 14px;
+                font-size: 11px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px 12px;
+            }
+
+            .product-info {
+                padding-top: 11px;
+            }
+
+            .product-name {
+                font-size: 12px;
+            }
+
+            .price {
+                font-size: 14px;
+            }
+
+            .old-price {
+                font-size: 11px;
+            }
+
+            .product-badge {
+                top: 8px;
+                left: 8px;
+                font-size: 8px;
+                padding: 5px 7px;
+            }
+
+            .wishlist-button {
+                top: 8px;
+                right: 8px;
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .add-button {
+                font-size: 10px;
+                padding: 11px 4px;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wishlist-box {
+                padding: 28px 18px;
+            }
+
+            .wishlist-box h2 {
+                font-size: 29px;
+            }
+
+            .wishlist-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .category-card h3 {
+                font-size: 22px;
+            }
+
+            .filter-button {
+                padding: 9px 10px;
+            }
         }
     </style>
 </head>
-<body class="bg-brand-50 text-brand-900 antialiased selection:bg-brand-400 selection:text-white flex flex-col min-h-screen">
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-brand-900 text-brand-50 px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 text-sm border border-brand-700/50">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-brand-400 text-lg"></i>
-        <span id="toast-msg" class="font-medium">Veprimi u krye me sukses!</span>
+<body>
+
+    <div class="announcement">
+        DELULU BOUTIQUE · YOUR STYLE, YOUR RULES
     </div>
 
-    <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-40 glass-header border-b border-brand-200/60 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <button onclick="navigateTo('home')" class="text-left focus:outline-none group">
-                <span class="block text-2xl sm:text-3xl font-black font-serif-title tracking-widest text-brand-900 uppercase group-hover:text-brand-400 transition-colors">
-                    Delulu
-                </span>
-                <span class="block text-[10px] tracking-[0.3em] font-semibold uppercase text-brand-400 -mt-1">
-                    Boutique
-                </span>
-            </button>
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">delulu<span>.</span></a>
 
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm tracking-wide">
-                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn hover:text-brand-400 transition-colors text-brand-400 font-semibold">Kryefaqja</button>
-                <button onclick="navigateTo('collection')" id="nav-collection" class="nav-btn hover:text-brand-400 transition-colors">Koleksioni</button>
-                <button onclick="scrollToSection('about')" class="hover:text-brand-400 transition-colors">Rreth Nesh</button>
-                <button onclick="scrollToSection('reviews')" class="hover:text-brand-400 transition-colors">Vlerësimet</button>
-                <button onclick="scrollToSection('wishlist')" class="hover:text-brand-400 transition-colors">Ulja 10%</button>
-            </nav>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">KRYEFAQJA</a>
+                <a href="#categories">KATEGORITË</a>
+                <a href="#collection">KOLEKSIONI</a>
+                <a href="#reviews">REVIEW</a>
+                <a href="#wishlist">WISHLIST</a>
+            </div>
 
-            <!-- Actions (Collection Button + Cart Button) -->
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <button onclick="navigateTo('collection')" class="hidden sm:inline-flex items-center space-x-2 bg-brand-900 hover:bg-brand-400 text-white text-xs uppercase tracking-wider font-semibold px-4 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                    <i class="fa-solid fa-sparkles"></i>
-                    <span>Shiko Koleksionin</span>
-                </button>
-
-                <!-- Cart Button -->
-                <button onclick="toggleCart()" class="relative bg-brand-100 hover:bg-brand-200 text-brand-900 p-3 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-brand-400">
-                    <i class="fa-solid fa-bag-shopping text-lg"></i>
-                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-400 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md scale-0 transition-transform">0</span>
+            <div class="nav-actions">
+                <button class="icon-button menu-toggle" id="menuToggle" aria-label="Hap menunë">☰</button>
+                <button class="icon-button" id="cartButton" aria-label="Hap shportën">
+                    ♡
+                    <span class="cart-count" id="cartCount">0</span>
                 </button>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- VIEW 1: HOME PAGE (INDEX) -->
-    <div id="view-home" class="view-section transition-opacity duration-300">
-        
-        <!-- Hero Section -->
-        <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-brand-100/50 via-brand-50 to-brand-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <!-- Left Hero Text -->
-                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                        <div class="inline-flex items-center space-x-2 bg-brand-200/60 border border-brand-300/40 text-brand-800 text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest">
-                            <i class="fa-solid fa-gem text-brand-400"></i>
-                            <span>Koleksioni i Ri 2026</span>
-                        </div>
-                        
-                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold font-serif-title tracking-tight leading-[1.1] text-brand-900">
-                            Stili që me të vërtetë <span class="italic font-normal text-brand-400">meriton</span> të vishet.
-                        </h1>
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">Your next favorite pair</div>
 
-                        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                            Mirësevini në <strong>Delulu Boutique</strong>. Koleksionet më ekskluzive të UGGs komode dhe atleteve më me trend të momentit, të zgjedhura me delikatesë për stilin tuaj të përditshëm.
-                        </p>
+                <h1>Dress like<br>you're in your<br><span>delulu era.</span></h1>
 
-                        <!-- Call to Action Buttons -->
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <button onclick="navigateTo('collection')" class="w-full sm:w-auto bg-brand-900 hover:bg-brand-400 text-white font-semibold text-sm uppercase tracking-wider px-9 py-4 rounded-2xl shadow-xl shadow-brand-900/10 transition-all duration-300 flex items-center justify-center space-x-3 group">
-                                <span>Eksploro Koleksionin</span>
-                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                            </button>
+                <p>
+                    Modele që të bëjnë të ndihesh ndryshe. Zbulo koleksionin
+                    tonë të atleteve dhe UGG për çdo ditë, çdo stil dhe çdo mood.
+                </p>
 
-                            <button onclick="scrollToSection('wishlist')" class="w-full sm:w-auto bg-white hover:bg-brand-100 text-brand-900 border border-brand-300/80 font-semibold text-sm uppercase tracking-wider px-8 py-4 rounded-2xl transition-all duration-300 text-center">
-                                Merr 10% Ulje
-                            </button>
-                        </div>
+                <a href="#collection" class="button">ZBULO KOLEKSIONIN ↗</a>
+            </div>
+        </section>
 
-                        <!-- Highlights list -->
-                        <div class="pt-8 border-t border-brand-200/60 grid grid-cols-3 gap-4 text-center lg:text-left">
-                            <div>
-                                <span class="block text-2xl font-bold font-serif-title text-brand-900">100%</span>
-                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Cilësi Originale</span>
-                            </div>
-                            <div>
-                                <span class="block text-2xl font-bold font-serif-title text-brand-900">24-48h</span>
-                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Dërgesë e Shpejtë</span>
-                            </div>
-                            <div>
-                                <span class="block text-2xl font-bold font-serif-title text-brand-900">5.0 ★</span>
-                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Klientë të Kënaqur</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- BENEFITS -->
+        <section class="benefits">
+            <div class="benefit">
+                <span>♡</span>
+                Modele për çdo stil
+            </div>
 
-                    <!-- Right Hero Visual Collage -->
-                    <div class="lg:col-span-5 relative">
-                        <div class="relative mx-auto max-w-md lg:max-w-none">
-                            <div class="absolute -inset-2 bg-gradient-to-tr from-brand-400 to-brand-300 rounded-[2.5rem] blur-2xl opacity-30"></div>
-                            <div class="relative bg-white p-3 rounded-[2rem] shadow-2xl border border-brand-200/80">
-                                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1000&q=80" alt="Delulu Luxury Boots" class="rounded-[1.5rem] object-cover h-[420px] w-full" onerror="this.src='https://placehold.co/600x700/f4efea/1c1917?text=Delulu+Boutique'">
-                                <div class="absolute bottom-7 left-7 right-7 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-brand-100 flex items-center justify-between shadow-lg">
-                                    <div>
-                                        <p class="text-xs text-brand-400 uppercase tracking-widest font-semibold">UGGs & Atlete Ekskluzive</p>
-                                        <p class="font-bold font-serif-title text-brand-900 text-lg">Porosit direkt në WhatsApp</p>
-                                    </div>
-                                    <button onclick="navigateTo('collection')" class="w-10 h-10 bg-brand-900 text-white rounded-full flex items-center justify-center hover:bg-brand-400 transition-colors">
-                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="benefit">
+                <span>✦</span>
+                Porosi të thjeshta
+            </div>
 
+            <div class="benefit">
+                <span>↗</span>
+                Na kontakto në WhatsApp
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section class="section" id="categories">
+            <div class="section-heading">
+                <div class="eyebrow">Find your vibe</div>
+                <h2>Shop by category</h2>
+                <p>Zgjidh stilin që të përfaqëson.</p>
+            </div>
+
+            <div class="category-cards">
+                <div class="category-card" style="background-image:url('Images1/ugglow1.jpeg')">
+                    <h3>UGG Collection</h3>
+                    <p>Cozy, cute & always in style.</p>
+                    <button class="button" onclick="setCategory('uggs')">SHIKO UGG ↗</button>
+                </div>
+
+                <div class="category-card" style="background-image:url('Images1/dunk1.jpeg')">
+                    <h3>Sneakers</h3>
+                    <p>Your everyday statement pair.</p>
+                    <button class="button" onclick="setCategory('sneakers')">SHIKO ATLETET ↗</button>
                 </div>
             </div>
         </section>
 
-        <!-- About Us / Features Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-brand-100 px-3.5 py-1.5 rounded-full">Pse Delulu Boutique?</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-brand-900 mt-4">Përkushtimi ynë ndaj stilit tuaj</h2>
-                    <p class="text-gray-500 mt-2 font-light">Zbuloni përvojën e blerjes ku cilësia takon komoditetin absolut.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
-                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                            <i class="fa-solid fa-crown"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">UGGs & Atlete Trending</h3>
-                        <p class="text-gray-600 text-sm font-light leading-relaxed">
-                            Përzgjedhje e veçantë nga modelet më të kërkuara botërore, nga UGG Ultra Mini deri te atletet më ikonike.
-                        </p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
-                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                            <i class="fa-solid fa-truck-fast"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">Dërgesa në të gjithë Rajonin</h3>
-                        <p class="text-gray-600 text-sm font-light leading-relaxed">
-                            Shërbim i shpejtë dhe i sigurt në Shqipëri, Kosovë dhe Maqedoninë e Veriut me pagesë në dorëzim.
-                        </p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="bg-brand-50 p-8 rounded-3xl border border-brand-200/50 hover:shadow-xl transition-all duration-300">
-                        <div class="w-14 h-14 bg-brand-400/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <h3 class="text-xl font-bold font-serif-title text-brand-900 mb-2">Porosi me 1 Klik ne WhatsApp</h3>
-                        <p class="text-gray-600 text-sm font-light leading-relaxed">
-                            Proces blerjeje i thjeshtësuar maksimalisht pa regjistrime të ndërlikuara. Porositni direkt me mesazh.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Banner CTA Prompt inside Home -->
-                <div class="mt-16 bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <!-- COLLECTION -->
+        <section class="collection-section" id="collection">
+            <div class="section">
+                <div class="collection-top">
                     <div>
-                        <h3 class="text-2xl sm:text-3xl font-bold font-serif-title">Gati për të rinovuar garderobën?</h3>
-                        <p class="text-brand-200 text-sm mt-1 font-light">Shikoni modelet tona të reja UGGs dhe Atlete tani.</p>
+                        <h2>Our collection</h2>
+                        <p>Gjej palën tënde të preferuar.</p>
                     </div>
-                    <button onclick="navigateTo('collection')" class="bg-brand-400 hover:bg-white hover:text-brand-900 text-white font-semibold text-xs uppercase tracking-widest px-8 py-4 rounded-xl transition-all duration-300 whitespace-nowrap shadow-md">
-                        Hap Koleksionin
-                    </button>
+
+                    <div class="search-sort">
+                        <input
+                            type="search"
+                            class="search-input"
+                            id="searchInput"
+                            placeholder="Kërko produkt..."
+                            aria-label="Kërko produkt"
+                        >
+
+                        <select class="sort-select" id="sortSelect" aria-label="Rendit produktet">
+                            <option value="default">Renditja: Default</option>
+                            <option value="price-low">Çmimi: Nga më i ulëti</option>
+                            <option value="price-high">Çmimi: Nga më i larti</option>
+                            <option value="name">Emri: A–Z</option>
+                        </select>
+                    </div>
                 </div>
+
+                <div class="filters">
+                    <button class="filter-button active" data-category="all">Të gjitha</button>
+                    <button class="filter-button" data-category="uggs">UGG</button>
+                    <button class="filter-button" data-category="sneakers">Sneakers</button>
+                    <button class="filter-button" data-category="wishlist">♡ Wishlist</button>
+                </div>
+
+                <div class="product-grid" id="productGrid"></div>
             </div>
         </section>
 
-        <!-- Customer Reviews Section -->
-        <section id="reviews" class="py-20 bg-brand-100/40 border-y border-brand-200/60">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-brand-400 text-xs font-bold uppercase tracking-widest bg-white border border-brand-200 px-3.5 py-1.5 rounded-full">Eksperienca e Klientëve</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-brand-900 mt-4">Përshtypjet nga vajzat tona</h2>
-                    <p class="text-gray-500 mt-2 font-light">Lexoni çfarë thonë klientët tanë të verifikuar për produktet Delulu.</p>
+        <!-- REVIEWS -->
+        <section class="reviews" id="reviews">
+            <div class="section">
+                <div class="section-heading">
+                    <div class="eyebrow">Love from our community</div>
+                    <h2>Delulu girls say it best</h2>
+                    <p>Një hap më afër stilit tënd të preferuar.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Review Card 1 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
-                                "UGGs Platform që porosita te Delulu janë absolutisht perfektet! Super të ngrohta, masa ishte fiks dhe dërgesa erdhi brenda 24 orëve."
-                            </p>
-                        </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
-                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
-                                A
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-brand-900">Anxhela K.</h4>
-                                <span class="text-xs text-gray-400 flex items-center gap-1">
-                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Tiranë)
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 2 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
-                                "Atletet erdhën fiks si në foto. Përdora edhe kodin e uljes 10% nga wishlist dhe porosia në WhatsApp ishte super e thjeshtë!"
-                            </p>
-                        </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
-                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
-                                S
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-brand-900">Sara M.</h4>
-                                <span class="text-xs text-gray-400 flex items-center gap-1">
-                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Durrës)
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 3 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-brand-200/80 flex flex-col justify-between">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-1 text-amber-400 text-sm">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <p class="text-gray-700 font-light italic leading-relaxed text-sm">
-                                "Shërbimi ndaj klientit te Delulu është 10/10. Më ndihmuan të zgjidh masën e saktë dhe këpucët janë super cilësore."
-                            </p>
-                        </div>
-                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-brand-100">
-                            <div class="w-10 h-10 rounded-full bg-brand-200 text-brand-900 font-bold flex items-center justify-center text-sm font-serif-title">
-                                K
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-sm text-brand-900">Kristina B.</h4>
-                                <span class="text-xs text-gray-400 flex items-center gap-1">
-                                    <i class="fa-solid fa-circle-check text-green-500"></i> Blerje e Verifikuar (Prishtinë)
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Wishlist & Discount Section -->
-        <section id="wishlist" class="py-20 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-brand-900 text-white rounded-[2.5rem] p-8 sm:p-14 shadow-2xl relative overflow-hidden text-center border border-brand-800">
-                    <!-- Subtle Glow Shapes -->
-                    <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="relative z-10 max-w-xl mx-auto space-y-6">
-                        <span class="inline-block bg-white/10 text-brand-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest border border-white/10">
-                            Përfitoni Ulje Ekskluzive
-                        </span>
-                        
-                        <h2 class="text-3xl sm:text-4xl font-bold font-serif-title tracking-tight">
-                            Regjistrohu në Wishlist & Merr 10% Ulje
-                        </h2>
-
-                        <p class="text-brand-200 text-sm font-light leading-relaxed">
-                            Shkruani email-in tuaj për t'u bërë pjesë e listës sonë VIP. Do të merrni menjëherë kodin tuaj të uljes 10% për çdo porosi!
+                <div class="review-grid">
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>
+                            “Shumë të bukura! Modeli ishte tamam siç e prisja.
+                            Më pëlqeu shumë dhe komunikimi ishte shumë i lehtë.”
                         </p>
+                        <h4>Kliente e Delulu</h4>
+                        <small>Review</small>
+                    </div>
 
-                        <!-- Wishlist Form -->
-                        <form id="wishlist-form" onsubmit="handleWishlistSubmit(event)" class="flex flex-col sm:flex-row gap-3 pt-2">
-                            <input type="email" id="wishlist-email" required placeholder="Email-i juaj këtu..." class="flex-grow px-6 py-4 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm bg-brand-50 border-0">
-                            <button type="submit" class="bg-brand-400 hover:bg-brand-500 text-white font-semibold text-xs uppercase tracking-wider px-8 py-4 rounded-2xl shadow-lg transition-all whitespace-nowrap">
-                                Regjistrohu
-                            </button>
-                        </form>
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>
+                            “Më në fund gjeta modelin që kërkoja.
+                            Procesi i porosisë ishte i thjeshtë dhe i shpejtë.”
+                        </p>
+                        <h4>Kliente e Delulu</h4>
+                        <small>Review</small>
+                    </div>
 
-                        <!-- Success Voucher Box -->
-                        <div id="wishlist-success" class="hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 text-left text-white text-sm space-y-2">
-                            <div class="flex items-center space-x-2 text-green-400 font-bold">
-                                <i class="fa-solid fa-circle-check text-lg"></i>
-                                <span>Urime! U regjistruat me sukses ne Wishlist.</span>
-                            </div>
-                            <p class="text-brand-200 text-xs">Përdorni kodin më poshtë gjatë porosisë ose në Shportë:</p>
-                            <div class="flex items-center justify-between bg-brand-950/80 px-4 py-3 rounded-xl border border-white/10 font-mono text-base font-bold text-brand-300">
-                                <span>DELULU10</span>
-                                <button onclick="copyDiscountCode()" class="text-xs bg-brand-400/30 hover:bg-brand-400 text-white px-3 py-1.5 rounded-lg transition-all font-sans font-normal">
-                                    <i class="fa-regular fa-copy"></i> Kopjo
-                                </button>
-                            </div>
-                        </div>
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>
+                            “UGG-t janë shumë cute! Do të porosisja përsëri.
+                            Ka disa modele shumë të bukura për të zgjedhur.”
+                        </p>
+                        <h4>Kliente e Delulu</h4>
+                        <small>Review</small>
                     </div>
                 </div>
             </div>
         </section>
 
-    </div>
+        <!-- WISHLIST / EMAIL -->
+        <section class="wishlist-section" id="wishlist">
+            <div class="section">
+                <div class="wishlist-box">
+                    <div class="eyebrow">Stay in your delulu era</div>
+                    <h2>Your wishlist starts here ♡</h2>
 
-    <!-- VIEW 2: DEDICATED COLLECTION PAGE (KOLEKSIONI) -->
-    <div id="view-collection" class="view-section hidden transition-opacity duration-300 flex-grow py-10 bg-brand-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Collection Header & Breadcrumb -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-brand-200/80 pb-8 mb-8 gap-6">
-                <div>
-                    <div class="flex items-center space-x-2 text-xs text-brand-400 font-semibold uppercase tracking-widest mb-2">
-                        <button onclick="navigateTo('home')" class="hover:underline">Kryefaqja</button>
-                        <span>/</span>
-                        <span class="text-brand-900">Koleksioni Zyrtar</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl font-bold font-serif-title text-brand-900">UGGs & Atlete Trending</h1>
-                    <p class="text-gray-500 text-sm font-light mt-1">Zgjidhni modelin tuaj të preferuar dhe masën për të porositur.</p>
-                </div>
+                    <p>
+                        Regjistro email-in tënd për të shprehur interesin
+                        për modelet e preferuara dhe për të marrë përditësime
+                        nga Delulu Boutique.
+                    </p>
 
-                <!-- Back to Home Button -->
-                <button onclick="navigateTo('home')" class="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-brand-800 bg-white border border-brand-200 px-5 py-3 rounded-xl hover:bg-brand-100 transition-all self-start md:self-auto">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Kthehu në Kryefaqe</span>
-                </button>
-            </div>
+                    <form class="wishlist-form" id="wishlistForm">
+                        <input
+                            type="email"
+                            id="wishlistEmail"
+                            placeholder="Shkruaj email-in tënd"
+                            required
+                        >
+                        <button class="button" type="submit">REGJISTROHU ↗</button>
+                    </form>
 
-            <!-- Toolbar: Filter Tabs & Active Search -->
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-10">
-                <!-- Category Buttons -->
-                <div class="flex items-center space-x-2 bg-brand-100/70 p-1.5 rounded-2xl border border-brand-200/60 w-full lg:w-auto overflow-x-auto">
-                    <button onclick="filterProducts('all')" id="filter-all" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all bg-brand-900 text-white shadow-sm whitespace-nowrap">
-                        Të Gjitha
-                    </button>
-                    <button onclick="filterProducts('uggs')" id="filter-uggs" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all text-gray-600 hover:text-brand-900 whitespace-nowrap">
-                        Koleksioni UGGs
-                    </button>
-                    <button onclick="filterProducts('sneakers')" id="filter-sneakers" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all text-gray-600 hover:text-brand-900 whitespace-nowrap">
-                        Atlete (Sneakers)
-                    </button>
-                </div>
-
-                <!-- Search Input -->
-                <div class="relative w-full lg:w-80">
-                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Kërko me emër (p.sh. Ultra Mini, Samba)..." class="w-full pl-11 pr-4 py-3 bg-white border border-brand-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-400 text-sm shadow-sm">
+                    <div class="form-message" id="wishlistMessage"></div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Products Grid -->
-            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- JavaScript renders items here -->
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">delulu<span>.</span></div>
+                <p class="footer-description">
+                    Your style, your rules. Zbulo koleksionin e Delulu Boutique
+                    dhe gjej modelin që i përshtatet stilit tënd.
+                </p>
             </div>
 
-            <!-- Empty Search State -->
-            <div id="no-products" class="hidden text-center py-20 bg-white rounded-3xl border border-brand-200/60">
-                <i class="fa-solid fa-box-open text-5xl text-brand-300 mb-4"></i>
-                <h3 class="text-xl font-bold font-serif-title text-brand-900">Nuk u gjet asnjë produkt</h3>
-                <p class="text-gray-500 text-sm mt-1">Provoni një fjalë tjetër kërkimi ose zgjidhni një kategori tjetër.</p>
-                <button onclick="resetFilters()" class="mt-4 bg-brand-100 text-brand-900 px-6 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
-                    Pastro Kërkimin
-                </button>
+            <div class="footer-column">
+                <h4>QUICK LINKS</h4>
+                <a href="#home">Kryefaqja</a>
+                <a href="#categories">Kategoritë</a>
+                <a href="#collection">Koleksioni</a>
+                <a href="#wishlist">Wishlist</a>
             </div>
 
+            <div class="footer-column">
+                <h4>NA KONTAKTO</h4>
+                <a href="https://www.instagram.com/delulu_boutique_al/" target="_blank" rel="noopener">
+                    Instagram
+                </a>
+                <a href="https://wa.me/355684445489" target="_blank" rel="noopener">
+                    WhatsApp: +355 68 444 5489
+                </a>
+            </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="bg-brand-900 text-brand-100 py-12 border-t border-brand-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            
-            <!-- Brand Info -->
-            <div class="text-center md:text-left space-y-1">
-                <span class="text-2xl font-bold font-serif-title tracking-widest text-white uppercase">Delulu Boutique</span>
-                <p class="text-xs text-brand-300 font-light">Eleganca dhe rehatia në çdo hap. Të gjitha të drejtat e rezervuara © 2026.</p>
-            </div>
-
-            <!-- Contact & Social Icons Only -->
-            <div class="flex items-center space-x-4">
-                <!-- Telephone Icon Button -->
-                <a href="tel:+355690000000" title="Telefononi" aria-label="Telefononi" class="w-12 h-12 bg-brand-800 hover:bg-brand-400 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
-                    <i class="fa-solid fa-phone text-base group-hover:scale-110 transition-transform"></i>
-                </a>
-
-                <!-- Instagram Icon Button -->
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram" class="w-12 h-12 bg-brand-800 hover:bg-brand-400 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
-                    <i class="fa-brands fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
-                </a>
-
-                <!-- WhatsApp Quick Icon Button -->
-                <a href="https://wa.me/355690000000" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp" class="w-12 h-12 bg-brand-800 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-md group">
-                    <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
-                </a>
-            </div>
-
+        <div class="copyright">
+            © <span id="currentYear"></span> Delulu Boutique. All rights reserved.
         </div>
     </footer>
 
-    <!-- Shopping Cart Slide-over Drawer -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <!-- Backdrop -->
-        <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0"></div>
+    <!-- CART OVERLAY -->
+    <div class="overlay" id="cartOverlay"></div>
 
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div id="cart-panel" class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
-                
-                <!-- Drawer Header -->
-                <div class="p-6 border-b border-brand-100 flex items-center justify-between bg-brand-50">
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-bag-shopping text-brand-400 text-xl"></i>
-                        <h2 class="font-bold text-lg font-serif-title text-brand-900">Shporta Juaj</h2>
-                    </div>
-                    <button onclick="toggleCart()" class="text-gray-400 hover:text-brand-900 p-2 rounded-full hover:bg-brand-100 transition-all">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
+    <!-- CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shporta">
+        <div class="cart-header">
+            <h2>Shporta ime ♡</h2>
+            <button class="close-button" id="closeCart" aria-label="Mbyll shportën">×</button>
+        </div>
 
-                <!-- Cart Items List -->
-                <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4 custom-scrollbar">
-                    <!-- JavaScript populates elements -->
-                </div>
+        <div class="cart-items" id="cartItems"></div>
 
-                <!-- Cart Empty View -->
-                <div id="cart-empty" class="hidden flex-grow flex flex-col items-center justify-center p-6 text-center">
-                    <div class="w-20 h-20 bg-brand-100 text-brand-400 rounded-full flex items-center justify-center text-3xl mb-4">
-                        <i class="fa-solid fa-cart-flatbed-suitcases"></i>
-                    </div>
-                    <h3 class="font-bold font-serif-title text-brand-900 text-xl">Shporta është e zbrazët</h3>
-                    <p class="text-gray-500 text-sm mt-1 max-w-xs font-light">Eksploroni koleksionin tonë dhe shtoni modelet tuaja të preferuara.</p>
-                    <button onclick="toggleCart(); navigateTo('collection');" class="mt-6 bg-brand-900 text-white text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-xl shadow-md">
-                        Shiko Produktet
-                    </button>
-                </div>
-
-                <!-- Cart Footer / Summary -->
-                <div id="cart-footer" class="p-6 border-t border-brand-100 bg-brand-50 space-y-4">
-                    
-                    <!-- Coupon code input -->
-                    <div class="flex space-x-2">
-                        <input type="text" id="coupon-input" placeholder="Kodi i uljes (p.sh. DELULU10)" class="flex-grow text-xs uppercase px-4 py-3 bg-white border border-brand-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-400">
-                        <button onclick="applyCoupon()" class="bg-brand-200 hover:bg-brand-300 text-brand-900 font-semibold text-xs px-4 rounded-xl transition-all">
-                            Appliko
-                        </button>
-                    </div>
-                    <div id="coupon-badge" class="hidden text-xs text-green-700 bg-green-100 border border-green-200 p-2 rounded-lg flex items-center justify-between">
-                        <span><i class="fa-solid fa-ticket mr-1"></i> Ulja 10% u aplikua!</span>
-                        <button onclick="removeCoupon()" class="text-red-500 font-bold">&times;</button>
-                    </div>
-
-                    <!-- Totals Breakdown -->
-                    <div class="space-y-1.5 text-sm pt-2">
-                        <div class="flex justify-between text-gray-500">
-                            <span>Nëntotali:</span>
-                            <span id="cart-subtotal" class="font-semibold text-brand-900">0 Lekë</span>
-                        </div>
-                        <div id="discount-row" class="hidden flex justify-between text-green-600 font-medium">
-                            <span>Ulja (10%):</span>
-                            <span id="cart-discount">-0 Lekë</span>
-                        </div>
-                        <div class="flex justify-between text-base font-bold text-brand-900 pt-2 border-t border-brand-200">
-                            <span>Totali Përfundimtar:</span>
-                            <span id="cart-total" class="text-brand-400 text-lg">0 Lekë</span>
-                        </div>
-                    </div>
-
-                    <!-- WhatsApp Checkout CTA -->
-                    <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl shadow-lg shadow-green-600/20 flex items-center justify-center space-x-3 transition-all text-sm">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-                        <span>Porosit Tani ne WhatsApp</span>
-                    </button>
-                </div>
-
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Totali</span>
+                <span id="cartTotal">0 Lekë</span>
             </div>
+
+            <p class="cart-note">
+                Kostoja e transportit, nëse aplikohet, konfirmohet gjatë porosisë.
+            </p>
+
+            <button class="button checkout-button" id="checkoutButton">
+                VAZHDO ME POROSINË ↗
+            </button>
+        </div>
+    </aside>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeCheckout" aria-label="Mbyll" style="position:absolute;right:20px;top:20px;">×</button>
+
+            <h2>Përfundo porosinë</h2>
+            <p>
+                Plotëso të dhënat dhe vazhdo në WhatsApp për të dërguar porosinë.
+            </p>
+
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="customerName">Emri dhe mbiemri</label>
+                    <input id="customerName" type="text" required placeholder="Emri yt">
+                </div>
+
+                <div class="form-group">
+                    <label for="customerPhone">Numri i telefonit</label>
+                    <input id="customerPhone" type="tel" required placeholder="06X XX XX XXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="customerAddress">Adresa e dërgesës</label>
+                    <textarea id="customerAddress" required placeholder="Qyteti, rruga dhe adresa"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerNotes">Shënime (opsionale)</label>
+                    <textarea id="customerNotes" placeholder="Shënime për porosinë..."></textarea>
+                </div>
+
+                <button type="submit" class="button checkout-submit">
+                    DËRGO POROSINË NË WHATSAPP ↗
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- Application JavaScript Logic -->
+    <div class="toast" id="toast"></div>
+
     <script>
-        // Catalog Products Database
+        /*
+         * PRODUKTET
+         * Çmimet janë në lekë.
+         * Kontrollo masat në dispozicion përpara se ta publikosh faqen.
+         */
+
         const products = [
             {
                 id: 1,
-                name: "UGG Ultra Mini Platform Chestnut",
+                name: "UGG Low Brown",
                 category: "uggs",
-                price: 14500,
-                image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
-                badge: "Bestseller",
-                sizes: [36, 37, 38, 39, 40]
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugglow1.jpeg",
+                badge: "Sale"
             },
             {
                 id: 2,
-                name: "UGG Tazz Slipper Black Warm",
+                name: "UGG Low Dark Brown",
                 category: "uggs",
-                price: 13900,
-                image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80",
-                badge: "E Re",
-                sizes: [36, 37, 38, 39, 41]
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugglow2.jpeg",
+                badge: "Sale"
             },
             {
                 id: 3,
-                name: "Adidas Samba OG Soft Pink Edition",
-                category: "sneakers",
-                price: 11800,
-                image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
-                badge: "Trending",
-                sizes: [36, 37, 38, 39, 40]
+                name: "UGG Low Beige",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugglow3.jpeg",
+                badge: "Sale"
             },
             {
                 id: 4,
-                name: "Nike Dunk Low Rose Whisper",
+                name: "Nike Dunk Burgundy",
                 category: "sneakers",
-                price: 12500,
-                image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80",
-                badge: "Limituar",
-                sizes: [37, 38, 39, 40]
+                price: 3900,
+                oldPrice: 9000,
+                image: "Images1/dunk2.jpeg",
+                badge: "Sale"
             },
             {
                 id: 5,
-                name: "UGG Classic Heritage Short Beige",
-                category: "uggs",
-                price: 16200,
-                image: "https://images.unsplash.com/photo-1512374382146-233842b6a83b?auto=format&fit=crop&w=800&q=80",
-                badge: "Premium",
-                sizes: [36, 37, 38, 39, 40, 41]
+                name: "Adidas Spezial Brown",
+                category: "sneakers",
+                price: 4900,
+                oldPrice: 9000,
+                image: "Images1/adidas2.jpeg",
+                badge: "Sale"
             },
             {
                 id: 6,
-                name: "New Balance 550 Neutral Cream",
+                name: "Jordan 1 Black",
                 category: "sneakers",
-                price: 13200,
-                image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80",
-                badge: "Klasike",
-                sizes: [36, 37, 38, 39, 40]
-            }
-        ];
-
-        // State Management
-        let currentFilter = 'all';
-        let searchQuery = '';
-        let cart = [];
-        let selectedSizes = {}; // Maps productId -> chosen size
-        let isCouponApplied = false;
-
-        // Initialize App
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set default sizes for product cards
-            products.forEach(p => {
-                selectedSizes[p.id] = p.sizes[0];
-            });
-            renderProducts();
-            updateCartUI();
-        });
-
-        // SPA Navigation Switcher (Index vs Collection)
-        function navigateTo(viewName) {
-            const homeView = document.getElementById('view-home');
-            const collectionView = document.getElementById('view-collection');
-            const navHome = document.getElementById('nav-home');
-            const navCollection = document.getElementById('nav-collection');
-
-            if (viewName === 'collection') {
-                homeView.classList.add('hidden');
-                collectionView.classList.remove('hidden');
-                
-                navHome.classList.remove('text-brand-400', 'font-semibold');
-                navCollection.classList.add('text-brand-400', 'font-semibold');
-
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                renderProducts();
-            } else {
-                collectionView.classList.add('hidden');
-                homeView.classList.remove('hidden');
-
-                navCollection.classList.remove('text-brand-400', 'font-semibold');
-                navHome.classList.add('text-brand-400', 'font-semibold');
-
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        // Smooth Scroll to Section on Home Page
-        function scrollToSection(sectionId) {
-            const homeView = document.getElementById('view-home');
-            if (homeView.classList.contains('hidden')) {
-                navigateTo('home');
-                setTimeout(() => {
-                    const el = document.getElementById(sectionId);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            } else {
-                const el = document.getElementById(sectionId);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Render Collection Grid
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            const noProducts = document.getElementById('no-products');
-
-            const filtered = products.filter(p => {
-                const matchCategory = currentFilter === 'all' || p.category === currentFilter;
-                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchCategory && matchSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                noProducts.classList.remove('hidden');
-                return;
-            }
-
-            noProducts.classList.add('hidden');
-            grid.innerHTML = filtered.map(product => {
-                const currentSelectedSize = selectedSizes[product.id] || product.sizes[0];
-                return `
-                    <div class="bg-white rounded-3xl p-5 border border-brand-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                        
-                        <!-- Image Container -->
-                        <div class="relative overflow-hidden rounded-2xl bg-brand-50 mb-5 h-72">
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x700/f4efea/1c1917?text=Delulu+Product'">
-                            <span class="absolute top-3 left-3 bg-brand-900/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
-                                ${product.badge}
-                            </span>
-                        </div>
-
-                        <!-- Content -->
-                        <div class="space-y-3 flex-grow flex flex-col justify-between">
-                            <div>
-                                <span class="text-[11px] font-semibold text-brand-400 uppercase tracking-widest">
-                                    ${product.category === 'uggs' ? 'Koleksioni UGGs' : 'Atlete Luxury'}
-                                </span>
-                                <h3 class="font-bold text-brand-900 text-lg leading-snug font-serif-title mt-0.5">
-                                    ${product.name}
-                                </h3>
-                            </div>
-
-                            <!-- Size Selector -->
-                            <div>
-                                <label class="block text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-1.5">Zgjidh Masën (EU):</label>
-                                <div class="flex flex-wrap gap-1.5">
-                                    ${product.sizes.map(size => `
-                                        <button onclick="selectProductSize(${product.id}, ${size})" class="px-2.5 py-1 text-xs font-semibold rounded-lg border transition-all ${size === currentSelectedSize ? 'bg-brand-900 text-white border-brand-900' : 'bg-brand-50 text-brand-900 border-brand-200 hover:border-brand-400'}">
-                                            ${size}
-                                        </button>
-                                    `).join('')}
-                                </div>
-                            </div>
-
-                            <!-- Price & Add Button -->
-                            <div class="flex items-center justify-between pt-4 border-t border-brand-100">
-                                <div>
-                                    <span class="text-xs text-gray-400 block font-light">Çmimi:</span>
-                                    <span class="text-xl font-black text-brand-900 font-serif-title">
-                                        ${product.price.toLocaleString('sq-AL')} Lekë
-                                    </span>
-                                </div>
-                                <button onclick="addToCart(${product.id})" class="bg-brand-400 hover:bg-brand-900 text-white font-semibold text-xs uppercase tracking-wider px-4 py-3 rounded-xl transition-all duration-300 shadow-md flex items-center space-x-2">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    <span>Shto</span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Set Product Size Option
-        function selectProductSize(productId, size) {
-            selectedSizes[productId] = size;
-            renderProducts();
-        }
-
-        // Filter Categories
-        function filterProducts(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-900', 'text-white', 'shadow-sm');
-                btn.classList.add('text-gray-600');
-            });
-            const activeBtn = document.getElementById(`filter-${category}`);
-            activeBtn.classList.remove('text-gray-600');
-            activeBtn.classList.add('bg-brand-900', 'text-white', 'shadow-sm');
-
-            renderProducts();
-        }
-
-        // Search Handler
-        function handleSearch() {
-            searchQuery = document.getElementById('search-input').value;
-            renderProducts();
-        }
-
-        function resetFilters() {
-            currentFilter = 'all';
-            searchQuery = '';
-            document.getElementById('search-input').value = '';
-            filterProducts('all');
-        }
-
-        // Add Product to Cart
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const size = selectedSizes[productId] || product.sizes[0];
-            const cartKey = `${productId}-${size}`;
-
-            const existingItem = cart.find(item => item.key === cartKey);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    key: cartKey,
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    image: product.image,
-                    size: size,
-                    quantity: 1
-                });
-            }
-
-            updateCartUI();
-            showToast(`Shtuar në shportë: ${product.name} (Masa: ${size})`);
-        }
-
-        // Update Item Quantities
-        function updateQuantity(cartKey, change) {
-            const item = cart.find(i => i.key === cartKey);
-            if (!item) return;
-
-            item.quantity += change;
-            if (item.quantity <= 0) {
-                cart = cart.filter(i => i.key !== cartKey);
-            }
-            updateCartUI();
-        }
-
-        function removeFromCart(cartKey) {
-            cart = cart.filter(i => i.key !== cartKey);
-            updateCartUI();
-        }
-
-        // Cart UI Updates & Total Calculation
-        function updateCartUI() {
-            const badge = document.getElementById('cart-badge');
-            const itemsContainer = document.getElementById('cart-items');
-            const emptyState = document.getElementById('cart-empty');
-            const footerState = document.getElementById('cart-footer');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const discountRow = document.getElementById('discount-row');
-            const discountEl = document.getElementById('cart-discount');
-            const totalEl = document.getElementById('cart-total');
-
-            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-            if (totalItemsCount > 0) {
-                badge.innerText = totalItemsCount;
-                badge.classList.remove('scale-0');
-            } else {
-                badge.classList.add('scale-0');
-            }
-
-            if (cart.length === 0) {
-                itemsContainer.innerHTML = '';
-                itemsContainer.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-                footerState.classList.add('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            itemsContainer.classList.remove('hidden');
-            footerState.classList.remove('hidden');
-
-            let subtotal = 0;
-            itemsContainer.innerHTML = cart.map(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                return `
-                    <div class="flex items-center space-x-4 py-3 border-b border-brand-100 last:border-0">
-                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl bg-brand-50 flex-shrink-0" onerror="this.src='https://placehold.co/200x200/f4efea/1c1917?text=Product'">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xs text-brand-900 leading-tight">${item.name}</h4>
-                            <p class="text-[11px] text-gray-500 mt-0.5">Masa: <span class="font-bold text-brand-400">${item.size}</span></p>
-                            <p class="text-xs font-bold text-brand-900 mt-1">${item.price.toLocaleString('sq-AL')} Lekë</p>
-                        </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <button onclick="removeFromCart('${item.key}')" class="text-gray-400 hover:text-red-500 text-xs">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                            <div class="flex items-center border border-brand-200 rounded-lg bg-white">
-                                <button onclick="updateQuantity('${item.key}', -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-brand-100">-</button>
-                                <span class="px-2 text-xs font-bold text-brand-900">${item.quantity}</span>
-                                <button onclick="updateQuantity('${item.key}', 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:bg-brand-100">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            subtotalEl.innerText = `${subtotal.toLocaleString('sq-AL')} Lekë`;
-
-            let discountAmount = 0;
-            if (isCouponApplied) {
-                discountAmount = subtotal * 0.10;
-                discountRow.classList.remove('hidden');
-                discountEl.innerText = `-${discountAmount.toLocaleString('sq-AL')} Lekë`;
-            } else {
-                discountRow.classList.add('hidden');
-            }
-
-            const finalTotal = subtotal - discountAmount;
-            totalEl.innerText = `${finalTotal.toLocaleString('sq-AL')} Lekë`;
-        }
-
-        // Coupon Handling
-        function applyCoupon() {
-            const input = document.getElementById('coupon-input').value.trim().toUpperCase();
-            if (input === 'DELULU10') {
-                isCouponApplied = true;
-                document.getElementById('coupon-badge').classList.remove('hidden');
-                updateCartUI();
-                showToast("Kodi i uljes 10% u aplikua!");
-            } else {
-                showToast("Kodi nuk është i vlefshëm!");
-            }
-        }
-
-        function removeCoupon() {
-            isCouponApplied = false;
-            document.getElementById('coupon-badge').classList.add('hidden');
-            document.getElementById('coupon-input').value = '';
-            updateCartUI();
-        }
-
-        // Cart Drawer Toggle
-        function toggleCart() {
-            const drawer = document.getElementById('cart-drawer');
-            const panel = document.getElementById('cart-panel');
-            const backdrop = document.getElementById('cart-backdrop');
-
-            if (drawer.classList.contains('hidden')) {
-                drawer.classList.remove('hidden');
-                setTimeout(() => {
-                    backdrop.classList.remove('opacity-0');
-                    panel.classList.remove('translate-x-full');
-                }, 10);
-            } else {
-                backdrop.classList.add('opacity-0');
-                panel.classList.add('translate-x-full');
-                setTimeout(() => {
-                    drawer.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        // Wishlist Form Submit
-        function handleWishlistSubmit(event) {
-            event.preventDefault();
-            const form = document.getElementById('wishlist-form');
-            const successBox = document.getElementById('wishlist-success');
-            form.classList.add('hidden');
-            successBox.classList.remove('hidden');
-            showToast("U regjistruat me sukses ne Wishlist!");
-        }
-
-        function copyDiscountCode() {
-            const textToCopy = "DELULU10";
-            const tempInput = document.createElement("input");
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            showToast("Kodi 'DELULU10' u kopjua!");
-        }
-
-        // WhatsApp Direct Checkout
-        function checkoutWhatsApp() {
-            if (cart.length === 0) return;
-
-            let message = "Përshëndetje Delulu Boutique! 🛍️\n\nDëshiroj të porosis me të dhënat më poshtë:\n\n";
-            let subtotal = 0;
-
-            cart.forEach((item, index) => {
-                const totalItemPrice = item.price * item.quantity;
-                subtotal += totalItemPrice;
-                message += `${index + 1}. *${item.name}*\n   • Masa: ${item.size}\n   • Sasia: ${item.quantity}\n   • Çmimi: ${totalItemPrice.toLocaleString('sq-AL')} Lekë\n\n`;
-            });
-
-            let finalTotal = subtotal;
-            if (isCouponApplied) {
-                const discount = subtotal * 0.10;
-                finalTotal = subtotal - discount;
-                message += `🎟️ *Kodi i uljes:* DELULU10 (-10%)\n`;
-            }
-
-            message += `💰 *Totali përfundimtar:* ${finalTotal.toLocaleString('sq-AL')} Lekë\n\n`;
-            message += `Ju lutem më udhëzoni me hapat e mëtejshëm për dërgesën!`;
-
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/355690000000?text=${encoded}`, '_blank');
-        }
-
-        // Toast Feedback System
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const msgEl = document.getElementById('toast-msg');
-            msgEl.innerText = message;
-
-            toast.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-32', 'opacity-0');
-            }, 3200);
-        }
-    </script>
-</body>
-</html>
+                price: 3900,
+                oldPrice: 9000,
+                image: "Images1/Jordan2.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 7,
+                name: "UGG Tazz Dark Brown",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugg3.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 8,
+                name: "New Balance 1",
+                category: "sneakers",
+                price: 4500,
+                oldPrice: 13000,
+                image: "Images1/newbalance2.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 9,
+                name: "Nike AF1",
+                category: "sneakers",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/nikeaf1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 10,
+                name: "Adidas Spezial Dark Blue",
+                category: "sneakers",
+                price: 4900,
+                oldPrice: 9000,
+                image: "Images1/adidas1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 11,
+                name: "UGG Beige",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/uggll1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 12,
+                name: "Nike Dunk White",
+                category: "sneakers",
+                price: 3900,
+                oldPrice: 9000,
+                image: "Images1/dunk1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 13,
+                name: "Jordan 1 Sky Blue",
+                category: "sneakers",
+                price: 3900,
+                oldPrice: 9000,
+                image: "Images1/Jordan1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 14,
+                name: "UGG Tazz Dark Brown",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugg1.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 15,
+                name: "Adidas Spezial Red",
+                category: "sneakers",
+                price: 4900,
+                oldPrice: 9000,
+                image: "Images1/adidas3.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 16,
+                name: "UGG Brown",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/uggll2.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 17,
+                name: "UGG Tazz Black",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugg2.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 18,
+                name: "Nike Dunk Pink",
+                category: "sneakers",
+                price: 3900,
+                oldPrice: 9000,
+                image: "Images1/dunk3.jpeg",
+                badge: "Sale"
+            },
+            {
+                id: 19,
+                name: "UGG Tazz Brown",
+                category: "uggs",
+                price: 2900,
+                oldPrice: 6500,
+                image: "Images1/ugg4.jpeg",
+                badge:
