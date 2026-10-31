@@ -1,1624 +1,2022 @@
 <!DOCTYPE html>
 <html lang="sq">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Delulu Boutique | Your Style, Your Rules</title>
-    <meta name="description" content="Zbulo koleksionin e atleteve dhe UGG nga Delulu Boutique. Zgjidh modelin tënd të preferuar dhe porosit online.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --pink: #f5dce4;
-            --pink-dark: #e8b9ca;
-            --cream: #fffaf7;
-            --dark: #292323;
-            --muted: #827879;
-            --white: #ffffff;
-            --border: #eee5e5;
-            --sale: #a44461;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "DM Sans", sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .announcement {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 10px 15px;
-            font-size: 12px;
-            letter-spacing: 1.4px;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 250, 247, 0.97);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-
-        .navbar {
-            max-width: 1400px;
-            margin: auto;
-            padding: 18px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            font-family: "Playfair Display", serif;
-            font-size: 29px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            color: #c7839d;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--sale);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon-button {
-            background: transparent;
-            border: 1px solid var(--border);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--sale);
-            color: white;
-            border-radius: 50%;
-            width: 19px;
-            height: 19px;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        .hero {
-            min-height: 600px;
-            padding: 80px 7%;
-            display: flex;
-            align-items: center;
-            background:
-                linear-gradient(90deg, rgba(255, 245, 246, 0.97) 0%, rgba(255, 245, 246, 0.82) 48%, rgba(255, 245, 246, 0.12) 100%),
-                url("Images1/ugglow1.jpeg") center 45% / cover no-repeat;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--sale);
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(44px, 6vw, 76px);
-            line-height: 1.08;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 span {
-            color: #b96f8b;
-        }
-
-        .hero p {
-            color: #625657;
-            line-height: 1.8;
-            font-size: 15px;
-            max-width: 450px;
-            margin-bottom: 30px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 14px 24px;
-            border: none;
-            background: var(--dark);
-            color: white;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.8px;
-            transition: 0.2s;
-        }
-
-        .button:hover {
-            background: var(--sale);
-            transform: translateY(-2px);
-        }
-
-        .button-light {
-            background: white;
-            color: var(--dark);
-            border: 1px solid var(--border);
-        }
-
-        .button-light:hover {
-            color: white;
-        }
-
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-bottom: 1px solid var(--border);
-            background: white;
-        }
-
-        .benefit {
-            padding: 23px 12px;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            border-right: 1px solid var(--border);
-        }
-
-        .benefit:last-child {
-            border-right: none;
-        }
-
-        .benefit span {
-            display: block;
-            font-size: 21px;
-            margin-bottom: 7px;
-        }
-
-        .section {
-            max-width: 1400px;
-            margin: auto;
-            padding: 85px 5%;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-heading .eyebrow {
-            margin-bottom: 12px;
-        }
-
-        .section-heading h2 {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(30px, 4vw, 44px);
-            margin-bottom: 12px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .category-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-        }
-
-        .category-card {
-            min-height: 320px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-end;
-            background-position: center;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
-        }
-
-        .category-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.68), transparent 75%);
-            z-index: -1;
-            transition: 0.3s;
-        }
-
-        .category-card:hover::before {
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.05));
-        }
-
-        .category-card h3 {
-            color: white;
-            font-family: "Playfair Display", serif;
-            font-size: 35px;
-            margin-bottom: 8px;
-        }
-
-        .category-card p {
-            color: white;
-            font-size: 13px;
-            margin-bottom: 18px;
-        }
-
-        .category-card .button {
-            background: white;
-            color: var(--dark);
-        }
-
-        .collection-section {
-            background: #fff;
-        }
-
-        .collection-section .section {
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-
-        .collection-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-bottom: 25px;
-        }
-
-        .collection-top h2 {
-            font-family: "Playfair Display", serif;
-            font-size: 36px;
-        }
-
-        .collection-top p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-top: 6px;
-        }
-
-        .search-sort {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .search-input,
-        .sort-select {
-            border: 1px solid var(--border);
-            background: var(--cream);
-            padding: 12px 14px;
-            font-size: 12px;
-            outline: none;
-            min-width: 170px;
-        }
-
-        .search-input:focus,
-        .sort-select:focus {
-            border-color: var(--pink-dark);
-        }
-
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 25px 0 35px;
-        }
-
-        .filter-button {
-            border: 1px solid var(--border);
-            background: white;
-            padding: 11px 22px;
-            font-size: 12px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .filter-button.active,
-        .filter-button:hover {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 28px 18px;
-        }
-
-        .product-card {
-            min-width: 0;
-            position: relative;
-        }
-
-        .product-image-wrap {
-            position: relative;
-            overflow: hidden;
-            background: #f7f2ef;
-            aspect-ratio: 3 / 4;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.04);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: white;
-            color: var(--sale);
-            padding: 6px 9px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
-        }
-
-        .wishlist-button {
-            position: absolute;
-            right: 12px;
-            top: 12px;
-            width: 34px;
-            height: 34px;
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            border-radius: 50%;
-            font-size: 18px;
-        }
-
-        .wishlist-button.liked {
-            color: #d24e77;
-        }
-
-        .product-info {
-            padding: 14px 2px 0;
-        }
-
-        .product-category {
-            color: var(--muted);
-            font-size: 10px;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            margin-bottom: 7px;
-        }
-
-        .product-name {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 11px;
-            line-height: 1.5;
-            min-height: 20px;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
-        .price {
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .old-price {
-            font-size: 12px;
-            color: #9b9090;
-            text-decoration: line-through;
-        }
-
-        .size-select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border);
-            background: white;
-            font-size: 12px;
-            margin-bottom: 9px;
-            outline: none;
-        }
-
-        .add-button {
-            width: 100%;
-            padding: 12px 8px;
-            border: 1px solid var(--dark);
-            background: var(--dark);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            transition: 0.2s;
-        }
-
-        .add-button:hover {
-            background: var(--sale);
-            border-color: var(--sale);
-        }
-
-        .empty-results {
-            text-align: center;
-            padding: 50px 10px;
-            color: var(--muted);
-            grid-column: 1 / -1;
-        }
-
-        .reviews {
-            background: var(--pink);
-        }
-
-        .reviews .section {
-            padding-top: 75px;
-            padding-bottom: 75px;
-        }
-
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .review-card {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 28px;
-        }
-
-        .stars {
-            color: #ba7a32;
-            letter-spacing: 3px;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .review-card p {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #5d5053;
-            margin-bottom: 20px;
-        }
-
-        .review-card h4 {
-            font-size: 12px;
-        }
-
-        .review-card small {
-            color: var(--muted);
-            display: block;
-            margin-top: 5px;
-        }
-
-        .wishlist-section {
-            background: white;
-        }
-
-        .wishlist-box {
-            max-width: 720px;
-            margin: auto;
-            background: var(--cream);
-            padding: 40px;
-            text-align: center;
-        }
-
-        .wishlist-box h2 {
-            font-family: "Playfair Display", serif;
-            font-size: 35px;
-            margin-bottom: 14px;
-        }
-
-        .wishlist-box p {
-            color: var(--muted);
-            line-height: 1.7;
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        .wishlist-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .wishlist-form input {
-            flex: 1;
-            min-width: 0;
-            padding: 14px;
-            border: 1px solid var(--border);
-            background: white;
-            outline: none;
-        }
-
-        .form-message {
-            margin-top: 14px;
-            font-size: 12px;
-            color: #42744d;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 55px 5% 22px;
-        }
-
-        .footer-grid {
-            max-width: 1300px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 45px;
-            padding-bottom: 40px;
-        }
-
-        .footer-logo {
-            font-family: "Playfair Display", serif;
-            font-size: 28px;
-            margin-bottom: 14px;
-        }
-
-        .footer-logo span {
-            color: var(--pink-dark);
-        }
-
-        .footer-description {
-            color: #c5baba;
-            font-size: 12px;
-            line-height: 1.9;
-            max-width: 350px;
-        }
-
-        .footer-column h4 {
-            font-size: 12px;
-            letter-spacing: 1px;
-            margin-bottom: 18px;
-        }
-
-        .footer-column a {
-            display: block;
-            color: #c5baba;
-            font-size: 12px;
-            margin-bottom: 13px;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .copyright {
-            border-top: 1px solid #494040;
-            padding-top: 20px;
-            text-align: center;
-            color: #b9adad;
-            font-size: 11px;
-        }
-
-        /* Cart drawer */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            z-index: 200;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.25s;
-        }
-
-        .overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-drawer {
-            position: fixed;
-            z-index: 201;
-            top: 0;
-            right: 0;
-            width: min(440px, 100%);
-            height: 100%;
-            background: white;
-            transform: translateX(100%);
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-drawer.open {
-            transform: translateX(0);
-        }
-
-        .cart-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 22px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .cart-header h2 {
-            font-family: "Playfair Display", serif;
-            font-size: 25px;
-        }
-
-        .close-button {
-            width: 36px;
-            height: 36px;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 50%;
-            font-size: 20px;
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .empty-cart {
-            text-align: center;
-            color: var(--muted);
-            padding: 60px 15px;
-            line-height: 1.8;
-            font-size: 13px;
-        }
-
-        .cart-item {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
-            gap: 13px;
-            padding-bottom: 18px;
-            margin-bottom: 18px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .cart-item img {
-            width: 80px;
-            height: 95px;
-            object-fit: cover;
-            background: #f7f2ef;
-        }
-
-        .cart-item h4 {
-            font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 7px;
-        }
-
-        .cart-item p {
-            color: var(--muted);
-            font-size: 11px;
-            margin-bottom: 8px;
-        }
-
-        .cart-item-price {
-            font-size: 12px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quantity-controls button {
-            width: 25px;
-            height: 25px;
-            border: 1px solid var(--border);
-            background: white;
-        }
-
-        .quantity-controls span {
-            font-size: 12px;
-        }
-
-        .remove-item {
-            border: none;
-            background: transparent;
-            color: var(--sale);
-            font-size: 11px;
-            margin-top: 9px;
-        }
-
-        .cart-footer {
-            border-top: 1px solid var(--border);
-            padding: 20px;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            margin-bottom: 17px;
-            font-size: 15px;
-        }
-
-        .cart-note {
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .checkout-button {
-            width: 100%;
-        }
-
-        /* Checkout modal */
-        .modal {
-            position: fixed;
-            z-index: 300;
-            inset: 0;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.55);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.2s;
-        }
-
-        .modal.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: white;
-            width: min(480px, 100%);
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-        }
-
-        .modal-content h2 {
-            font-family: "Playfair Display", serif;
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .modal-content > p {
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.7;
-            margin-bottom: 23px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 7px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            outline: none;
-            background: var(--cream);
-            font-size: 13px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 75px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--pink-dark);
-        }
-
-        .checkout-submit {
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        .toast {
-            position: fixed;
-            z-index: 500;
-            bottom: 25px;
-            left: 50%;
-            transform: translate(-50%, 20px);
-            background: var(--dark);
-            color: white;
-            padding: 14px 22px;
-            font-size: 12px;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.25s;
-            text-align: center;
-            width: max-content;
-            max-width: 90%;
-        }
-
-        .toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, 0);
-        }
-
-        @media (max-width: 1000px) {
-            .product-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .hero {
-                min-height: 520px;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .navbar {
-                padding: 14px 5%;
-                gap: 10px;
-            }
-
-            .logo {
-                font-size: 23px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 100%;
-                padding: 22px 5%;
-                background: var(--cream);
-                border-bottom: 1px solid var(--border);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-actions {
-                gap: 7px;
-            }
-
-            .icon-button {
-                width: 38px;
-                height: 38px;
-            }
-
-            .hero {
-                min-height: 520px;
-                padding: 55px 6%;
-                background-position: 58% center;
-            }
-
-            .hero h1 {
-                font-size: 46px;
-            }
-
-            .hero p {
-                font-size: 13px;
-                max-width: 300px;
-            }
-
-            .benefit {
-                font-size: 10px;
-                padding: 18px 7px;
-            }
-
-            .section {
-                padding: 60px 5%;
-            }
-
-            .category-cards {
-                gap: 12px;
-            }
-
-            .category-card {
-                min-height: 245px;
-                padding: 17px;
-            }
-
-            .category-card h3 {
-                font-size: 26px;
-            }
-
-            .category-card p {
-                font-size: 11px;
-            }
-
-            .collection-top {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .collection-top h2 {
-                font-size: 31px;
-            }
-
-            .search-sort {
-                width: 100%;
-            }
-
-            .search-input,
-            .sort-select {
-                min-width: 0;
-                flex: 1;
-                width: 50%;
-            }
-
-            .filters {
-                justify-content: flex-start;
-                gap: 7px;
-                margin: 20px 0 25px;
-            }
-
-            .filter-button {
-                padding: 10px 14px;
-                font-size: 11px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 24px 12px;
-            }
-
-            .product-info {
-                padding-top: 11px;
-            }
-
-            .product-name {
-                font-size: 12px;
-            }
-
-            .price {
-                font-size: 14px;
-            }
-
-            .old-price {
-                font-size: 11px;
-            }
-
-            .product-badge {
-                top: 8px;
-                left: 8px;
-                font-size: 8px;
-                padding: 5px 7px;
-            }
-
-            .wishlist-button {
-                top: 8px;
-                right: 8px;
-                width: 30px;
-                height: 30px;
-                font-size: 16px;
-            }
-
-            .add-button {
-                font-size: 10px;
-                padding: 11px 4px;
-            }
-
-            .review-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .wishlist-box {
-                padding: 28px 18px;
-            }
-
-            .wishlist-box h2 {
-                font-size: 29px;
-            }
-
-            .wishlist-form {
-                flex-direction: column;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px 20px;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .logo {
-                font-size: 20px;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .category-card h3 {
-                font-size: 22px;
-            }
-
-            .filter-button {
-                padding: 9px 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Delulu Boutique | Your Style, Your Rules</title>
+<meta name="description" content="Zbulo koleksionin e atleteve dhe UGG nga Delulu Boutique. Zgjidh modelin tënd të preferuar dhe porosit online.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #f5dce4;
+  --pink-dark: #e8b9ca;
+  --cream: #fffaf7;
+  --dark: #292323;
+  --muted: #827879;
+  --white: #ffffff;
+  --border: #eee5e5;
+  --sale: #a44461;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.announcement {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 250, 247, 0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.navbar {
+  max-width: 1400px;
+  margin: auto;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #c7839d;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--sale);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--sale);
+  color: white;
+  border-radius: 50%;
+  width: 19px;
+  height: 19px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hero {
+  min-height: 600px;
+  padding: 80px 7%;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(255, 245, 246, 0.97) 0%, rgba(255, 245, 246, 0.82) 48%, rgba(255, 245, 246, 0.12) 100%),
+    url("Images1/ugglow1.jpeg") center 45% / cover no-repeat;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sale);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+
+.hero h1 span {
+  color: #b96f8b;
+}
+
+.hero p {
+  color: #625657;
+  line-height: 1.8;
+  font-size: 15px;
+  max-width: 450px;
+  margin-bottom: 30px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 24px;
+  border: none;
+  background: var(--dark);
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: var(--sale);
+  transform: translateY(-2px);
+}
+
+.button-light {
+  background: white;
+  color: var(--dark);
+  border: 1px solid var(--border);
+}
+
+.button-light:hover {
+  color: white;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border);
+  background: white;
+}
+
+.benefit {
+  padding: 23px 12px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-right: 1px solid var(--border);
+}
+
+.benefit:last-child {
+  border-right: none;
+}
+
+.benefit span {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 7px;
+}
+
+.section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 85px 5%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 12px;
+}
+
+.section-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(30px, 4vw, 44px);
+  margin-bottom: 12px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.category-card {
+  min-height: 320px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.68), transparent 75%);
+  z-index: -1;
+  transition: 0.3s;
+}
+
+.category-card:hover::before {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.05));
+}
+
+.category-card h3 {
+  color: white;
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  color: white;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.category-card .button {
+  background: white;
+  color: var(--dark);
+}
+
+.collection-section {
+  background: #fff;
+}
+
+.collection-section .section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.collection-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.collection-top h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+}
+
+.collection-top p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.search-sort {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-input,
+.sort-select {
+  border: 1px solid var(--border);
+  background: var(--cream);
+  padding: 12px 14px;
+  font-size: 12px;
+  outline: none;
+  min-width: 170px;
+}
+
+.search-input:focus,
+.sort-select:focus {
+  border-color: var(--pink-dark);
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px 0 35px;
+}
+
+.filter-button {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 11px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.filter-button.active,
+.filter-button:hover {
+  background: var(--dark);
+  color: white;
+  border-color: var(--dark);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+.product-card {
+  min-width: 0;
+  position: relative;
+}
+
+.product-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #f7f2ef;
+  aspect-ratio: 3 / 4;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.04);
+}
+
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  color: var(--sale);
+  padding: 6px 9px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.wishlist-button {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.wishlist-button.liked {
+  color: #d24e77;
+}
+
+.product-info {
+  padding: 14px 2px 0;
+}
+
+.product-category {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.product-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 11px;
+  line-height: 1.5;
+  min-height: 20px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.old-price {
+  font-size: 12px;
+  color: #9b9090;
+  text-decoration: line-through;
+}
+
+.size-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 12px;
+  margin-bottom: 9px;
+  outline: none;
+}
+
+.add-button {
+  width: 100%;
+  padding: 12px 8px;
+  border: 1px solid var(--dark);
+  background: var(--dark);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+}
+
+.add-button:hover {
+  background: var(--sale);
+  border-color: var(--sale);
+}
+
+.empty-results {
+  text-align: center;
+  padding: 50px 10px;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+
+.reviews {
+  background: var(--pink);
+}
+
+.reviews .section {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 28px;
+}
+
+.stars {
+  color: #ba7a32;
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.review-card p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #5d5053;
+  margin-bottom: 20px;
+}
+
+.review-card h4 {
+  font-size: 12px;
+}
+
+.review-card small {
+  color: var(--muted);
+  display: block;
+  margin-top: 5px;
+}
+
+.wishlist-section {
+  background: white;
+}
+
+.wishlist-box {
+  max-width: 720px;
+  margin: auto;
+  background: var(--cream);
+  padding: 40px;
+  text-align: center;
+}
+
+.wishlist-box h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  margin-bottom: 14px;
+}
+
+.wishlist-box p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.wishlist-form {
+  display: flex;
+  gap: 10px;
+}
+
+.wishlist-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: white;
+  outline: none;
+}
+
+.form-message {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #42744d;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 55px 5% 22px;
+}
+
+.footer-grid {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 45px;
+  padding-bottom: 40px;
+}
+
+.footer-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.footer-logo span {
+  color: var(--pink-dark);
+}
+
+.footer-description {
+  color: #c5baba;
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 350px;
+}
+
+.footer-column h4 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.footer-column a {
+  display: block;
+  color: #c5baba;
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.copyright {
+  border-top: 1px solid #494040;
+  padding-top: 20px;
+  text-align: center;
+  color: #b9adad;
+  font-size: 11px;
+}
+
+/* Cart drawer */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  z-index: 201;
+  top: 0;
+  right: 0;
+  width: min(440px, 100%);
+  height: 100%;
+  background: white;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.close-button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 15px;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 13px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item img {
+  width: 80px;
+  height: 95px;
+  object-fit: cover;
+  background: #f7f2ef;
+}
+
+.cart-item h4 {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+
+.cart-item p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.cart-item-price {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--border);
+  background: white;
+}
+
+.quantity-controls span {
+  font-size: 12px;
+}
+
+.remove-item {
+  border: none;
+  background: transparent;
+  color: var(--sale);
+  font-size: 11px;
+  margin-top: 9px;
+}
+
+.cart-footer {
+  border-top: 1px solid var(--border);
+  padding: 20px;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 17px;
+  font-size: 15px;
+}
+
+.cart-note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.checkout-button {
+  width: 100%;
+}
+
+/* Checkout modal */
+.modal {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s;
+}
+
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: white;
+  width: min(480px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  position: relative;
+}
+
+.modal-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.modal-content > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 23px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--cream);
+  font-size: 13px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 75px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--pink-dark);
+}
+
+.checkout-submit {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.toast {
+  position: fixed;
+  z-index: 500;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: var(--dark);
+  color: white;
+  padding: 14px 22px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+  text-align: center;
+  width: max-content;
+  max-width: 90%;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 1000px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 14px 5%;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 22px 5%;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-actions {
+    gap: 7px;
+  }
+
+  .icon-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero {
+    min-height: 520px;
+    padding: 55px 6%;
+    background-position: 58% center;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero p {
+    font-size: 13px;
+    max-width: 300px;
+  }
+
+  .benefit {
+    font-size: 10px;
+    padding: 18px 7px;
+  }
+
+  .section {
+    padding: 60px 5%;
+  }
+
+  .category-cards {
+    gap: 12px;
+  }
+
+  .category-card {
+    min-height: 245px;
+    padding: 17px;
+  }
+
+  .category-card h3 {
+    font-size: 26px;
+  }
+
+  .category-card p {
+    font-size: 11px;
+  }
+
+  .collection-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .collection-top h2 {
+    font-size: 31px;
+  }
+
+  .search-sort {
+    width: 100%;
+  }
+
+  .search-input,
+  .sort-select {
+    min-width: 0;
+    flex: 1;
+    width: 50%;
+  }
+
+  .filters {
+    justify-content: flex-start;
+    gap: 7px;
+    margin: 20px 0 25px;
+  }
+
+  .filter-button {
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
+
+  .product-info {
+    padding-top: 11px;
+  }
+
+  .product-name {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .old-price {
+    font-size: 11px;
+  }
+
+  .product-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 8px;
+    padding: 5px 7px;
+  }
+
+  .wishlist-button {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .add-button {
+    font-size: 10px;
+    padding: 11px 4px;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wishlist-box {
+    padding: 28px 18px;
+  }
+
+  .wishlist-box h2 {
+    font-size: 29px;
+  }
+
+  .wishlist-form {
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 20px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 380px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .category-card h3 {
+    font-size: 22px;
+  }
+
+  .filter-button {
+    padding: 9px 10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="announcement">
-        DELULU BOUTIQUE · YOUR STYLE, YOUR RULES
+<div class="announcement">
+  DELULU BOUTIQUE · YOUR STYLE, YOUR RULES
+</div>
+
+<header>
+  <nav class="navbar">
+    <a href="#home" class="logo">delulu<span>.</span></a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">KRYEFAQJA</a>
+      <a href="#categories">KATEGORITË</a>
+      <a href="#collection">KOLEKSIONI</a>
+      <a href="#reviews">REVIEW</a>
+      <a href="#wishlist">WISHLIST</a>
     </div>
 
-    <header>
-        <nav class="navbar">
-            <a href="#home" class="logo">delulu<span>.</span></a>
+    <div class="nav-actions">
+      <button class="icon-button menu-toggle" id="menuToggle" aria-label="Hap menunë">☰</button>
+      <button class="icon-button" id="cartButton" aria-label="Hap shportën">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
 
-            <div class="nav-links" id="navLinks">
-                <a href="#home">KRYEFAQJA</a>
-                <a href="#categories">KATEGORITË</a>
-                <a href="#collection">KOLEKSIONI</a>
-                <a href="#reviews">REVIEW</a>
-                <a href="#wishlist">WISHLIST</a>
-            </div>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">Your next favorite pair</div>
 
-            <div class="nav-actions">
-                <button class="icon-button menu-toggle" id="menuToggle" aria-label="Hap menunë">☰</button>
-                <button class="icon-button" id="cartButton" aria-label="Hap shportën">
-                    ♡
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
-            </div>
-        </nav>
-    </header>
+      <h1>Dress like<br>you're in your<br><span>delulu era.</span></h1>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <div class="eyebrow">Your next favorite pair</div>
+      <p>
+        Modele që të bëjnë të ndihesh ndryshe. Zbulo koleksionin
+        tonë të atleteve dhe UGG për çdo ditë, çdo stil dhe çdo mood.
+      </p>
 
-                <h1>Dress like<br>you're in your<br><span>delulu era.</span></h1>
+      <a href="#collection" class="button">ZBULO KOLEKSIONIN ↗</a>
+    </div>
+  </section>
 
-                <p>
-                    Modele që të bëjnë të ndihesh ndryshe. Zbulo koleksionin
-                    tonë të atleteve dhe UGG për çdo ditë, çdo stil dhe çdo mood.
-                </p>
-
-                <a href="#collection" class="button">ZBULO KOLEKSIONIN ↗</a>
-            </div>
-        </section>
-
-        <!-- BENEFITS -->
-        <section class="benefits">
-            <div class="benefit">
-                <span>♡</span>
-                Modele për çdo stil
-            </div>
-
-            <div class="benefit">
-                <span>✦</span>
-                Porosi të thjeshta
-            </div>
-
-            <div class="benefit">
-                <span>↗</span>
-                Na kontakto në WhatsApp
-            </div>
-        </section>
-
-        <!-- CATEGORIES -->
-        <section class="section" id="categories">
-            <div class="section-heading">
-                <div class="eyebrow">Find your vibe</div>
-                <h2>Shop by category</h2>
-                <p>Zgjidh stilin që të përfaqëson.</p>
-            </div>
-
-            <div class="category-cards">
-                <div class="category-card" style="background-image:url('Images1/ugglow1.jpeg')">
-                    <h3>UGG Collection</h3>
-                    <p>Cozy, cute & always in style.</p>
-                    <button class="button" onclick="setCategory('uggs')">SHIKO UGG ↗</button>
-                </div>
-
-                <div class="category-card" style="background-image:url('Images1/dunk1.jpeg')">
-                    <h3>Sneakers</h3>
-                    <p>Your everyday statement pair.</p>
-                    <button class="button" onclick="setCategory('sneakers')">SHIKO ATLETET ↗</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- COLLECTION -->
-        <section class="collection-section" id="collection">
-            <div class="section">
-                <div class="collection-top">
-                    <div>
-                        <h2>Our collection</h2>
-                        <p>Gjej palën tënde të preferuar.</p>
-                    </div>
-
-                    <div class="search-sort">
-                        <input
-                            type="search"
-                            class="search-input"
-                            id="searchInput"
-                            placeholder="Kërko produkt..."
-                            aria-label="Kërko produkt"
-                        >
-
-                        <select class="sort-select" id="sortSelect" aria-label="Rendit produktet">
-                            <option value="default">Renditja: Default</option>
-                            <option value="price-low">Çmimi: Nga më i ulëti</option>
-                            <option value="price-high">Çmimi: Nga më i larti</option>
-                            <option value="name">Emri: A–Z</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="filters">
-                    <button class="filter-button active" data-category="all">Të gjitha</button>
-                    <button class="filter-button" data-category="uggs">UGG</button>
-                    <button class="filter-button" data-category="sneakers">Sneakers</button>
-                    <button class="filter-button" data-category="wishlist">♡ Wishlist</button>
-                </div>
-
-                <div class="product-grid" id="productGrid"></div>
-            </div>
-        </section>
-
-        <!-- REVIEWS -->
-        <section class="reviews" id="reviews">
-            <div class="section">
-                <div class="section-heading">
-                    <div class="eyebrow">Love from our community</div>
-                    <h2>Delulu girls say it best</h2>
-                    <p>Një hap më afër stilit tënd të preferuar.</p>
-                </div>
-
-                <div class="review-grid">
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>
-                            “Shumë të bukura! Modeli ishte tamam siç e prisja.
-                            Më pëlqeu shumë dhe komunikimi ishte shumë i lehtë.”
-                        </p>
-                        <h4>Kliente e Delulu</h4>
-                        <small>Review</small>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>
-                            “Më në fund gjeta modelin që kërkoja.
-                            Procesi i porosisë ishte i thjeshtë dhe i shpejtë.”
-                        </p>
-                        <h4>Kliente e Delulu</h4>
-                        <small>Review</small>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>
-                            “UGG-t janë shumë cute! Do të porosisja përsëri.
-                            Ka disa modele shumë të bukura për të zgjedhur.”
-                        </p>
-                        <h4>Kliente e Delulu</h4>
-                        <small>Review</small>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WISHLIST / EMAIL -->
-        <section class="wishlist-section" id="wishlist">
-            <div class="section">
-                <div class="wishlist-box">
-                    <div class="eyebrow">Stay in your delulu era</div>
-                    <h2>Your wishlist starts here ♡</h2>
-
-                    <p>
-                        Regjistro email-in tënd për të shprehur interesin
-                        për modelet e preferuara dhe për të marrë përditësime
-                        nga Delulu Boutique.
-                    </p>
-
-                    <form class="wishlist-form" id="wishlistForm">
-                        <input
-                            type="email"
-                            id="wishlistEmail"
-                            placeholder="Shkruaj email-in tënd"
-                            required
-                        >
-                        <button class="button" type="submit">REGJISTROHU ↗</button>
-                    </form>
-
-                    <div class="form-message" id="wishlistMessage"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="footer-logo">delulu<span>.</span></div>
-                <p class="footer-description">
-                    Your style, your rules. Zbulo koleksionin e Delulu Boutique
-                    dhe gjej modelin që i përshtatet stilit tënd.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h4>QUICK LINKS</h4>
-                <a href="#home">Kryefaqja</a>
-                <a href="#categories">Kategoritë</a>
-                <a href="#collection">Koleksioni</a>
-                <a href="#wishlist">Wishlist</a>
-            </div>
-
-            <div class="footer-column">
-                <h4>NA KONTAKTO</h4>
-                <a href="https://www.instagram.com/delulu_boutique_al/" target="_blank" rel="noopener">
-                    Instagram
-                </a>
-                <a href="https://wa.me/355684445489" target="_blank" rel="noopener">
-                    WhatsApp: +355 68 444 5489
-                </a>
-            </div>
-        </div>
-
-        <div class="copyright">
-            © <span id="currentYear"></span> Delulu Boutique. All rights reserved.
-        </div>
-    </footer>
-
-    <!-- CART OVERLAY -->
-    <div class="overlay" id="cartOverlay"></div>
-
-    <!-- CART DRAWER -->
-    <aside class="cart-drawer" id="cartDrawer" aria-label="Shporta">
-        <div class="cart-header">
-            <h2>Shporta ime ♡</h2>
-            <button class="close-button" id="closeCart" aria-label="Mbyll shportën">×</button>
-        </div>
-
-        <div class="cart-items" id="cartItems"></div>
-
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Totali</span>
-                <span id="cartTotal">0 Lekë</span>
-            </div>
-
-            <p class="cart-note">
-                Kostoja e transportit, nëse aplikohet, konfirmohet gjatë porosisë.
-            </p>
-
-            <button class="button checkout-button" id="checkoutButton">
-                VAZHDO ME POROSINË ↗
-            </button>
-        </div>
-    </aside>
-
-    <!-- CHECKOUT MODAL -->
-    <div class="modal" id="checkoutModal">
-        <div class="modal-content">
-            <button class="close-button" id="closeCheckout" aria-label="Mbyll" style="position:absolute;right:20px;top:20px;">×</button>
-
-            <h2>Përfundo porosinë</h2>
-            <p>
-                Plotëso të dhënat dhe vazhdo në WhatsApp për të dërguar porosinë.
-            </p>
-
-            <form id="checkoutForm">
-                <div class="form-group">
-                    <label for="customerName">Emri dhe mbiemri</label>
-                    <input id="customerName" type="text" required placeholder="Emri yt">
-                </div>
-
-                <div class="form-group">
-                    <label for="customerPhone">Numri i telefonit</label>
-                    <input id="customerPhone" type="tel" required placeholder="06X XX XX XXX">
-                </div>
-
-                <div class="form-group">
-                    <label for="customerAddress">Adresa e dërgesës</label>
-                    <textarea id="customerAddress" required placeholder="Qyteti, rruga dhe adresa"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="customerNotes">Shënime (opsionale)</label>
-                    <textarea id="customerNotes" placeholder="Shënime për porosinë..."></textarea>
-                </div>
-
-                <button type="submit" class="button checkout-submit">
-                    DËRGO POROSINË NË WHATSAPP ↗
-                </button>
-            </form>
-        </div>
+  <!-- BENEFITS -->
+  <section class="benefits">
+    <div class="benefit">
+      <span>🛒</span>
+      Modele për çdo stil
     </div>
 
-    <div class="toast" id="toast"></div>
+    <div class="benefit">
+      <span>✦</span>
+      Porosi të thjeshta
+    </div>
 
-    <script>
-        /*
-         * PRODUKTET
-         * Çmimet janë në lekë.
-         * Kontrollo masat në dispozicion përpara se ta publikosh faqen.
-         */
+    <div class="benefit">
+      <span>↗</span>
+      Na kontakto në WhatsApp
+    </div>
+  </section>
 
-        const products = [
-            {
-                id: 1,
-                name: "UGG Low Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugglow1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 2,
-                name: "UGG Low Dark Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugglow2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 3,
-                name: "UGG Low Beige",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugglow3.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 4,
-                name: "Nike Dunk Burgundy",
-                category: "sneakers",
-                price: 3900,
-                oldPrice: 9000,
-                image: "Images1/dunk2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 5,
-                name: "Adidas Spezial Brown",
-                category: "sneakers",
-                price: 4900,
-                oldPrice: 9000,
-                image: "Images1/adidas2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 6,
-                name: "Jordan 1 Black",
-                category: "sneakers",
-                price: 3900,
-                oldPrice: 9000,
-                image: "Images1/Jordan2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 7,
-                name: "UGG Tazz Dark Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugg3.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 8,
-                name: "New Balance 1",
-                category: "sneakers",
-                price: 4500,
-                oldPrice: 13000,
-                image: "Images1/newbalance2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 9,
-                name: "Nike AF1",
-                category: "sneakers",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/nikeaf1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 10,
-                name: "Adidas Spezial Dark Blue",
-                category: "sneakers",
-                price: 4900,
-                oldPrice: 9000,
-                image: "Images1/adidas1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 11,
-                name: "UGG Beige",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/uggll1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 12,
-                name: "Nike Dunk White",
-                category: "sneakers",
-                price: 3900,
-                oldPrice: 9000,
-                image: "Images1/dunk1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 13,
-                name: "Jordan 1 Sky Blue",
-                category: "sneakers",
-                price: 3900,
-                oldPrice: 9000,
-                image: "Images1/Jordan1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 14,
-                name: "UGG Tazz Dark Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugg1.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 15,
-                name: "Adidas Spezial Red",
-                category: "sneakers",
-                price: 4900,
-                oldPrice: 9000,
-                image: "Images1/adidas3.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 16,
-                name: "UGG Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/uggll2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 17,
-                name: "UGG Tazz Black",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugg2.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 18,
-                name: "Nike Dunk Pink",
-                category: "sneakers",
-                price: 3900,
-                oldPrice: 9000,
-                image: "Images1/dunk3.jpeg",
-                badge: "Sale"
-            },
-            {
-                id: 19,
-                name: "UGG Tazz Brown",
-                category: "uggs",
-                price: 2900,
-                oldPrice: 6500,
-                image: "Images1/ugg4.jpeg",
-                badge:
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="section-heading">
+      <div class="eyebrow">Find your vibe</div>
+      <h2>Shop by category</h2>
+      <p>Zgjidh stilin që të përfaqëson.</p>
+    </div>
+
+    <div class="category-cards">
+      <div class="category-card" style="background-image:url('Images1/ugglow1.jpeg')">
+        <h3>UGG Collection</h3>
+        <p>Cozy, cute & always in style.</p>
+
+        <button class="button" onclick="setCategory('uggs')">SHIKO UGG ↗</button>
+      </div>
+
+      <div class="category-card" style="background-image:url('Images1/dunk1.jpeg')">
+        <h3>Sneakers</h3>
+        <p>Your everyday statement pair.</p>
+
+        <button class="button" onclick="setCategory('sneakers')">SHIKO ATLETET ↗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="collection-section" id="collection">
+    <div class="section">
+      <div class="collection-top">
+        <div>
+          <h2>Our collection</h2>
+          <p>Gjej palën tënde të preferuar.</p>
+        </div>
+
+        <div class="search-sort">
+          <input
+            type="search"
+            class="search-input"
+            id="searchInput"
+            placeholder="Kërko produkt..."
+            aria-label="Kërko produkt"
+          >
+
+          <select class="sort-select" id="sortSelect" aria-label="Rendit produktet">
+            <option value="default">Renditja: Default</option>
+            <option value="price-low">Çmimi: Nga më i ulëti</option>
+            <option value="price-high">Çmimi: Nga më i larti</option>
+            <option value="name">Emri: A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-button active" data-category="all">Të gjitha</button>
+        <button class="filter-button" data-category="uggs">UGG</button>
+        <button class="filter-button" data-category="sneakers">Sneakers</button>
+        <button class="filter-button" data-category="wishlist">🛒 Wishlist</button>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="section">
+      <div class="section-heading">
+        <div class="eyebrow">Love from our community</div>
+        <h2>Delulu girls say it best</h2>
+        <p>Një hap më afër stilit tënd të preferuar.</p>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Shumë të bukura! Modeli ishte tamam siç e prisja.
+            Më pëlqeu shumë dhe komunikimi ishte shumë i lehtë.”
+          </p>
+          <h4>Kliente e Delulu</h4>
+          <small>Review</small>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Më në fund gjeta modelin që kërkoja.
+            Procesi i porosisë ishte i thjeshtë dhe i shpejtë.”
+          </p>
+          <h4>Kliente e Delulu</h4>
+          <small>Review</small>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “UGG-t janë shumë cute! Do të porosisja përsëri.
+            Ka disa modele shumë të bukura për të zgjedhur.”
+          </p>
+          <h4>Kliente e Delulu</h4>
+          <small>Review</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISHLIST / EMAIL -->
+  <section class="wishlist-section" id="wishlist">
+    <div class="section">
+      <div class="wishlist-box">
+        <div class="eyebrow">Stay in your delulu era</div>
+        <h2>Your wishlist starts here 🛒</h2>
+
+        <p>
+          Regjistro email-in tënd për të shprehur interesin
+          për modelet e preferuara dhe për të marrë përditësime
+          nga Delulu Boutique.
+        </p>
+
+        <form class="wishlist-form" id="wishlistForm">
+          <input
+            type="email"
+            id="wishlistEmail"
+            placeholder="Shkruaj email-in tënd"
+            required
+          >
+          <button class="button" type="submit">REGJISTROHU ↗</button>
+        </form>
+
+        <div class="form-message" id="wishlistMessage"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">delulu<span>.</span></div>
+      <p class="footer-description">
+        Your style, your rules. Zbulo koleksionin e Delulu Boutique
+        dhe gjej modelin që i përshtatet stilit tënd.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>QUICK LINKS</h4>
+      <a href="#home">Kryefaqja</a>
+      <a href="#categories">Kategoritë</a>
+      <a href="#collection">Koleksioni</a>
+      <a href="#wishlist">Wishlist</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>NA KONTAKTO</h4>
+      <a href="https://www.instagram.com/delulu_boutique_al/" target="_blank" rel="noopener">
+        Instagram
+      </a>
+      <a href="https://wa.me/18194867799" target="_blank" rel="noopener">
+        WhatsApp: +1 (819) 486-7799
+      </a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © <span id="currentYear"></span> Delulu Boutique. All rights reserved.
+  </div>
+</footer>
+
+<!-- CART OVERLAY -->
+<div class="overlay" id="cartOverlay"></div>
+
+<!-- CART DRAWER -->
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shporta">
+  <div class="cart-header">
+    <h2>Shporta ime 🛒</h2>
+    <button class="close-button" id="closeCart" aria-label="Mbyll shportën">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Totali</span>
+      <span id="cartTotal">0 Lekë</span>
+    </div>
+
+    <p class="cart-note">
+      Kostoja e transportit, nëse aplikohet, konfirmohet gjatë porosisë.
+    </p>
+
+    <button class="button checkout-button" id="checkoutButton">
+      VAZHDO ME POROSINË ↗
+    </button>
+  </div>
+</aside>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-content">
+    <button class="close-button" id="closeCheckout" aria-label="Mbyll" style="position:absolute;right:20px;top:20px;">×</button>
+
+    <h2>Përfundo porosinë</h2>
+    <p>
+      Plotëso të dhënat dhe vazhdo në WhatsApp për të dërguar porosinë.
+    </p>
+
+    <form id="checkoutForm">
+      <div class="form-group">
+        <label for="customerName">Emri dhe mbiemri</label>
+        <input id="customerName" type="text" required placeholder="Emri yt">
+      </div>
+
+      <div class="form-group">
+        <label for="customerPhone">Numri i telefonit</label>
+        <input id="customerPhone" type="tel" required placeholder="06X XX XX XXX">
+      </div>
+
+      <div class="form-group">
+        <label for="customerAddress">Adresa e dërgesës</label>
+        <textarea id="customerAddress" required placeholder="Qyteti, rruga dhe adresa"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="customerNotes">Shënime (opsionale)</label>
+        <textarea id="customerNotes" placeholder="Shënime për porosinë..."></textarea>
+      </div>
+
+      <button type="submit" class="button checkout-submit">
+        DËRGO POROSINË NË WHATSAPP ↗
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {
+    id: 1,
+    name: "UGG Low Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugglow1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 2,
+    name: "UGG Low Dark Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugglow2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 3,
+    name: "UGG Low Beige",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugglow3.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 4,
+    name: "Nike Dunk Burgundy",
+    category: "sneakers",
+    price: 3900,
+    oldPrice: 9000,
+    image: "Images1/dunk2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 5,
+    name: "Adidas Spezial Brown",
+    category: "sneakers",
+    price: 4900,
+    oldPrice: 9000,
+    image: "Images1/adidas2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 6,
+    name: "Jordan 1 Black",
+    category: "sneakers",
+    price: 3900,
+    oldPrice: 9000,
+    image: "Images1/Jordan2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 7,
+    name: "UGG Tazz Dark Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugg3.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 8,
+    name: "New Balance 1",
+    category: "sneakers",
+    price: 4500,
+    oldPrice: 13000,
+    image: "Images1/newbalance2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 9,
+    name: "Nike AF1",
+    category: "sneakers",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/nikeaf1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 10,
+    name: "Adidas Spezial Dark Blue",
+    category: "sneakers",
+    price: 4900,
+    oldPrice: 9000,
+    image: "Images1/adidas1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 11,
+    name: "UGG Beige",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/uggll1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 12,
+    name: "Nike Dunk White",
+    category: "sneakers",
+    price: 3900,
+    oldPrice: 9000,
+    image: "Images1/dunk1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 13,
+    name: "Jordan 1 Sky Blue",
+    category: "sneakers",
+    price: 3900,
+    oldPrice: 9000,
+    image: "Images1/Jordan1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 14,
+    name: "UGG Tazz Dark Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugg1.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 15,
+    name: "Adidas Spezial Red",
+    category: "sneakers",
+    price: 4900,
+    oldPrice: 9000,
+    image: "Images1/adidas3.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 16,
+    name: "UGG Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/uggll2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 17,
+    name: "UGG Tazz Black",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugg2.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 18,
+    name: "Nike Dunk Pink",
+    category: "sneakers",
+    price: 3900,
+    oldPrice: 9000,
+    image: "Images1/dunk3.jpeg",
+    badge: "Sale"
+  },
+  {
+    id: 19,
+    name: "UGG Tazz Brown",
+    category: "uggs",
+    price: 3000,
+    oldPrice: 6500,
+    image: "Images1/ugg4.jpeg",
+    badge: "Sale"
+  }
+];
+
+const availableSizes = [36, 37, 38, 39, 40, 41];
+
+let currentCategory = "all";
+let cart = [];
+let wishlist = [];
+
+const productGrid = document.getElementById("productGrid");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+
+const cartDrawer = document.getElementById("cartDrawer");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartItemsContainer = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+
+const checkoutModal = document.getElementById("checkoutModal");
+
+function formatPrice(price) {
+  return price.toLocaleString("sq-AL") + " Lekë";
+}
+
+function getCategoryName(category) {
+  return category === "uggs" ? "UGG Collection" : "Sneakers";
+}
+
+function renderProducts() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  let filteredProducts = [...products];
+
+  if (currentCategory === "uggs" || currentCategory === "sneakers") {
+    filteredProducts = filteredProducts.filter(
+      product => product.category === currentCategory
+    );
+  }
+
+  if (currentCategory === "wishlist") {
+    filteredProducts = filteredProducts.filter(
+      product => wishlist.includes(product.id)
+    );
+  }
+
+  if (searchTerm) {
+    filteredProducts = filteredProducts.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) ||
+      getCategoryName(product.category).toLowerCase().includes(searchTerm)
+    );
+  }
+
+  const sortValue = sortSelect.value;
+
+  if (sortValue === "price-low") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortValue === "price-high") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (sortValue === "name") {
+    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  if (filteredProducts.length === 0) {
+    productGrid.innerHTML = `
+      <div class="empty-results">
+        <h3 style="margin-bottom:10px;">Nuk u gjet asnjë produkt 🛒</h3>
+        <p>Provo një kërkim tjetër ose zgjidh një kategori tjetër.</p>
+      </div>
+    `;
+    return;
+  }
+
+  productGrid.innerHTML = filteredProducts.map(product => `
+    <article class="product-card">
+      <div class="product-image-wrap">
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          class="product-image"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x800/f7f2ef/827879?text=Delulu+Boutique';"
+        >
+
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+
+        <button
+          class="wishlist-button ${wishlist.includes(product.id) ? "liked" : ""}"
+          onclick="toggleWishlist(${product.id})"
+          aria-label="Shto në wishlist"
+          title="Shto në wishlist"
+        >🛒</button>
+      </div>
+
+      <div class="product-info">
+        <div class="product-category">${getCategoryName(product.category)}</div>
+        <h3 class="product-name">${product.name}</h3>
+
+        <div class="price-row">
+          <span class="price">${formatPrice(product.price)}</span>
+          <span class="old-price">${formatPrice(product.oldPrice)}</span>
+        </div>
+
+        <select class="size-select" id="size-${product.id}" aria-label="Zgjidh masën për ${product.name}">
+          <option value="">Zgjidh masën</option>
+          ${availableSizes.map(size => `<option value="${size}">Masa ${size}</option>`).join("")}
+        </select>
+
+        <button class="add-button" onclick="addToCart(${product.id})">
+          SHTO NË SHPORTË +
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+function setCategory(category) {
+  currentCategory = category;
+
+  document.querySelectorAll(".filter-button").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.category === category
+    );
+  });
+
+  renderProducts();
+
+  document.getElementById("collection").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+document.querySelectorAll(".filter-button").forEach(button => {
+  button.addEventListener("click", () => {
+    setCategory(button.dataset.category);
+  });
+});
+
+searchInput.addEventListener("input", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+
+function toggleWishlist(productId) {
+  if (wishlist.includes(productId)) {
+    wishlist = wishlist.filter(id => id !== productId);
+    showToast("Produkti u hoq nga wishlist.");
+  } else {
+    wishlist.push(productId);
+    showToast("Produkti u shtua në wishlist 🛒");
+  }
+
+  renderProducts();
+}
+
+function addToCart(productId) {
+  const product = products.find(item => item.id === productId);
+  const sizeSelect = document.getElementById(`size-${productId}`);
+  const selectedSize = sizeSelect.value;
+
+  if (!selectedSize) {
+    showToast("Të lutem zgjidh masën përpara se të vazhdosh.");
+    sizeSelect.focus();
+    return;
+  }
+
+  const existingItem = cart.find(item =>
+    item.id === productId && item.size === selectedSize
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      size: selectedSize,
+      quantity: 1
+    });
+  }
+
+  updateCart();
+  showToast("Produkti u shtua në shportë 🛒");
+}
+
+function updateCart() {
+  const totalQuantity = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  cartCount.textContent = totalQuantity;
+  cartTotal.textContent = formatPrice(totalPrice);
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = `
+      <div class="empty-cart">
+        <div style="font-size:38px;margin-bottom:15px;">🛒</div>
+        <h3 style="margin-bottom:8px;">Shporta është bosh</h3>
+        <p>Zbulo koleksionin dhe shto produktet e tua të preferuara.</p>
+      </div>
+    `;
+  } else {
+    cartItemsContainer.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img
+          src="${item.image}"
+          alt="${item.name}"
+          onerror="this.onerror=null;this.src='https://placehold.co/200x250/f7f2ef/827879?text=Delulu';"
+        >
+
+        <div>
+          <h4>${item.name}</h4>
+          <p>Masa: ${item.size}</p>
+          <p>${formatPrice(item.price)}</p>
+
+          <div class="quantity-controls">
+            <button onclick="changeQuantity(${item.id}, '${item.size}', -1)" aria-label="Pakëso sasinë">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQuantity(${item.id}, '${item.size}', 1)" aria-label="Rrit sasinë">+</button>
+          </div>
+
+          <button class="remove-item" onclick="removeFromCart(${item.id}, '${item.size}')">
+            Hiq produktin
+          </button>
+        </div>
+
+        <div class="cart-item-price">
+          ${formatPrice(item.price * item.quantity)}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("checkoutButton").disabled = cart.length === 0;
+  document.getElementById("checkoutButton").style.opacity =
+    cart.length === 0 ? "0.5" : "1";
+}
+
+function changeQuantity(productId, size, change) {
+  const item = cart.find(item =>
+    item.id === productId && item.size === size
+  );
+
+  if (!item) return;
+
+  item.quantity += change;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(item =>
+      !(item.id === productId && item.size === size)
+    );
+  }
+
+  updateCart();
+}
+
+function removeFromCart(productId, size) {
+  cart = cart.filter(item =>
+    !(item.id === productId && item.size === size)
+  );
+
+  updateCart();
+  showToast("Produkti u hoq nga shporta.");
+}
+
+function openCart() {
+  cartDrawer.classList.add("open");
+  cartOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+  cartDrawer.classList.remove("open");
+  cartOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("cartButton").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+
+document.getElementById("checkoutButton").addEventListener("click", () => {
+  if (cart.length === 0) {
+    showToast("Shporta është bosh.");
+    return;
+  }
+
+  checkoutModal.classList.add("open");
+});
+
+document.getElementById("closeCheckout").addEventListener("click", () => {
+  checkoutModal.classList.remove("open");
+});
+
+checkoutModal.addEventListener("click", event => {
+  if (event.target === checkoutModal) {
+    checkoutModal.classList.remove("open");
+  }
+});
+
+document.getElementById("checkoutForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (cart.length === 0) {
+    showToast("Shporta është bosh.");
+    checkoutModal.classList.remove("open");
+    return;
+  }
+
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const notes = document.getElementById("customerNotes").value.trim();
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  let message = "Përshëndetje Delulu Boutique! Dua të bëj këtë porosi:\n\n";
+
+  message += "EMRI: " + name + "\n";
+  message += "TELEFONI: " + phone + "\n";
+  message += "ADRESA: " + address + "\n\n";
+
+  message += "PRODUKTET:\n";
+
+  cart.forEach((item, index) => {
+    message += `${index + 1}. ${item.name} | Masa ${item.size} | Sasia: ${item.quantity} | ${formatPrice(item.price * item.quantity)}\n`;
+  });
+
+  message += "\nTOTALI I PRODUKTEVE: " + formatPrice(totalPrice) + "\n";
+  message += "Transporti: Ju lutem konfirmoni koston e transportit.\n";
+
+  if (notes) {
+    message += "\nSHËNIME: " + notes + "\n";
+  }
+
+  message += "\nFaleminderit!";
+
+  const whatsappNumber = "18194867799";
+  const whatsappURL =
+    "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+
+  checkoutModal.classList.remove("open");
+});
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimeout);
+
+  window.toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+document.getElementById("menuToggle").addEventListener("click", () => {
+  document.getElementById("navLinks").classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("open");
+  });
+});
+
+document.getElementById("wishlistForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const emailInput = document.getElementById("wishlistEmail");
+  const message = document.getElementById("wishlistMessage");
+
+  if (!emailInput.checkValidity()) {
+    emailInput.reportValidity();
+    return;
+  }
+
+  message.textContent =
+    "Faleminderit! Formulari u plotësua. Për regjistrim real duhet lidhur me një shërbim email-esh.";
+
+  emailInput.value = "";
+});
+
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
+
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
