@@ -454,7 +454,10 @@ header {
   background: rgba(255, 255, 255, 0.95);
   border: none;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .wishlist-button.liked {
@@ -1166,7 +1169,11 @@ footer {
     <div class="nav-actions">
       <button class="icon-button menu-toggle" id="menuToggle" aria-label="Hap menunë">☰</button>
       <button class="icon-button" id="cartButton" aria-label="Hap shportën">
-        🛒
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
@@ -1264,7 +1271,7 @@ footer {
         <button class="filter-button active" data-category="all">Të gjitha</button>
         <button class="filter-button" data-category="uggs">UGG</button>
         <button class="filter-button" data-category="sneakers">Sneakers</button>
-        <button class="filter-button" data-category="wishlist">🛒 Wishlist</button>
+        <button class="filter-button" data-category="wishlist">🛒 Shporta / Wishlist</button>
       </div>
 
       <div class="product-grid" id="productGrid"></div>
@@ -1708,7 +1715,13 @@ function renderProducts() {
           onclick="toggleWishlist(${product.id})"
           aria-label="Shto në wishlist"
           title="Shto në wishlist"
-        >🛒</button>
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </button>
       </div>
 
       <div class="product-info">
@@ -1762,10 +1775,10 @@ sortSelect.addEventListener("change", renderProducts);
 function toggleWishlist(productId) {
   if (wishlist.includes(productId)) {
     wishlist = wishlist.filter(id => id !== productId);
-    showToast("Produkti u hoq nga wishlist.");
+    showToast("Produkti u hoq nga lista.");
   } else {
     wishlist.push(productId);
-    showToast("Produkti u shtua në wishlist 🛒");
+    showToast("Produkti u shtua në listë 🛒");
   }
 
   renderProducts();
