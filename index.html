@@ -1,1647 +1,434 @@
 <!DOCTYPE html>
-<html lang="sq">
+<html lang="sq" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>eBOSS Brand | Black Friday Edition 🖤⚡</title>
-<meta name="description" content="Zbulo ofertat më të fuqishme të Black Friday nga eBOSS Brand. Atlete, veshje dhe aksesorë me ulje deri në 50% + 10% ekstra me kodin EBOSS10.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-  --red-accent: #ff2e4c;
-  --red-glow: rgba(255, 46, 76, 0.4);
-  --gold-accent: #f59e0b;
-  --bg-dark: #050507;
-  --bg-card: #101015;
-  --bg-input: #16161f;
-  --text-main: #f4f4f7;
-  --text-muted: #9494a3;
-  --border: #22222e;
-  --sale-badge: #ff2e4c;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  background: var(--bg-dark);
-  color: var(--text-main);
-  overflow-x: hidden;
-}
-
-button, input, select, textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* Black Friday Top Bar */
-.announcement {
-  background: linear-gradient(90deg, #b91c1c, #ff2e4c, #b91c1c);
-  color: #ffffff;
-  text-align: center;
-  padding: 11px 15px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 20px var(--red-glow);
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(5, 5, 7, 0.96);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(14px);
-}
-
-.navbar {
-  max-width: 1400px;
-  margin: auto;
-  padding: 18px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  white-space: nowrap;
-  color: var(--text-main);
-  text-transform: uppercase;
-}
-
-.logo span {
-  color: var(--red-accent);
-  text-shadow: 0 0 12px var(--red-glow);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.nav-links a {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  transition: color 0.2s;
-  color: var(--text-main);
-}
-
-.nav-links a:hover {
-  color: var(--red-accent);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.icon-button {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  position: relative;
-  transition: 0.2s;
-}
-
-.icon-button:hover {
-  border-color: var(--red-accent);
-  box-shadow: 0 0 12px var(--red-glow);
-  color: var(--red-accent);
-}
-
-.cart-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: var(--red-accent);
-  color: #fff;
-  font-weight: 800;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px var(--red-glow);
-}
-
-.menu-toggle {
-  display: none;
-}
-
-/* Hero Section */
-.hero {
-  min-height: 620px;
-  padding: 80px 7%;
-  display: flex;
-  align-items: center;
-  position: relative;
-  background:
-    linear-gradient(90deg, rgba(5, 5, 7, 0.98) 0%, rgba(5, 5, 7, 0.85) 50%, rgba(5, 5, 7, 0.3) 100%),
-    url("Images1/ugglow1.jpeg") center 45% / cover no-repeat;
-}
-
-.hero-content {
-  max-width: 620px;
-  position: relative;
-  z-index: 2;
-}
-
-.eyebrow {
-  display: inline-block;
-  background: rgba(255, 46, 76, 0.15);
-  border: 1px solid var(--red-accent);
-  padding: 6px 14px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--red-accent);
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(44px, 6vw, 76px);
-  line-height: 1.05;
-  margin-bottom: 22px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.hero h1 span {
-  color: var(--red-accent);
-  text-shadow: 0 0 25px var(--red-glow);
-}
-
-.hero p {
-  color: var(--text-muted);
-  line-height: 1.8;
-  font-size: 15px;
-  max-width: 480px;
-  margin-bottom: 32px;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 15px 30px;
-  border: none;
-  background: var(--red-accent);
-  color: #fff;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 20px var(--red-glow);
-}
-
-.button:hover {
-  background: #ffffff;
-  color: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
-}
-
-.benefits {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-card);
-}
-
-.benefit {
-  padding: 24px 12px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted);
-  border-right: 1px solid var(--border);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.benefit:last-child {
-  border-right: none;
-}
-
-.benefit i {
-  display: block;
-  font-size: 22px;
-  margin-bottom: 8px;
-  color: var(--red-accent);
-}
-
-.section {
-  max-width: 1400px;
-  margin: auto;
-  padding: 85px 5%;
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.section-heading h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(30px, 4vw, 46px);
-  margin-bottom: 12px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.section-heading p {
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.category-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.category-card {
-  min-height: 340px;
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  transition: border-color 0.3s ease;
-}
-
-.category-card:hover {
-  border-color: var(--red-accent);
-}
-
-.category-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(5, 5, 7, 0.95), transparent 75%);
-  z-index: -1;
-  transition: 0.3s;
-}
-
-.category-card h3 {
-  color: white;
-  font-family: 'Syne', sans-serif;
-  font-size: 34px;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.category-card p {
-  color: var(--text-muted);
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
-.collection-section {
-  background: var(--bg-dark);
-}
-
-.collection-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-bottom: 30px;
-}
-
-.collection-top h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 36px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.search-sort {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.search-input, .sort-select {
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-main);
-  padding: 12px 16px;
-  font-size: 13px;
-  outline: none;
-  border-radius: 4px;
-  min-width: 180px;
-}
-
-.search-input:focus, .sort-select:focus {
-  border-color: var(--red-accent);
-  box-shadow: 0 0 10px var(--red-glow);
-}
-
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 25px 0 40px;
-}
-
-.filter-button {
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-main);
-  padding: 12px 24px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  border-radius: 4px;
-  transition: 0.2s;
-}
-
-.filter-button.active, .filter-button:hover {
-  background: var(--red-accent);
-  color: #fff;
-  border-color: var(--red-accent);
-  box-shadow: 0 0 15px var(--red-glow);
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px 20px;
-}
-
-.product-card {
-  min-width: 0;
-  position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.product-card:hover {
-  border-color: var(--red-accent);
-  box-shadow: 0 0 20px var(--red-glow);
-}
-
-.product-image-wrap {
-  position: relative;
-  overflow: hidden;
-  background: #0d0d12;
-  aspect-ratio: 3 / 4;
-}
-
-.product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.product-card:hover .product-image {
-  transform: scale(1.05);
-}
-
-.product-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--red-accent);
-  color: #fff;
-  padding: 6px 10px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 3px;
-  box-shadow: 0 0 10px var(--red-glow);
-}
-
-.wishlist-button {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 36px;
-  height: 36px;
-  background: rgba(5, 5, 7, 0.85);
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  border-radius: 50%;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.2s;
-}
-
-.wishlist-button.liked {
-  color: var(--red-accent);
-  border-color: var(--red-accent);
-}
-
-.product-info {
-  padding: 18px;
-}
-
-.product-category {
-  color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  margin-bottom: 7px;
-  font-weight: 600;
-}
-
-.product-name {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  line-height: 1.4;
-  min-height: 20px;
-  color: #fff;
-}
-
-.price-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-.price {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--red-accent);
-}
-
-.old-price {
-  font-size: 13px;
-  color: var(--text-muted);
-  text-decoration: line-through;
-}
-
-.size-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-input);
-  color: var(--text-main);
-  font-size: 12px;
-  margin-bottom: 12px;
-  outline: none;
-  border-radius: 4px;
-}
-
-.add-button {
-  width: 100%;
-  padding: 13px 8px;
-  border: 1px solid var(--red-accent);
-  background: var(--red-accent);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  transition: 0.2s;
-}
-
-.add-button:hover {
-  background: #ffffff;
-  color: #000;
-  border-color: #ffffff;
-}
-
-.empty-results {
-  text-align: center;
-  padding: 60px 10px;
-  color: var(--text-muted);
-  grid-column: 1 / -1;
-}
-
-/* Reviews Section */
-.reviews {
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.review-card {
-  background: var(--bg-dark);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 28px;
-}
-
-.stars {
-  color: var(--gold-accent);
-  letter-spacing: 3px;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.review-card p {
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.review-card h4 {
-  font-size: 13px;
-  color: #fff;
-}
-
-/* Promo Code Box inside Cart */
-.coupon-container {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 15px;
-}
-
-.coupon-container input {
-  flex: 1;
-  padding: 11px 14px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--bg-input);
-  color: var(--text-main);
-  font-size: 13px;
-  text-transform: uppercase;
-  outline: none;
-}
-
-.coupon-container button {
-  background: var(--red-accent);
-  color: #fff;
-  border: none;
-  padding: 11px 18px;
-  font-size: 12px;
-  font-weight: 800;
-  border-radius: 4px;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: 0.2s;
-}
-
-.coupon-container button:hover {
-  background: #fff;
-  color: #000;
-}
-
-.coupon-msg {
-  font-size: 12px;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.coupon-msg.success { color: #4ade80; }
-.coupon-msg.error { color: #f87171; }
-
-/* Wishlist Box */
-.wishlist-box {
-  max-width: 720px;
-  margin: auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 45px;
-  text-align: center;
-}
-
-.wishlist-box h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 36px;
-  margin-bottom: 14px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.wishlist-form {
-  display: flex;
-  gap: 10px;
-}
-
-.wishlist-form input {
-  flex: 1;
-  padding: 14px;
-  border: 1px solid var(--border);
-  background: var(--bg-input);
-  color: var(--text-main);
-  outline: none;
-  border-radius: 4px;
-}
-
-footer {
-  background: #020203;
-  color: var(--text-main);
-  padding: 60px 5% 25px;
-  border-top: 1px solid var(--border);
-}
-
-.footer-grid {
-  max-width: 1300px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 45px;
-  padding-bottom: 40px;
-}
-
-.footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-}
-
-.footer-logo span { color: var(--red-accent); }
-
-.footer-column h4 {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  margin-bottom: 18px;
-  color: var(--red-accent);
-  text-transform: uppercase;
-}
-
-.footer-column a {
-  display: block;
-  color: var(--text-muted);
-  font-size: 13px;
-  margin-bottom: 13px;
-}
-
-.footer-column a:hover { color: white; }
-
-.copyright {
-  border-top: 1px solid var(--border);
-  padding-top: 22px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-/* Cart Drawer */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
-  z-index: 200;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.25s;
-}
-
-.overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cart-drawer {
-  position: fixed;
-  z-index: 201;
-  top: 0;
-  right: 0;
-  width: min(450px, 100%);
-  height: 100%;
-  background: var(--bg-card);
-  border-left: 1px solid var(--border);
-  transform: translateX(100%);
-  transition: transform 0.3s;
-  display: flex;
-  flex-direction: column;
-}
-
-.cart-drawer.open {
-  transform: translateX(0);
-}
-
-.cart-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px;
-  border-bottom: 1px solid var(--border);
-}
-
-.cart-header h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 24px;
-  color: var(--red-accent);
-  text-transform: uppercase;
-}
-
-.close-button {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border);
-  background: var(--bg-dark);
-  color: var(--text-main);
-  border-radius: 50%;
-  font-size: 20px;
-}
-
-.cart-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-}
-
-.cart-item {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 14px;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--border);
-}
-
-.cart-item img {
-  width: 80px;
-  height: 95px;
-  object-fit: cover;
-  background: #0d0d12;
-  border-radius: 4px;
-}
-
-.cart-item h4 {
-  font-size: 13px;
-  margin-bottom: 6px;
-  color: #fff;
-}
-
-.cart-item p {
-  color: var(--text-muted);
-  font-size: 11px;
-  margin-bottom: 8px;
-}
-
-.cart-item-price {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--red-accent);
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.quantity-controls button {
-  width: 25px;
-  height: 25px;
-  border: 1px solid var(--border);
-  background: var(--bg-dark);
-  color: var(--text-main);
-  border-radius: 3px;
-}
-
-.remove-item {
-  border: none;
-  background: transparent;
-  color: #f87171;
-  font-size: 11px;
-  margin-top: 9px;
-}
-
-.cart-footer {
-  border-top: 1px solid var(--border);
-  padding: 20px;
-  background: #08080c;
-}
-
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.cart-total-row.discount {
-  color: #4ade80;
-  font-weight: 600;
-}
-
-.cart-total-row.grand-total {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--red-accent);
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
-  margin-top: 10px;
-}
-
-.checkout-button {
-  width: 100%;
-  margin-top: 12px;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  z-index: 300;
-  inset: 0;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.2s;
-}
-
-.modal.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  width: min(480px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 30px;
-  position: relative;
-}
-
-.modal-content h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px;
-  margin-bottom: 8px;
-  color: var(--red-accent);
-  text-transform: uppercase;
-}
-
-.modal-content > p {
-  color: var(--text-muted);
-  font-size: 12px;
-  line-height: 1.7;
-  margin-bottom: 23px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 7px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  outline: none;
-  background: var(--bg-input);
-  color: var(--text-main);
-  font-size: 13px;
-  border-radius: 4px;
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 75px;
-}
-
-.form-group input:focus, .form-group textarea:focus {
-  border-color: var(--red-accent);
-}
-
-.toast {
-  position: fixed;
-  z-index: 500;
-  bottom: 25px;
-  left: 50%;
-  transform: translate(-50%, 20px);
-  background: var(--red-accent);
-  color: #fff;
-  font-weight: 800;
-  padding: 14px 24px;
-  font-size: 12px;
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.25s;
-  text-align: center;
-  box-shadow: 0 0 20px var(--red-glow);
-}
-
-.toast.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
-}
-
-@media (max-width: 1000px) {
-  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .hero { min-height: 520px; }
-}
-
-@media (max-width: 700px) {
-  .navbar { padding: 14px 5%; }
-  .menu-toggle { display: flex; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    left: 0; right: 0; top: 100%;
-    padding: 22px 5%;
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-  }
-  .nav-links.open { display: flex; }
-  .hero { min-height: 500px; padding: 55px 6%; }
-  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
-  .review-grid { grid-template-columns: 1fr; }
-  .category-cards { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-  .wishlist-form { flex-direction: column; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoRent Albania - Makina me Qera</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0b0f17; color: #f3f4f6; }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(11, 15, 23, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
+<body class="font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-<body>
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-car-side"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight text-white">Auto<span class="text-brand-500">Rent</span></span>
+            </a>
 
-<div class="announcement">
-  🖤 BLACK FRIDAY SUPER SALE — eBOSS BRAND | PËRFITO 10% ULJE ME KODIN: EBOSS10 🖤
-</div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="hover:text-brand-500 transition-colors">Kreu</a>
+                <a href="#fleet" class="hover:text-brand-500 transition-colors">Flota e Makinave</a>
+                <a href="#booking" class="hover:text-brand-500 transition-colors">Rezervo Tani</a>
+                <a href="#features" class="hover:text-brand-500 transition-colors">Pse Ne?</a>
+            </nav>
 
-<header>
-  <nav class="navbar">
-    <a href="#home" class="logo">eBOSS<span>.</span></a>
-
-    <div class="nav-links" id="navLinks">
-      <a href="#home">KRYEFAQJA</a>
-      <a href="#categories">KATEGORITË</a>
-      <a href="#collection">KOLEKSIONI</a>
-      <a href="#reviews">REVIEW</a>
-      <a href="#wishlist">WISHLIST</a>
-    </div>
-
-    <div class="nav-actions">
-      <button class="icon-button menu-toggle" id="menuToggle" aria-label="Hap menunë"><i class="fa-solid fa-bars"></i></button>
-      <button class="icon-button" id="cartButton" aria-label="Hap shportën">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </nav>
-</header>
-
-<main>
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="eyebrow">⚡ BLACK FRIDAY EXCLUSIVE DEALS</div>
-
-      <h1>BLACK FRIDAY<br>SUPER <span>DEALS.</span> 🖤</h1>
-
-      <p>
-        Oferta direkte nga eBOSS Brand. Përfito uljet më të mëdha të vitit në të gjitha atletet dhe koleksionin e veçantë.
-      </p>
-
-      <a href="#collection" class="button">ZBULO ZBRITJET ↗</a>
-    </div>
-  </section>
-
-  <!-- BENEFITS -->
-  <section class="benefits">
-    <div class="benefit">
-      <i class="fa-solid fa-bolt"></i>
-      Dërgesa të shpejta
-    </div>
-
-    <div class="benefit">
-      <i class="fa-solid fa-percent"></i>
-      10% Ulje me EBOSS10
-    </div>
-
-    <div class="benefit">
-      <i class="fa-brands fa-whatsapp"></i>
-      Porosit në WhatsApp
-    </div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section class="section" id="categories">
-    <div class="section-heading">
-      <h2>Zgjidh Kategorinë 🔥</h2>
-      <p>Gjej modelin që i përshtatet stilit tënd në eBOSS Brand.</p>
-    </div>
-
-    <div class="category-cards">
-      <div class="category-card" style="background-image:url('Images1/ugglow1.jpeg')">
-        <h3>UGG Collection</h3>
-        <p>Koleksioni më i kërkuar me çmime Black Friday.</p>
-        <button class="button" onclick="setCategory('uggs')">SHIKO UGG ↗</button>
-      </div>
-
-      <div class="category-card" style="background-image:url('Images1/dunk1.jpeg')">
-        <h3>Sneakers</h3>
-        <p>Atletet më virale për stilit tënd të përditshëm.</p>
-        <button class="button" onclick="setCategory('sneakers')">SHIKO ATLETET ↗</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- COLLECTION -->
-  <section class="collection-section" id="collection">
-    <div class="section">
-      <div class="collection-top">
-        <div>
-          <h2>Koleksioni Black Friday 🖤</h2>
-          <p>Zbulo produktet me ulje speciale.</p>
+            <a href="#booking" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/30 transition-all flex items-center gap-2 text-sm">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Rezervo Tani</span>
+            </a>
         </div>
+    </header>
 
-        <div class="search-sort">
-          <input type="search" class="search-input" id="searchInput" placeholder="Kërko produkt..." aria-label="Kërko produkt">
-          <select class="sort-select" id="sortSelect" aria-label="Rendit produktet">
-            <option value="default">Renditja: Default</option>
-            <option value="price-low">Çmimi: Nga më i ulëti</option>
-            <option value="price-high">Çmimi: Nga më i larti</option>
-            <option value="name">Emri: A–Z</option>
-          </select>
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-transparent to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs font-semibold tracking-wide uppercase">
+                    <i class="fa-solid fa-bolt"></i> Rezervim i Shpejtë në WhatsApp
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                    Udhëtoni me Komfòrt & Stil në çdo <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-emerald-300">Destinacion</span>
+                </h1>
+                <p class="text-lg text-gray-400 font-normal leading-relaxed">
+                    Zgjidhni makinën tuaj të preferuar, zgjidhni datat e udhëtimit dhe konfirmoni rezervimin me një klikim direkt në WhatsApp.
+                </p>
+                <div class="pt-4 flex flex-wrap justify-center gap-4">
+                    <a href="#fleet" class="bg-brand-600 hover:bg-brand-500 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-brand-600/25 transition-all text-base flex items-center gap-3">
+                        <span>Shiko Makinat</span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="filters">
-        <button class="filter-button active" data-category="all">Të gjitha</button>
-        <button class="filter-button" data-category="uggs">UGG</button>
-        <button class="filter-button" data-category="sneakers">Sneakers</button>
-        <button class="filter-button" data-category="wishlist">❤️ Wishlist</button>
-      </div>
+    <!-- Car Fleet Section -->
+    <section id="fleet" class="py-16 bg-gray-950/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-3xl font-bold text-white tracking-tight">Flota Jonë e Makinave</h2>
+                <p class="text-gray-400 mt-2">Makinat më të reja, të mirëmbajtura dhe me çmimet më konkurruese në treg.</p>
+            </div>
 
-      <div class="product-grid" id="productGrid"></div>
-    </div>
-  </section>
+            <!-- Grid of Cars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Car 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-500/40 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-900">
+                            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80" alt="Volkswagen Golf 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-md text-brand-500 text-xs font-bold px-3 py-1.5 rounded-lg border border-brand-500/30">Ekonomike</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Volkswagen Golf 7</h3>
+                                    <p class="text-xs text-gray-400">Viti 2018 • Automatic</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-500">€35</span>
+                                    <span class="text-xs text-gray-400 block">/ ditë</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 pt-2 text-xs text-gray-300">
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gas-pump text-brand-500"></i> Naftë 1.6 TDI</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gear text-brand-500"></i> Automatike</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-user-group text-brand-500"></i> 5 Vende</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-snowflake text-brand-500"></i> Klima A/C</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="selectCar('Volkswagen Golf 7', 35)" class="w-full bg-gray-800 hover:bg-brand-600 text-white font-semibold py-3 rounded-xl border border-gray-700 hover:border-brand-500 transition-all flex items-center justify-center gap-2">
+                            <span>Zgjidh Këtë Makinë</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
 
-  <!-- REVIEWS -->
-  <section class="reviews" id="reviews">
-    <div class="section">
-      <div class="section-heading">
-        <h2>Vlerësimet e Klientëve ⭐️</h2>
-        <p>Çfarë thonë blerësit tanë për eBOSS Brand.</p>
-      </div>
+                <!-- Car 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-500/40 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-900">
+                            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Audi A6 S-Line" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-md text-brand-500 text-xs font-bold px-3 py-1.5 rounded-lg border border-brand-500/30">Luksoze</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Audi A6 S-Line</h3>
+                                    <p class="text-xs text-gray-400">Viti 2021 • Automatic</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-500">€70</span>
+                                    <span class="text-xs text-gray-400 block">/ ditë</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 pt-2 text-xs text-gray-300">
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gas-pump text-brand-500"></i> Naftë 2.0 TDI</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gear text-brand-500"></i> Tiptronic</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-user-group text-brand-500"></i> 5 Vende</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-shield-halved text-brand-500"></i> Siguracion Kasko</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="selectCar('Audi A6 S-Line', 70)" class="w-full bg-gray-800 hover:bg-brand-600 text-white font-semibold py-3 rounded-xl border border-gray-700 hover:border-brand-500 transition-all flex items-center justify-center gap-2">
+                            <span>Zgjidh Këtë Makinë</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
 
-      <div class="review-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>“Cilësia super dhe porosia më erdhi shumë shpejt! Ulja e Black Friday ia vredhte fiks.”</p>
-          <h4>Klient eBOSS</h4>
+                <!-- Car 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-brand-500/40 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-gray-900">
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="BMW 5 Series" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-md text-brand-500 text-xs font-bold px-3 py-1.5 rounded-lg border border-brand-500/30">Sport</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">BMW 5 Series M-Sport</h3>
+                                    <p class="text-xs text-gray-400">Viti 2020 • Automatic</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-brand-500">€65</span>
+                                    <span class="text-xs text-gray-400 block">/ ditë</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 pt-2 text-xs text-gray-300">
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gas-pump text-brand-500"></i> Naftë 520d</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-gear text-brand-500"></i> Steptronic</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-user-group text-brand-500"></i> 5 Vende</div>
+                                <div class="flex items-center gap-2 bg-gray-800/50 p-2 rounded-lg"><i class="fa-solid fa-location-dot text-brand-500"></i> Navigacion GPS</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="selectCar('BMW 5 Series M-Sport', 65)" class="w-full bg-gray-800 hover:bg-brand-600 text-white font-semibold py-3 rounded-xl border border-gray-700 hover:border-brand-500 transition-all flex items-center justify-center gap-2">
+                            <span>Zgjidh Këtë Makinë</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>“Kodi i uljes 10% funksionoi menjëherë te shporta. Faleminderit eBOSS Brand!”</p>
-          <h4>Klient eBOSS</h4>
+    </section>
+
+    <!-- Booking Form & Interactive Calculator Section -->
+    <section id="booking" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-10 rounded-3xl shadow-2xl border border-brand-500/20 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-black text-white">Formulari i Rezervimit</h2>
+                    <p class="text-gray-400 text-sm mt-1">Zgjidhni datat për të llogaritur çmimin dhe dërgoni kërkesën direkt në WhatsApp.</p>
+                </div>
+
+                <form id="rentalForm" onsubmit="sendWhatsAppOrder(event)" class="space-y-6">
+                    
+                    <!-- Car Selection Dropdown -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Zgjidh Makinën</label>
+                        <div class="relative">
+                            <select id="carSelect" onchange="updatePriceCalculation()" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-brand-500 transition-colors appearance-none cursor-pointer">
+                                <option value="35" data-name="Volkswagen Golf 7">Volkswagen Golf 7 (€35/ditë)</option>
+                                <option value="70" data-name="Audi A6 S-Line">Audi A6 S-Line (€70/ditë)</option>
+                                <option value="65" data-name="BMW 5 Series M-Sport">BMW 5 Series M-Sport (€65/ditë)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Dates -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Data e Marrjes</label>
+                            <input type="date" id="dateFrom" onchange="updatePriceCalculation()" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Data e Dorëzimit</label>
+                            <input type="date" id="dateTo" onchange="updatePriceCalculation()" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" required>
+                        </div>
+                    </div>
+
+                    <!-- Customer Info -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Emri & Mbiemri</label>
+                            <input type="text" id="clientName" placeholder="Z. Emër Mbiemër" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Numri i Telefonit</label>
+                            <input type="tel" id="clientPhone" placeholder="+355 6X XX XX XXX" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 transition-colors" required>
+                        </div>
+                    </div>
+
+                    <!-- Location Pick-up -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Vendndodhja e Marrjes</label>
+                        <select id="pickupLocation" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-brand-500 transition-colors appearance-none cursor-pointer">
+                            <option value="Aeroporti i Rinasit (TIA)">Aeroporti i Rinasit (TIA)</option>
+                            <option value="Tiranë (Qendër)">Tiranë (Qendër)</option>
+                            <option value="Durrës">Durrës</option>
+                            <option value="Tjetër (Diskutohet në WhatsApp)">Vendndodhje Tjetër</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Summary Box -->
+                    <div class="bg-gray-900/80 rounded-2xl p-6 border border-gray-800 space-y-3">
+                        <div class="flex justify-between text-sm text-gray-400">
+                            <span>Kohëzgjatja:</span>
+                            <span id="totalDaysText" class="text-white font-medium">1 Ditë</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-400">
+                            <span>Çmimi ditor:</span>
+                            <span id="dailyRateText" class="text-white font-medium">€35</span>
+                        </div>
+                        <div class="border-t border-gray-800 pt-3 flex justify-between items-center">
+                            <span class="text-base font-bold text-white">Çmimi Përfundimtar:</span>
+                            <span id="totalPriceText" class="text-3xl font-black text-brand-500">€35</span>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Submit Button -->
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-4 rounded-xl shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-3 text-lg">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Konfirmo Rezervimin në WhatsApp</span>
+                    </button>
+                    <p class="text-center text-xs text-gray-500">Kërkesa juaj do të dërgohet automatikisht si mesazh direkt te numri i biznesit.</p>
+                </form>
+            </div>
         </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>“Atletet janë fiks si në foto. Komunikimi në WhatsApp ishte shumë korrekt.”</p>
-          <h4>Klient eBOSS</h4>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-brand-500/20">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Mbështetje 24/7</h3>
+                    <p class="text-sm text-gray-400">Jemi në dispozicionin tuaj në çdo orë të ditës për çdo nevojë gjatë udhëtimit.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-brand-500/20">
+                        <i class="fa-solid fa-plane-arrival"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Dorëzim në Aeroport</h3>
+                    <p class="text-sm text-gray-400">Makinën mund ta merrni direkt në Aeroportin e Rinasit pa asnjë vonesë.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-brand-500/20">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Makinat e Siguruara</h3>
+                    <p class="text-sm text-gray-400">Të gjitha makinat tona janë të pajisura me siguracion dhe të kontrolluara teknikisht.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WISHLIST / EMAIL -->
-  <section class="wishlist-section" id="wishlist">
-    <div class="section">
-      <div class="wishlist-box">
-        <h2>Merr 10% Ulje Ekstra 🖤</h2>
-        <p>Regjistrohu për të marrë kodin tuaj promocional <strong>EBOSS10</strong> për çdo blerje gjatë Black Friday.</p>
-        <form class="wishlist-form" id="wishlistForm">
-          <input type="email" id="wishlistEmail" placeholder="Shkruaj email-in tënd..." required>
-          <button class="button" type="submit">REGJISTROHU ↗</button>
-        </form>
-        <div class="coupon-msg" id="wishlistMessage" style="margin-top: 15px;"></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">eBOSS<span>.</span> BRAND</div>
-      <p style="color: var(--text-muted); font-size: 13px; line-height: 1.8;">
-        eBOSS Brand — Stili, cilësia dhe ofertat më të mira online.
-      </p>
-    </div>
-    <div class="footer-column">
-      <h4>QUICK LINKS</h4>
-      <a href="#home">Kryefaqja</a>
-      <a href="#categories">Kategoritë</a>
-      <a href="#collection">Koleksioni</a>
-      <a href="#wishlist">Wishlist</a>
-    </div>
-    <div class="footer-column">
-      <h4>KONTAKTO eBOSS</h4>
-      <a href="https://wa.me/18194867873" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Order</a>
-      <a href="tel:+18194867873"><i class="fa-solid fa-phone"></i> +1 (819) 486-7873</a>
-    </div>
-  </div>
-  <div class="copyright">
-    © <span id="currentYear"></span> eBOSS Brand. Të gjitha të drejtat e rezervuara. 🖤
-  </div>
-</footer>
-
-<!-- CART OVERLAY -->
-<div class="overlay" id="cartOverlay"></div>
-
-<!-- CART DRAWER -->
-<aside class="cart-drawer" id="cartDrawer" aria-label="Shporta">
-  <div class="cart-header">
-    <h2>Shporta eBOSS 🛒</h2>
-    <button class="close-button" id="closeCart" aria-label="Mbyll shportën">×</button>
-  </div>
-
-  <div class="cart-items" id="cartItems"></div>
-
-  <div class="cart-footer">
-    <!-- Kodi i uljes -->
-    <div class="coupon-container">
-      <input type="text" id="couponInput" placeholder="Kodi i uljes (psh. EBOSS10)">
-      <button onclick="applyDiscountCode()">Apliko</button>
-    </div>
-    <div id="couponMsg" class="coupon-msg"></div>
-
-    <div class="cart-total-row">
-      <span>Nëntotali:</span>
-      <span id="cartSubtotal">0 Lekë</span>
-    </div>
-    <div class="cart-total-row discount" id="discountRow" style="display: none;">
-      <span>Ulja (10%):</span>
-      <span id="cartDiscount">-0 Lekë</span>
-    </div>
-    <div class="cart-total-row grand-total">
-      <span>TOTALI:</span>
-      <span id="cartTotal">0 Lekë</span>
-    </div>
-
-    <button class="button checkout-button" id="checkoutButton">
-      DËRGO POROSINË NË WHATSAPP ↗
-    </button>
-  </div>
-</aside>
-
-<!-- CHECKOUT MODAL -->
-<div class="modal" id="checkoutModal">
-  <div class="modal-content">
-    <button class="close-button" id="closeCheckout" aria-label="Mbyll" style="position:absolute;right:20px;top:20px;">×</button>
-    <h2>Përfundo porosinë ⚡</h2>
-    <p>Plotëso të dhënat dhe dërgo porosinë direkt në WhatsApp të eBOSS Brand.</p>
-
-    <form id="checkoutForm">
-      <div class="form-group">
-        <label for="customerName">Emri dhe mbiemri</label>
-        <input id="customerName" type="text" required placeholder="Emri juaj">
-      </div>
-      <div class="form-group">
-        <label for="customerPhone">Numri i telefonit</label>
-        <input id="customerPhone" type="tel" required placeholder="06X XX XX XXX">
-      </div>
-      <div class="form-group">
-        <label for="customerAddress">Adresa e dërgesës</label>
-        <textarea id="customerAddress" required placeholder="Qyteti, rruga dhe detaje të tjera"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="customerNotes">Shënime (opsionale)</label>
-        <textarea id="customerNotes" placeholder="Shënime addicionale..."></textarea>
-      </div>
-      <button type="submit" class="button checkout-submit">
-        POROSIT NË WHATSAPP ↗
-      </button>
-    </form>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-const products = [
-  { id: 1, name: "UGG Low Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugglow1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 2, name: "UGG Low Dark Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugglow2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 3, name: "UGG Low Beige", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugglow3.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 4, name: "Nike Dunk Burgundy", category: "sneakers", price: 3900, oldPrice: 9000, image: "Images1/dunk2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 5, name: "Adidas Spezial Brown", category: "sneakers", price: 4900, oldPrice: 9000, image: "Images1/adidas2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 6, name: "Jordan 1 Black", category: "sneakers", price: 3900, oldPrice: 9000, image: "Images1/Jordan2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 7, name: "UGG Tazz Dark Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugg3.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 8, name: "New Balance 1", category: "sneakers", price: 4500, oldPrice: 13000, image: "Images1/newbalance2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 9, name: "Nike AF1", category: "sneakers", price: 2900, oldPrice: 6500, image: "Images1/nikeaf1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 10, name: "Adidas Spezial Dark Blue", category: "sneakers", price: 4900, oldPrice: 9000, image: "Images1/adidas1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 11, name: "UGG Beige", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/uggll1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 12, name: "Nike Dunk White", category: "sneakers", price: 3900, oldPrice: 9000, image: "Images1/dunk1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 13, name: "Jordan 1 Sky Blue", category: "sneakers", price: 3900, oldPrice: 9000, image: "Images1/Jordan1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 14, name: "UGG Tazz Dark Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugg1.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 15, name: "Adidas Spezial Red", category: "sneakers", price: 4900, oldPrice: 9000, image: "Images1/adidas3.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 16, name: "UGG Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/uggll2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 17, name: "UGG Tazz Black", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugg2.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 18, name: "Nike Dunk Pink", category: "sneakers", price: 3900, oldPrice: 9000, image: "Images1/dunk3.jpeg", badge: "BLACK FRIDAY 🖤" },
-  { id: 19, name: "UGG Tazz Brown", category: "uggs", price: 3000, oldPrice: 6500, image: "Images1/ugg4.jpeg", badge: "BLACK FRIDAY 🖤" }
-];
-
-const availableSizes = [36, 37, 38, 39, 40, 41];
-let currentCategory = "all";
-let cart = JSON.parse(localStorage.getItem("eboss_cart")) || [];
-let wishlist = [];
-let isDiscountApplied = false;
-
-const productGrid = document.getElementById("productGrid");
-const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
-
-const cartDrawer = document.getElementById("cartDrawer");
-const cartOverlay = document.getElementById("cartOverlay");
-const cartItemsContainer = document.getElementById("cartItems");
-const cartCount = document.getElementById("cartCount");
-const checkoutModal = document.getElementById("checkoutModal");
-
-function formatPrice(price) {
-  return price.toLocaleString("sq-AL") + " Lekë";
-}
-
-function getCategoryName(category) {
-  return category === "uggs" ? "UGG Collection" : "Sneakers";
-}
-
-function renderProducts() {
-  const searchTerm = searchInput.value.trim().toLowerCase();
-  let filteredProducts = [...products];
-
-  if (currentCategory === "uggs" || currentCategory === "sneakers") {
-    filteredProducts = filteredProducts.filter(p => p.category === currentCategory);
-  } else if (currentCategory === "wishlist") {
-    filteredProducts = filteredProducts.filter(p => wishlist.includes(p.id));
-  }
-
-  if (searchTerm) {
-    filteredProducts = filteredProducts.filter(p =>
-      p.name.toLowerCase().includes(searchTerm) ||
-      getCategoryName(p.category).toLowerCase().includes(searchTerm)
-    );
-  }
-
-  const sortValue = sortSelect.value;
-  if (sortValue === "price-low") filteredProducts.sort((a, b) => a.price - b.price);
-  else if (sortValue === "price-high") filteredProducts.sort((a, b) => b.price - a.price);
-  else if (sortValue === "name") filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-
-  if (filteredProducts.length === 0) {
-    productGrid.innerHTML = `
-      <div class="empty-results">
-        <h3>Nuk u gjet asnjë produkt 🖤</h3>
-        <p>Provo një kërkim tjetër ose zgjidh një kategori tjetër.</p>
-      </div>
-    `;
-    return;
-  }
-
-  productGrid.innerHTML = filteredProducts.map(product => `
-    <article class="product-card">
-      <div class="product-image-wrap">
-        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
-        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
-        <button class="wishlist-button ${wishlist.includes(product.id) ? "liked" : ""}" onclick="toggleWishlist(${product.id})">
-          ${wishlist.includes(product.id) ? "❤️" : "🤍"}
-        </button>
-      </div>
-      <div class="product-info">
-        <div class="product-category">${getCategoryName(product.category)}</div>
-        <h3 class="product-name">${product.name}</h3>
-        <div class="price-row">
-          <span class="price">${formatPrice(product.price)}</span>
-          <span class="old-price">${formatPrice(product.oldPrice)}</span>
+    <!-- Footer -->
+    <footer class="border-t border-gray-900 py-10 bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-gray-500">© 2026 AutoRent Albania. Të gjitha të drejtat të rezervuara.</p>
+            <div class="flex items-center gap-4 text-gray-400 text-lg">
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
         </div>
-        <select class="size-select" id="size-${product.id}">
-          <option value="">Zgjidh masën</option>
-          ${availableSizes.map(size => `<option value="${size}">Masa ${size}</option>`).join("")}
-        </select>
-        <button class="add-button" onclick="addToCart(${product.id})">SHTO NË SHPORTË +</button>
-      </div>
-    </article>
-  `).join("");
-}
+    </footer>
 
-function setCategory(category) {
-  currentCategory = category;
-  document.querySelectorAll(".filter-button").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.category === category);
-  });
-  renderProducts();
-  document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
-}
+    <!-- JavaScript Logic -->
+    <script>
+        // Set default values for calendar inputs (Today and Tomorrow)
+        window.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
 
-document.querySelectorAll(".filter-button").forEach(btn => {
-  btn.addEventListener("click", () => setCategory(btn.dataset.category));
-});
+            document.getElementById('dateFrom').value = today.toISOString().split('T')[0];
+            document.getElementById('dateTo').value = tomorrow.toISOString().split('T')[0];
 
-searchInput.addEventListener("input", renderProducts);
-sortSelect.addEventListener("change", renderProducts);
+            updatePriceCalculation();
+        });
 
-function toggleWishlist(productId) {
-  if (wishlist.includes(productId)) {
-    wishlist = wishlist.filter(id => id !== productId);
-    showToast("Produkti u hoq nga wishlist.");
-  } else {
-    wishlist.push(productId);
-    showToast("Produkti u shtua në wishlist ❤️");
-  }
-  renderProducts();
-}
+        // Function called when clicking 'Zgjidh Këtë Makinë'
+        function selectCar(carName, price) {
+            const carSelect = document.getElementById('carSelect');
+            for (let i = 0; i < carSelect.options.length; i++) {
+                if (carSelect.options[i].getAttribute('data-name') === carName) {
+                    carSelect.selectedIndex = i;
+                    break;
+                }
+            }
+            updatePriceCalculation();
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
 
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  const sizeSelect = document.getElementById(`size-${productId}`);
-  const selectedSize = sizeSelect.value;
+        // Live calculation of rental days & price
+        function updatePriceCalculation() {
+            const carSelect = document.getElementById('carSelect');
+            const dailyRate = parseFloat(carSelect.value);
+            
+            const dateFromVal = document.getElementById('dateFrom').value;
+            const dateToVal = document.getElementById('dateTo').value;
 
-  if (!selectedSize) {
-    showToast("Të lutem zgjidh masën përpara se të vazhdosh.");
-    sizeSelect.focus();
-    return;
-  }
+            if (!dateFromVal || !dateToVal) return;
 
-  const existingItem = cart.find(item => item.id === productId && item.size === selectedSize);
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      size: selectedSize,
-      quantity: 1
-    });
-  }
+            const dateFrom = new Date(dateFromVal);
+            const dateTo = new Date(dateToVal);
 
-  saveAndUpdateCart();
-  showToast("Produkti u shtua në shportën eBOSS 🛒");
-}
+            // Calculate difference in days
+            const timeDiff = dateTo.getTime() - dateFrom.getTime();
+            let days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-function applyDiscountCode() {
-  const code = document.getElementById("couponInput").value.trim().toUpperCase();
-  const msg = document.getElementById("couponMsg");
+            if (days <= 0) days = 1; // Minimum 1 day
 
-  if (code === "EBOSS10" || code === "DELULU10") {
-    isDiscountApplied = true;
-    msg.className = "coupon-msg success";
-    msg.innerText = "Kodi i uljes 10% u aplikua me sukses!";
-  } else {
-    isDiscountApplied = false;
-    msg.className = "coupon-msg error";
-    msg.innerText = "Kodi i uljes nuk është i vlefshëm.";
-  }
-  updateCartUI();
-}
+            const totalPrice = days * dailyRate;
 
-function saveAndUpdateCart() {
-  localStorage.setItem("eboss_cart", JSON.stringify(cart));
-  updateCartUI();
-}
+            document.getElementById('dailyRateText').innerText = `€${dailyRate}`;
+            document.getElementById('totalDaysText').innerText = `${days} ${days === 1 ? 'Ditë' : 'Ditë'}`;
+            document.getElementById('totalPriceText').innerText = `€${totalPrice}`;
+        }
 
-function updateCartUI() {
-  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const discountAmount = isDiscountApplied ? (subtotal * 0.10) : 0;
-  const grandTotal = subtotal - discountAmount;
+        // Submit and format WhatsApp message
+        function sendWhatsAppOrder(event) {
+            event.preventDefault();
 
-  cartCount.textContent = totalQuantity;
-  document.getElementById("cartSubtotal").textContent = formatPrice(subtotal);
-  
-  const discountRow = document.getElementById("discountRow");
-  if (isDiscountApplied) {
-    discountRow.style.display = "flex";
-    document.getElementById("cartDiscount").textContent = "-" + formatPrice(discountAmount);
-  } else {
-    discountRow.style.display = "none";
-  }
+            // Set your WhatsApp phone number here (with country code, e.g. 35568XXXXXXX)
+            const whatsappNumber = "355680000000";
 
-  document.getElementById("cartTotal").textContent = formatPrice(grandTotal);
+            const carSelect = document.getElementById('carSelect');
+            const selectedOption = carSelect.options[carSelect.selectedIndex];
+            const carName = selectedOption.getAttribute('data-name');
 
-  if (cart.length === 0) {
-    cartItemsContainer.innerHTML = `
-      <div class="empty-cart">
-        <div style="font-size:38px;margin-bottom:15px;">🛒</div>
-        <h3>Shporta eBOSS është bosh</h3>
-        <p>Zbulo koleksionin e Black Friday dhe shto produktet tuaja.</p>
-      </div>
-    `;
-  } else {
-    cartItemsContainer.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <img src="${item.image}" alt="${item.name}">
-        <div>
-          <h4>${item.name}</h4>
-          <p>Masa: ${item.size}</p>
-          <p style="color:var(--red-accent);">${formatPrice(item.price)}</p>
-          <div class="quantity-controls">
-            <button onclick="changeQuantity(${item.id}, '${item.size}', -1)">−</button>
-            <span>${item.quantity}</span>
-            <button onclick="changeQuantity(${item.id}, '${item.size}', 1)">+</button>
-          </div>
-          <button class="remove-item" onclick="removeFromCart(${item.id}, '${item.size}')">Hiq produktin</button>
-        </div>
-        <div class="cart-item-price">${formatPrice(item.price * item.quantity)}</div>
-      </div>
-    `).join("");
-  }
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+            const clientName = document.getElementById('clientName').value;
+            const clientPhone = document.getElementById('clientPhone').value;
+            const location = document.getElementById('pickupLocation').value;
+            const daysText = document.getElementById('totalDaysText').innerText;
+            const totalPrice = document.getElementById('totalPriceText').innerText;
 
-  document.getElementById("checkoutButton").disabled = cart.length === 0;
-  document.getElementById("checkoutButton").style.opacity = cart.length === 0 ? "0.5" : "1";
-}
+            const message = `Përshëndetje AutoRent! Dëshiroj të bëj një rezervim makine:\n\n` +
+                `🚗 *Makina:* ${carName}\n` +
+                `📅 *Data e Marrjes:* ${dateFrom}\n` +
+                `📅 *Data e Dorëzimit:* ${dateTo} (${daysText})\n` +
+                `📍 *Vendndodhja:* ${location}\n` +
+                `💰 *Çmimi Total:* ${totalPrice}\n\n` +
+                `👤 *Emri:* ${clientName}\n` +
+                `📞 *Telefon:* ${clientPhone}`;
 
-function changeQuantity(productId, size, change) {
-  const item = cart.find(i => i.id === productId && i.size === size);
-  if (!item) return;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-  item.quantity += change;
-  if (item.quantity <= 0) {
-    cart = cart.filter(i => !(i.id === productId && i.size === size));
-  }
-  saveAndUpdateCart();
-}
-
-function removeFromCart(productId, size) {
-  cart = cart.filter(i => !(i.id === productId && i.size === size));
-  saveAndUpdateCart();
-  showToast("Produkti u hoq nga shporta.");
-}
-
-function openCart() {
-  cartDrawer.classList.add("open");
-  cartOverlay.classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-
-function closeCart() {
-  cartDrawer.classList.remove("open");
-  cartOverlay.classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-document.getElementById("cartButton").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-cartOverlay.addEventListener("click", closeCart);
-
-document.getElementById("checkoutButton").addEventListener("click", () => {
-  if (cart.length === 0) return;
-  checkoutModal.classList.add("open");
-});
-
-document.getElementById("closeCheckout").addEventListener("click", () => {
-  checkoutModal.classList.remove("open");
-});
-
-document.getElementById("checkoutForm").addEventListener("submit", event => {
-  event.preventDefault();
-  if (cart.length === 0) return;
-
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
-  const address = document.getElementById("customerAddress").value.trim();
-  const notes = document.getElementById("customerNotes").value.trim();
-
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const discountAmount = isDiscountApplied ? (subtotal * 0.10) : 0;
-  const grandTotal = subtotal - discountAmount;
-
-  let msg = "Përshëndetje eBOSS Brand! Dua të bëj këtë porosi nga Black Friday:\n\n";
-  msg += `EMRI: ${name}\n`;
-  msg += `TELEFONI: ${phone}\n`;
-  msg += `ADRESA: ${address}\n\n`;
-  msg += "PRODUKTET:\n";
-
-  cart.forEach((item, index) => {
-    msg += `${index + 1}. ${item.name} | Masa ${item.size} | Sasia: ${item.quantity} | ${formatPrice(item.price * item.quantity)}\n`;
-  });
-
-  msg += `\nNëntotali: ${formatPrice(subtotal)}\n`;
-  if (isDiscountApplied) {
-    msg += `Ulja ekstra 10% (EBOSS10): -${formatPrice(discountAmount)}\n`;
-  }
-  msg += `TOTALI PËRFUNDIMTAR: ${formatPrice(grandTotal)}\n`;
-
-  if (notes) msg += `\nSHËNIME: ${notes}\n`;
-
-  const whatsappURL = `https://wa.me/18194867873?text=${encodeURIComponent(msg)}`;
-  window.open(whatsappURL, "_blank");
-  checkoutModal.classList.remove("open");
-});
-
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(window.toastTimeout);
-  window.toastTimeout = setTimeout(() => toast.classList.remove("show"), 2600);
-}
-
-document.getElementById("menuToggle").addEventListener("click", () => {
-  document.getElementById("navLinks").classList.toggle("open");
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => document.getElementById("navLinks").classList.remove("open"));
-});
-
-document.getElementById("wishlistForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const msg = document.getElementById("wishlistMessage");
-  msg.className = "coupon-msg success";
-  msg.textContent = "Faleminderit! Kodi juaj promocional për 10% ulje është: EBOSS10";
-  document.getElementById("wishlistEmail").value = "";
-});
-
-document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-renderProducts();
-updateCartUI();
-</script>
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
