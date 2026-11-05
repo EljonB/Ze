@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Aleks - Rent a Car Premium</title>
+    <title>Auto Aleks | Rent a Car Premium</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        brand: {
+                        aleks: {
                             400: '#38bdf8',
                             500: '#0284c7',
                             600: '#0369a1',
+                            700: '#075985',
                             900: '#0c4a6e',
                         }
                     }
@@ -28,115 +29,178 @@
         }
     </script>
     <style>
-        body { background-color: #070a11; color: #f3f4f6; }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+        body { background-color: #060911; color: #f3f4f6; overflow-x: hidden; }
+        .glass-header {
+            background: rgba(6, 9, 17, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .glass-card {
-            background: rgba(20, 30, 50, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
-        .nav-btn-active {
-            background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(56, 189, 248, 0.1));
-            color: #38bdf8;
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
+        .glass-modal {
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(24px);
         }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+        .glow-accent {
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.15) 0%, rgba(0,0,0,0) 70%);
         }
-        .glow-effect { animation: pulseGlow 4s infinite ease-in-out; }
-        .page-transition {
-            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* Smooth Slide-over Menu & Modal Animations */
+        .drawer-slide {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        .modal-fade {
+            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
         }
     </style>
 </head>
-<body class="h-full flex flex-col font-sans antialiased selection:bg-sky-500 selection:text-white pb-20 md:pb-0">
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-sky-500 selection:text-white">
 
-    <!-- Glowing background accent -->
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-sky-600/10 rounded-full blur-[120px] pointer-events-none glow-effect"></div>
+    <!-- Background Atmospheric Glow -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] glow-accent pointer-events-none z-0"></div>
 
-    <!-- Header / Top App Bar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-gray-800/80">
+    <!-- Top Navigation Header (No bottom bar clutter) -->
+    <header class="sticky top-0 z-40 glass-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Logo -->
-            <button onclick="switchTab('fleet')" class="flex items-center gap-3 text-left group focus:outline-none">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-600 via-sky-500 to-cyan-400 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-sky-500/30 group-hover:scale-105 transition-transform">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-car-side"></i>
                 </div>
                 <div>
                     <span class="text-2xl font-black tracking-tight text-white block leading-none">AUTO <span class="text-sky-400">ALEKS</span></span>
                     <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest block mt-0.5">Rent a Car Albania</span>
                 </div>
-            </button>
+            </a>
 
-            <!-- Desktop Navigation Tabs -->
-            <nav class="hidden md:flex items-center gap-2 bg-gray-950/80 p-1.5 rounded-2xl border border-gray-800/80">
-                <button id="dtab-fleet" onclick="switchTab('fleet')" class="nav-btn-active px-5 py-2.5 rounded-xl text-xs font-bold transition-all border border-transparent flex items-center gap-2">
-                    <i class="fa-solid fa-car"></i> Flota
-                </button>
-                <button id="dtab-booking" onclick="switchTab('booking')" class="text-gray-400 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all border border-transparent flex items-center gap-2">
-                    <i class="fa-solid fa-calculator"></i> Rezervimi & Kalkulatori
-                </button>
-                <button id="dtab-features" onclick="switchTab('features')" class="text-gray-400 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all border border-transparent flex items-center gap-2">
-                    <i class="fa-solid fa-star"></i> Pse Ne?
-                </button>
-                <button id="dtab-terms" onclick="switchTab('terms')" class="text-gray-400 hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all border border-transparent flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved"></i> Kushtet
-                </button>
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
+                <a href="#fleet" class="hover:text-sky-400 transition-colors">Flota e Makinave</a>
+                <a href="#features" class="hover:text-sky-400 transition-colors">Pse Auto Aleks?</a>
+                <a href="#terms" class="hover:text-sky-400 transition-colors">Kushtet</a>
             </nav>
 
-            <!-- Status Indicator -->
-            <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Rezervime Online Aktiv</span>
+            <!-- WhatsApp Action & Mobile Hamburger Button -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/355680000000" target="_blank" class="bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span class="hidden sm:inline">WhatsApp Direkt</span>
+                </a>
+
+                <!-- Mobile Menu Button (Replaces bottom bar) -->
+                <button onclick="toggleMobileMenu(true)" class="md:hidden w-11 h-11 bg-gray-900 border border-gray-800 rounded-xl flex items-center justify-center text-gray-300 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Dynamic Content Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10 flex flex-col justify-center">
+    <!-- Mobile Slide-over Drawer Menu -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileMenu(false)" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 transition-opacity opacity-0"></div>
+    <div id="mobileDrawer" class="fixed top-0 right-0 w-4/5 max-w-xs h-full bg-gray-950 border-l border-gray-800 z-50 p-6 flex flex-col justify-between translate-x-full drawer-slide">
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                <span class="text-lg font-black text-white">AUTO <span class="text-sky-400">ALEKS</span></span>
+                <button onclick="toggleMobileMenu(false)" class="text-gray-400 hover:text-white text-xl p-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-4 font-semibold text-gray-300">
+                <a href="#fleet" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-gray-900 hover:text-sky-400 transition-all flex items-center gap-3">
+                    <i class="fa-solid fa-car text-sky-400 w-5"></i> Flota e Makinave
+                </a>
+                <a href="#features" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-gray-900 hover:text-sky-400 transition-all flex items-center gap-3">
+                    <i class="fa-solid fa-star text-sky-400 w-5"></i> Pse Ne?
+                </a>
+                <a href="#terms" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-gray-900 hover:text-sky-400 transition-all flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-sky-400 w-5"></i> Kushtet e Qerasë
+                </a>
+            </nav>
+        </div>
+        <div class="pt-6 border-t border-gray-900 text-center text-xs text-gray-500">
+            <p>© 2026 Auto Aleks Albania</p>
+        </div>
+    </div>
 
-        <!-- ================= SECTION 1: FLEET (FLOTA) ================= -->
-        <section id="sec-fleet" class="page-transition space-y-6">
-            
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-gray-800/80 pb-5">
-                <div>
-                    <span class="text-xs font-extrabold tracking-widest text-sky-400 uppercase">Zgjidhni Makinën Tuaj</span>
-                    <h1 class="text-2xl sm:text-4xl font-black text-white mt-1">Flota Premium Auto Aleks</h1>
+    <!-- Main Content Container -->
+    <main class="flex-1 relative z-10 space-y-20 pb-16">
+
+        <!-- HERO SECTION (Sixt inspired UX) -->
+        <section id="hero" class="pt-12 sm:pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-5">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-extrabold uppercase tracking-widest">
+                    <i class="fa-solid fa-crown"></i> Rent a Car me Shërbim Premium
                 </div>
-                <div class="text-xs text-gray-400 flex items-center gap-2 bg-gray-900/80 px-3.5 py-2 rounded-xl border border-gray-800">
-                    <i class="fa-solid fa-circle-check text-sky-400"></i>
-                    <span>Të gjitha makinat përfshijnë siguracion & A/C</span>
+                <h1 class="text-3xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                    Udhëtoni pa Limite me <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Auto Aleks</span>
+                </h1>
+                <p class="text-sm sm:text-base text-gray-400 font-normal leading-relaxed">
+                    Zgjidhni makinën tuaj të preferuar, zgjidhni datat dhe rezervoni brenda pak sekondave direkt në WhatsApp me llogaritje automatike.
+                </p>
+            </div>
+
+            <!-- Interactive Quick Search / Filter Bar (Sixt Style) -->
+            <div class="mt-10 glass-card p-4 sm:p-6 rounded-3xl border border-sky-500/20 max-w-4xl mx-auto shadow-2xl">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                    <div>
+                        <label class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2">Përzgjidh Modelin</label>
+                        <select id="heroCarSelect" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-white text-xs font-semibold focus:outline-none focus:border-sky-500">
+                            <option value="golf7">Volkswagen Golf 7 (€35/ditë)</option>
+                            <option value="audia6">Audi A6 S-Line (€65/ditë)</option>
+                            <option value="bmw5">BMW 5 Series M (€60/ditë)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2">Data e Marrjes</label>
+                        <input type="date" id="heroDateStart" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-white text-xs font-medium focus:outline-none focus:border-sky-500">
+                    </div>
+                    <div>
+                        <button onclick="openBookingFromHero()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-sky-600/30 flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Llogarit & Rezervo</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLEET SECTION WITH CATEGORY FILTER -->
+        <section id="fleet" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <span class="text-xs font-extrabold text-sky-400 uppercase tracking-widest">Flota Jonë</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">Zgjidhni Automobilin Tuaj</h2>
+                </div>
+
+                <!-- Interactive Filter Tabs -->
+                <div class="flex items-center gap-2 bg-gray-900/80 p-1 rounded-xl border border-gray-800 text-xs font-bold self-start md:self-auto">
+                    <button onclick="filterCars('all')" id="btn-filter-all" class="px-4 py-2 rounded-lg bg-sky-600 text-white transition-all">Të Gjitha</button>
+                    <option class="hidden"></option>
+                    <button onclick="filterCars('luxury')" id="btn-filter-luxury" class="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all">Luksoze</button>
+                    <button onclick="filterCars('economy')" id="btn-filter-economy" class="px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all">Ekonomike</button>
                 </div>
             </div>
 
             <!-- Cars Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                <!-- Car 1 -->
-                <div class="glass-card rounded-3xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                <!-- Car 1: Golf 7 -->
+                <div class="car-item economy glass-card rounded-3xl overflow-hidden hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="relative h-52 bg-gray-900 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80" alt="VW Golf 7" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700/80 text-[11px] text-emerald-400 font-bold flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Në Dispozicion
+                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700 text-[11px] text-emerald-400 font-bold">
+                                Min. 2 Ditë
                             </div>
                         </div>
                         <div class="p-6 space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-black text-white group-hover:text-sky-400 transition-colors">Volkswagen Golf 7</h3>
-                                    <p class="text-xs text-gray-400">2.0 TDI • Viti 2019</p>
+                                    <h3 class="text-xl font-extrabold text-white group-hover:text-sky-400 transition-colors">Volkswagen Golf 7</h3>
+                                    <p class="text-xs text-gray-400">2.0 TDI • Automatic</p>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-2xl font-black text-sky-400">€35</span>
@@ -152,27 +216,27 @@
                         </div>
                     </div>
                     <div class="p-6 pt-0">
-                        <button onclick="quickBook('golf7')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 text-sm">
+                        <button onclick="openBookingModal('golf7')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/20 flex items-center justify-center gap-2 text-sm">
                             <span>Zgjidh & Rezervo</span>
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Car 2 -->
-                <div class="glass-card rounded-3xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                <!-- Car 2: Audi A6 -->
+                <div class="car-item luxury glass-card rounded-3xl overflow-hidden hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="relative h-52 bg-gray-900 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Audi A6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700/80 text-[11px] text-emerald-400 font-bold flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Në Dispozicion
+                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700 text-[11px] text-emerald-400 font-bold">
+                                Min. 2 Ditë
                             </div>
                         </div>
                         <div class="p-6 space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-black text-white group-hover:text-sky-400 transition-colors">Audi A6 S-Line</h3>
-                                    <p class="text-xs text-gray-400">2.0 TDI • Quattro 2021</p>
+                                    <h3 class="text-xl font-extrabold text-white group-hover:text-sky-400 transition-colors">Audi A6 S-Line</h3>
+                                    <p class="text-xs text-gray-400">2.0 TDI • Quattro</p>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-2xl font-black text-sky-400">€65</span>
@@ -188,27 +252,27 @@
                         </div>
                     </div>
                     <div class="p-6 pt-0">
-                        <button onclick="quickBook('audia6')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 text-sm">
+                        <button onclick="openBookingModal('audia6')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/20 flex items-center justify-center gap-2 text-sm">
                             <span>Zgjidh & Rezervo</span>
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Car 3 -->
-                <div class="glass-card rounded-3xl overflow-hidden hover:border-sky-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                <!-- Car 3: BMW 5 Series -->
+                <div class="car-item luxury glass-card rounded-3xl overflow-hidden hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="relative h-52 bg-gray-900 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="BMW 5 Series" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700/80 text-[11px] text-emerald-400 font-bold flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Në Dispozicion
+                            <div class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gray-700 text-[11px] text-emerald-400 font-bold">
+                                Min. 2 Ditë
                             </div>
                         </div>
                         <div class="p-6 space-y-4">
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-black text-white group-hover:text-sky-400 transition-colors">BMW 5 Series M</h3>
-                                    <p class="text-xs text-gray-400">520d • Steptronic 2020</p>
+                                    <h3 class="text-xl font-extrabold text-white group-hover:text-sky-400 transition-colors">BMW 5 Series M</h3>
+                                    <p class="text-xs text-gray-400">520d • Steptronic</p>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-2xl font-black text-sky-400">€60</span>
@@ -224,7 +288,7 @@
                         </div>
                     </div>
                     <div class="p-6 pt-0">
-                        <button onclick="quickBook('bmw5')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/25 flex items-center justify-center gap-2 text-sm">
+                        <button onclick="openBookingModal('bmw5')" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-sky-600/20 flex items-center justify-center gap-2 text-sm">
                             <span>Zgjidh & Rezervo</span>
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
@@ -234,375 +298,377 @@
             </div>
         </section>
 
-        <!-- ================= SECTION 2: BOOKING CALCULATOR ================= -->
-        <section id="sec-booking" class="hidden page-transition max-w-3xl mx-auto w-full">
-            <div class="glass-panel p-6 sm:p-10 rounded-3xl space-y-6 border border-sky-500/20 shadow-2xl relative overflow-hidden">
-                
-                <div class="border-b border-gray-800 pb-4">
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Sistemi i Llogaritjes Automatike</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Rezervo te Auto Aleks</h2>
-                    <p class="text-gray-400 text-xs mt-1">Zgjidhni datat e udhëtimit tuaj (Rezervimi minimal është 2 ditë).</p>
+        <!-- FEATURES SECTION (PSE AUTO ALEKS) -->
+        <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-gray-800 space-y-10">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="text-xs font-extrabold text-sky-400 uppercase tracking-widest">Avantazhet Tona</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white">Pse të zgjidhni Auto Aleks?</h2>
                 </div>
 
-                <form onsubmit="submitWhatsAppBooking(event)" class="space-y-5">
-                    
-                    <!-- Car Select -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Makina e Zgjedhur</label>
-                        <select id="bookCarSelect" onchange="runLiveCalculation()" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3.5 text-white focus:outline-none focus:border-sky-500 font-semibold cursor-pointer">
-                            <option value="golf7">Volkswagen Golf 7 (€35 / ditë)</option>
-                            <option value="audia6">Audi A6 S-Line (€65 / ditë)</option>
-                            <option value="bmw5">BMW 5 Series M (€60 / ditë)</option>
-                        </select>
-                    </div>
-
-                    <!-- Date Picker Inputs -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Data e Marrjes</label>
-                            <input type="date" id="bookDateStart" onchange="runLiveCalculation()" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 font-medium" required>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="space-y-3 text-center md:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mx-auto md:mx-0">
+                            <i class="fa-solid fa-plane-arrival"></i>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Data e Dorëzimit</label>
-                            <input type="date" id="bookDateEnd" onchange="runLiveCalculation()" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 font-medium" required>
+                        <h3 class="text-lg font-bold text-white">Dorëzim në Aeroport</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Marrja dhe dorëzimi i makinës direkt në Aeroportin e Rinasit (TIA) pa vonesa dhe pa kosto shtesë të fshehura.</p>
+                    </div>
+
+                    <div class="space-y-3 text-center md:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mx-auto md:mx-0">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
+                        <h3 class="text-lg font-bold text-white">Llogaritje Automatike</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Zgjidhni datat në kalendar dhe sistemi ynë llogarit automatikisht çmimin më të mirë ditore sipas kohëzgjatjes.</p>
                     </div>
 
-                    <!-- Client Personal Info -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Emri & Mbiemri</label>
-                            <input type="text" id="clientName" placeholder="Z. Emër Mbiemër" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-sky-500" required>
+                    <div class="space-y-3 text-center md:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mx-auto md:mx-0">
+                            <i class="fa-solid fa-headset"></i>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Numri i Telefonit</label>
-                            <input type="tel" id="clientPhone" placeholder="+355 6X XX XX XXX" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-sky-500" required>
-                        </div>
+                        <h3 class="text-lg font-bold text-white">Mbështetje 24/7 në WhatsApp</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Ekipi ynë është i disponueshëm gjatë gjithë kohës për t'ju asistuar në çdo moment të udhëtimit tuaj.</p>
                     </div>
-
-                    <!-- Location Pick-up -->
-                    <div>
-                        <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Vendndodhja e Marrjes</label>
-                        <select id="pickupLocation" class="w-full bg-gray-900/90 border border-gray-700/80 rounded-2xl px-4 py-3.5 text-white focus:outline-none focus:border-sky-500 cursor-pointer">
-                            <option value="Aeroporti i Rinasit (TIA)">Aeroporti i Rinasit (TIA)</option>
-                            <option value="Tiranë (Qendër)">Tiranë (Qendër)</option>
-                            <option value="Durrës">Durrës</option>
-                            <option value="Vendndodhje Tjetër (Diskutohet në WhatsApp)">Vendndodhje Tjetër</option>
-                        </select>
-                    </div>
-
-                    <!-- Warning Alert Box for Less than 2 Days -->
-                    <div id="minDaysAlert" class="hidden bg-amber-500/10 border border-amber-500/30 p-4 rounded-2xl text-amber-300 text-xs flex items-center gap-3">
-                        <i class="fa-solid fa-triangle-exclamation text-xl text-amber-400"></i>
-                        <span>Rezervimi minimal te <b>Auto Aleks</b> është <b>2 ditë</b>. Ju lutem zgjidhni një periudhë më të gjatë për të vazhduar.</span>
-                    </div>
-
-                    <!-- Dynamic Automatic Offer Banner (Surprise triggering on > 5 days) -->
-                    <div id="offerSurpriseBanner" class="hidden bg-gradient-to-r from-emerald-950/80 via-emerald-900/50 to-teal-950/80 border border-emerald-500/40 p-4 rounded-2xl text-emerald-300 text-xs flex items-center justify-between shadow-lg shadow-emerald-900/20">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-lg">
-                                <i class="fa-solid fa-gift"></i>
-                            </div>
-                            <div>
-                                <span class="font-extrabold text-white text-sm block">Urime! Oferta Automatike u Aktivizua</span>
-                                <span class="text-[11px] text-emerald-300">Pasi zgjodhët më shumë se 5 ditë, çmimi ditor u ul automatikisht me <b>-5€/ditë</b>!</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Calculation Summary Screen Card -->
-                    <div id="summaryDisplayCard" class="bg-gray-950/80 rounded-2xl p-5 border border-gray-800 space-y-3">
-                        <div class="flex justify-between text-xs text-gray-400">
-                            <span>Kohëzgjatja e Qerasë:</span>
-                            <span id="dispDays" class="text-white font-bold">2 Ditë</span>
-                        </div>
-                        <div class="flex justify-between text-xs text-gray-400">
-                            <span>Tarifa e Aplikuar Ditoje:</span>
-                            <span id="dispRate" class="text-white font-bold">€35 / ditë</span>
-                        </div>
-                        <div id="dispDiscountRow" class="hidden flex justify-between text-xs text-emerald-400 font-bold">
-                            <span>Zbritja e Ofertës:</span>
-                            <span>-5€ për çdo ditë</span>
-                        </div>
-                        <div class="border-t border-gray-800/80 pt-3 flex justify-between items-center">
-                            <span class="text-sm font-black text-white">Çmimi Përfundimtar Total:</span>
-                            <span id="dispTotal" class="text-3xl font-black text-sky-400">€70</span>
-                        </div>
-                    </div>
-
-                    <!-- WhatsApp Order Button -->
-                    <button type="submit" id="btnSubmitReservation" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-4 rounded-2xl shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-3 text-base">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span>Dërgo Rezervimin në WhatsApp</span>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <!-- ================= SECTION 3: FEATURES (PSE NE) ================= -->
-        <section id="sec-features" class="hidden page-transition space-y-6">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Shërbim Elitar</span>
-                <h2 class="text-3xl font-black text-white">Pse të zgjidhni Auto Aleks?</h2>
-                <p class="text-gray-400 text-xs">Përkushtuar për t'ju ofruar makinën e duhur me çmimet më transparente në treg.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                <div class="glass-card p-8 rounded-3xl text-center space-y-3 hover:border-sky-500/40 transition-all">
-                    <div class="w-14 h-14 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center text-2xl mx-auto">
-                        <i class="fa-solid fa-plane-arrival"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Marrje në Aeroport</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Makinën tuaj mund ta merrni direkt në Aeroportin e Rinasit (TIA) ose në qendër të Tiranës pa vonesa.</p>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl text-center space-y-3 hover:border-sky-500/40 transition-all">
-                    <div class="w-14 h-14 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center text-2xl mx-auto">
-                        <i class="fa-solid fa-tags"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Oferta Automatike</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Rezervoni për më shumë se 5 ditë dhe sistemi ynë automatikisht ju aplikon uljen më të mirë ditore.</p>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl text-center space-y-3 hover:border-sky-500/40 transition-all">
-                    <div class="w-14 h-14 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center text-2xl mx-auto">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Mbështetje 24/7</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">Ekipi ynë është në dispozicion në WhatsApp gjatë të gjithë kohëzgjatjes së qerasë tuaj.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ================= SECTION 4: TERMS (KUSHTET) ================= -->
-        <section id="sec-terms" class="hidden page-transition max-w-3xl mx-auto w-full">
-            <div class="glass-panel p-8 rounded-3xl border border-gray-800 space-y-6">
+        <!-- TERMS & CONDITIONS SECTION -->
+        <section id="terms" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 rounded-3xl space-y-6">
                 <div>
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Transparencë e Plotë</span>
-                    <h2 class="text-2xl font-black text-white mt-1">Kushtet e Qerasë - Auto Aleks</h2>
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Informacion Rregullator</span>
+                    <h2 class="text-2xl font-black text-white mt-1">Kushtet e Qerasë</h2>
                 </div>
-
-                <div class="space-y-4 text-sm text-gray-300">
-                    <div class="flex items-start gap-4 bg-gray-900/60 p-4 rounded-2xl border border-gray-800">
-                        <i class="fa-solid fa-calendar-check text-sky-400 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-white">Rezervimi Minimal</h4>
-                            <p class="text-xs text-gray-400 mt-1">Afati minimal për të marrë një makinë me qera te Auto Aleks është <b>2 ditë</b>.</p>
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-gray-300">
+                    <div class="bg-gray-900/80 p-4 rounded-2xl border border-gray-800 space-y-1">
+                        <h4 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-clock text-sky-400"></i> Kohëzgjatja Minimal</h4>
+                        <p class="text-gray-400">Afati minimal për marrjen e makinës me qera është <b>2 ditë</b>.</p>
                     </div>
-
-                    <div class="flex items-start gap-4 bg-gray-900/60 p-4 rounded-2xl border border-gray-800">
-                        <i class="fa-solid fa-address-card text-sky-400 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-white">Dokumentacioni i Shoferit</h4>
-                            <p class="text-xs text-gray-400 mt-1">Lojtari/shoferi duhet të zotërojë leje drejtimi valide (minimumi 2 vite eksperiencë) si dhe Pasaportë ose Kartë Identiteti.</p>
-                        </div>
+                    <div class="bg-gray-900/80 p-4 rounded-2xl border border-gray-800 space-y-1">
+                        <h4 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-id-card text-sky-400"></i> Leja e Drejtimit</h4>
+                        <p class="text-gray-400">Shoferi duhet të ketë patentë valide me eksperiencë min. 2 vite.</p>
                     </div>
-
-                    <div class="flex items-start gap-4 bg-gray-900/60 p-4 rounded-2xl border border-gray-800">
-                        <i class="fa-solid fa-percent text-emerald-400 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-white">Ofertat e Zbritjes</h4>
-                            <p class="text-xs text-gray-400 mt-1">Sistemi ynë aplikon automatikisht zbritje prej 5€/ditë kur qëndrimi juaj i rezervuar kalon 5 ditët.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-2 text-center">
-                    <button onclick="switchTab('booking')" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-8 py-3.5 rounded-2xl transition-all text-sm inline-flex items-center gap-2 shadow-lg shadow-sky-600/20">
-                        <span>Shko te Kalkulatori</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Bottom App Navigation Bar (Optimized for Mobile/Phones) -->
-    <div class="md:hidden fixed bottom-0 left-0 w-full z-50 glass-panel border-t border-gray-800/80 px-4 py-2">
-        <div class="grid grid-cols-4 gap-1 text-center">
-            <button id="mtab-fleet" onclick="switchTab('fleet')" class="py-2 text-sky-400 flex flex-col items-center gap-1 focus:outline-none">
-                <i class="fa-solid fa-car text-base"></i>
-                <span class="text-[10px] font-bold">Flota</span>
+    <!-- FOOTER (Full Unobstructed View) -->
+    <footer class="border-t border-gray-900 bg-gray-950 py-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-lg font-black text-white">AUTO <span class="text-sky-400">ALEKS</span></span>
+                <span class="text-xs text-gray-500">| Rent a Car Albania</span>
+            </div>
+            <p class="text-xs text-gray-500">© 2026 Auto Aleks. Të gjitha të drejtat të rezervuara.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE REZERVIMI MODAL (Pop-up Slide / Sheet) -->
+    <div id="bookingModalBackdrop" onclick="closeBookingModal()" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 modal-fade opacity-0 flex items-center justify-center p-4">
+        
+        <div onclick="event.stopPropagation()" class="glass-modal w-full max-w-2xl rounded-3xl border border-sky-500/30 p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            
+            <!-- Close Icon -->
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-gray-900 border border-gray-800 text-gray-400 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <button id="mtab-booking" onclick="switchTab('booking')" class="py-2 text-gray-400 flex flex-col items-center gap-1 focus:outline-none">
-                <i class="fa-solid fa-calculator text-base"></i>
-                <span class="text-[10px] font-bold">Rezervo</span>
-            </button>
-            <button id="mtab-features" onclick="switchTab('features')" class="py-2 text-gray-400 flex flex-col items-center gap-1 focus:outline-none">
-                <i class="fa-solid fa-star text-base"></i>
-                <span class="text-[10px] font-bold">Pse Ne</span>
-            </button>
-            <button id="mtab-terms" onclick="switchTab('terms')" class="py-2 text-gray-400 flex flex-col items-center gap-1 focus:outline-none">
-                <i class="fa-solid fa-shield-halved text-base"></i>
-                <span class="text-[10px] font-bold">Kushtet</span>
-            </button>
+
+            <!-- Header -->
+            <div>
+                <span class="text-xs font-extrabold text-sky-400 uppercase tracking-widest">Kalkulatori i Shpejtë</span>
+                <h3 class="text-2xl font-black text-white mt-0.5">Rezervo me Auto Aleks</h3>
+            </div>
+
+            <!-- Form -->
+            <form onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
+                
+                <!-- Vehicle Selection -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Automobili i Përzgjedhur</label>
+                    <select id="modalCarSelect" onchange="recalculateModalPrice()" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-3 text-white text-xs font-bold focus:outline-none focus:border-sky-500">
+                        <option value="golf7">Volkswagen Golf 7 (€35/ditë)</option>
+                        <option value="audia6">Audi A6 S-Line (€65/ditë)</option>
+                        <option value="bmw5">BMW 5 Series M (€60/ditë)</option>
+                    </select>
+                </div>
+
+                <!-- Date Pickers -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Data e Marrjes</label>
+                        <input type="date" id="modalDateStart" onchange="recalculateModalPrice()" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-2.5 text-white text-xs focus:outline-none focus:border-sky-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Data e Dorëzimit</label>
+                        <input type="date" id="modalDateEnd" onchange="recalculateModalPrice()" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-2.5 text-white text-xs focus:outline-none focus:border-sky-500" required>
+                    </div>
+                </div>
+
+                <!-- Customer Details -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Emri & Mbiemri</label>
+                        <input type="text" id="modalClientName" placeholder="Z. Emër Mbiemër" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-2.5 text-white text-xs focus:outline-none focus:border-sky-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Numri i Telefonit</label>
+                        <input type="tel" id="modalClientPhone" placeholder="+355 6X XX XX XXX" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-2.5 text-white text-xs focus:outline-none focus:border-sky-500" required>
+                    </div>
+                </div>
+
+                <!-- Pickup Location -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Vendndodhja e Marrjes</label>
+                    <select id="modalPickupLoc" class="w-full bg-gray-900 border border-gray-700/80 rounded-xl px-4 py-3 text-white text-xs font-semibold focus:outline-none focus:border-sky-500">
+                        <option value="Aeroporti i Rinasit (TIA)">Aeroporti i Rinasit (TIA)</option>
+                        <option value="Tiranë (Qendër)">Tiranë (Qendër)</option>
+                        <option value="Durrës">Durrës</option>
+                        <option value="Vendndodhje Tjetër (Diskutohet në WhatsApp)">Vendndodhje Tjetër</option>
+                    </select>
+                </div>
+
+                <!-- Warning < 2 Days -->
+                <div id="modalMinDaysAlert" class="hidden bg-amber-500/10 border border-amber-500/30 p-3.5 rounded-xl text-amber-300 text-xs flex items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-lg text-amber-400"></i>
+                    <span>Rezervimi minimal te <b>Auto Aleks</b> është <b>2 ditë</b>. Ju lutem zgjidhni më shumë ditë.</span>
+                </div>
+
+                <!-- Surprise Discount Banner (>5 Days trigger) -->
+                <div id="modalSurpriseBanner" class="hidden bg-gradient-to-r from-emerald-950/80 to-teal-900/60 border border-emerald-500/40 p-3.5 rounded-xl text-emerald-300 text-xs flex items-center gap-3">
+                    <i class="fa-solid fa-gift text-lg text-emerald-400 animate-bounce"></i>
+                    <div>
+                        <span class="font-bold text-white block">Urime! Oferta Automatike u Aktivizua</span>
+                        <span>Zgjodhët më shumë se 5 ditë - u zbritën automatikisht <b>-5€/ditë</b>!</span>
+                    </div>
+                </div>
+
+                <!-- Price Calculator Result Card -->
+                <div id="modalCalcCard" class="bg-gray-950/90 rounded-2xl p-4 border border-gray-800 space-y-2">
+                    <div class="flex justify-between text-xs text-gray-400">
+                        <span>Kohëzgjatja:</span>
+                        <span id="modalOutDays" class="text-white font-bold">2 Ditë</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400">
+                        <span>Tarifa Ditorë:</span>
+                        <span id="modalOutRate" class="text-white font-bold">€35 / ditë</span>
+                    </div>
+                    <div class="border-t border-gray-800/80 pt-2 flex justify-between items-center">
+                        <span class="text-xs font-bold text-white">Çmimi Përfundimtar:</span>
+                        <span id="modalOutTotal" class="text-2xl font-black text-sky-400">€70</span>
+                    </div>
+                </div>
+
+                <!-- Submit WhatsApp -->
+                <button type="submit" id="modalSubmitBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-2xl shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Konfirmo Rezervimin në WhatsApp</span>
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
+    <!-- Application JavaScript Engine -->
     <script>
-        // Database of available vehicles
-        const carDatabase = {
+        // Car database
+        const carData = {
             golf7: { name: 'Volkswagen Golf 7', rate: 35 },
             audia6: { name: 'Audi A6 S-Line', rate: 65 },
             bmw5: { name: 'BMW 5 Series M', rate: 60 }
         };
 
-        // Tab Switching Logic (SPA - No Page Reloads)
-        function switchTab(tabId) {
-            const tabs = ['fleet', 'booking', 'features', 'terms'];
-            
-            tabs.forEach(id => {
-                const sec = document.getElementById(`sec-${id}`);
-                const dtab = document.getElementById(`dtab-${id}`);
-                const mtab = document.getElementById(`mtab-${id}`);
+        // Mobile Drawer Menu Toggle
+        function toggleMobileMenu(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
 
-                if (id === tabId) {
-                    sec.classList.remove('hidden');
-                    if (dtab) {
-                        dtab.classList.add('nav-btn-active');
-                        dtab.classList.remove('text-gray-400');
-                    }
-                    if (mtab) {
-                        mtab.classList.add('text-sky-400');
-                        mtab.classList.remove('text-gray-400');
-                    }
-                } else {
-                    sec.classList.add('hidden');
-                    if (dtab) {
-                        dtab.classList.remove('nav-btn-active');
-                        dtab.classList.add('text-gray-400');
-                    }
-                    if (mtab) {
-                        mtab.classList.remove('text-sky-400');
-                        mtab.classList.add('text-gray-400');
-                    }
-                }
+            if (open) {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    drawer.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Fleet Filter Buttons
+        function filterCars(category) {
+            const items = document.querySelectorAll('.car-item');
+            const btnAll = document.getElementById('btn-filter-all');
+            const btnLux = document.getElementById('btn-filter-luxury');
+            const btnEco = document.getElementById('btn-filter-economy');
+
+            [btnAll, btnLux, btnEco].forEach(b => {
+                b.classList.remove('bg-sky-600', 'text-white');
+                b.classList.add('text-gray-400');
             });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (category === 'all') {
+                btnAll.classList.add('bg-sky-600', 'text-white');
+                items.forEach(i => i.classList.remove('hidden'));
+            } else if (category === 'luxury') {
+                btnLux.classList.add('bg-sky-600', 'text-white');
+                items.forEach(i => i.classList.contains('luxury') ? i.classList.remove('hidden') : i.classList.add('hidden'));
+            } else if (category === 'economy') {
+                btnEco.classList.add('bg-sky-600', 'text-white');
+                items.forEach(i => i.classList.contains('economy') ? i.classList.remove('hidden') : i.classList.add('hidden'));
+            }
         }
 
-        // Direct Quick Booking from Catalog
-        function quickBook(carKey) {
-            document.getElementById('bookCarSelect').value = carKey;
-            switchTab('booking');
-            runLiveCalculation();
+        // Open Booking Modal directly from Hero Bar
+        function openBookingFromHero() {
+            const carKey = document.getElementById('heroCarSelect').value;
+            const startDate = document.getElementById('heroDateStart').value;
+
+            document.getElementById('modalCarSelect').value = carKey;
+            if (startDate) {
+                document.getElementById('modalDateStart').value = startDate;
+                const d = new Date(startDate);
+                d.setDate(d.getDate() + 2);
+                document.getElementById('modalDateEnd').value = d.toISOString().split('T')[0];
+            }
+
+            openBookingModal(carKey);
         }
 
-        // Initialize Calendar Inputs (Defaults: Today & 2 Days Later)
+        // Open Booking Modal Engine
+        function openBookingModal(carKey) {
+            if (carKey) {
+                document.getElementById('modalCarSelect').value = carKey;
+            }
+
+            const backdrop = document.getElementById('bookingModalBackdrop');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+            }, 10);
+
+            recalculateModalPrice();
+        }
+
+        function closeBookingModal() {
+            const backdrop = document.getElementById('bookingModalBackdrop');
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+            }, 250);
+        }
+
+        // Initialize Dates (Today & 2 Days Later)
         window.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             const minReturn = new Date(today);
-            minReturn.setDate(minReturn.getDate() + 2); // Default 2 days
+            minReturn.setDate(minReturn.getDate() + 2);
 
-            document.getElementById('bookDateStart').value = today.toISOString().split('T')[0];
-            document.getElementById('bookDateEnd').value = minReturn.toISOString().split('T')[0];
+            const tStr = today.toISOString().split('T')[0];
+            const rStr = minReturn.toISOString().split('T')[0];
 
-            runLiveCalculation();
+            document.getElementById('heroDateStart').value = tStr;
+            document.getElementById('modalDateStart').value = tStr;
+            document.getElementById('modalDateEnd').value = rStr;
         });
 
-        // Live Calculation Engine with Secret Dynamic Discount
-        function runLiveCalculation() {
-            const carKey = document.getElementById('bookCarSelect').value;
-            const car = carDatabase[carKey];
+        // Live Calculation & Secret Discount Engine
+        function recalculateModalPrice() {
+            const carKey = document.getElementById('modalCarSelect').value;
+            const car = carData[carKey];
 
-            const startDateVal = document.getElementById('bookDateStart').value;
-            const endDateVal = document.getElementById('bookDateEnd').value;
+            const dStartVal = document.getElementById('modalDateStart').value;
+            const dEndVal = document.getElementById('modalDateEnd').value;
 
-            if (!startDateVal || !endDateVal) return;
+            if (!dStartVal || !dEndVal) return;
 
-            const start = new Date(startDateVal);
-            const end = new Date(endDateVal);
+            const start = new Date(dStartVal);
+            const end = new Date(dEndVal);
 
             const diffTime = end.getTime() - start.getTime();
             const days = Math.ceil(diffTime / (1000 * 3600 * 24));
 
-            const alertBox = document.getElementById('minDaysAlert');
-            const submitBtn = document.getElementById('btnSubmitReservation');
-            const cardBox = document.getElementById('summaryDisplayCard');
-            const offerBanner = document.getElementById('offerSurpriseBanner');
-            const discountRow = document.getElementById('dispDiscountRow');
+            const alertBox = document.getElementById('modalMinDaysAlert');
+            const surpriseBanner = document.getElementById('modalSurpriseBanner');
+            const submitBtn = document.getElementById('modalSubmitBtn');
+            const calcCard = document.getElementById('modalCalcCard');
 
-            // Constraint: Minimum 2 days
+            // Validation: Min 2 Days
             if (days < 2) {
                 alertBox.classList.remove('hidden');
-                cardBox.classList.add('opacity-30');
-                offerBanner.classList.add('hidden');
+                surpriseBanner.classList.add('hidden');
+                calcCard.classList.add('opacity-30');
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-40', 'cursor-not-allowed');
 
-                document.getElementById('dispDays').innerText = `${days < 1 ? 0 : days} Ditë`;
-                document.getElementById('dispTotal').innerText = `€0`;
+                document.getElementById('modalOutDays').innerText = `${days < 1 ? 0 : days} Ditë`;
+                document.getElementById('modalOutTotal').innerText = `€0`;
                 return;
             } else {
                 alertBox.classList.add('hidden');
-                cardBox.classList.remove('opacity-30');
+                calcCard.classList.remove('opacity-30');
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-40', 'cursor-not-allowed');
             }
 
-            // Automatic Secret Offer: If > 5 days -> Apply -5€/day discount automatically
-            let finalRate = car.rate;
-            let discountApplied = false;
-
+            // Automatic Secret Offer Trigger (> 5 Days)
+            let currentRate = car.rate;
             if (days > 5) {
-                finalRate = car.rate - 5;
-                discountApplied = true;
-                offerBanner.classList.remove('hidden');
-                discountRow.classList.remove('hidden');
+                currentRate = car.rate - 5;
+                surpriseBanner.classList.remove('hidden');
             } else {
-                offerBanner.classList.add('hidden');
-                discountRow.classList.add('hidden');
+                surpriseBanner.classList.add('hidden');
             }
 
-            const grandTotal = days * finalRate;
+            const grandTotal = days * currentRate;
 
-            document.getElementById('dispDays').innerText = `${days} Ditë`;
-            document.getElementById('dispRate').innerText = `€${finalRate} / ditë`;
-            document.getElementById('dispTotal').innerText = `€${grandTotal}`;
+            document.getElementById('modalOutDays').innerText = `${days} Ditë`;
+            document.getElementById('modalOutRate').innerText = `€${currentRate} / ditë`;
+            document.getElementById('modalOutTotal').innerText = `€${grandTotal}`;
         }
 
-        // WhatsApp Payload Generator & Dispatcher
-        function submitWhatsAppBooking(e) {
+        // Send to WhatsApp Payload
+        function sendWhatsAppOrder(e) {
             e.preventDefault();
 
-            // Set the Auto Aleks business WhatsApp number here
-            const businessWhatsApp = "355680000000";
+            // Set Auto Aleks WhatsApp number here
+            const phoneNum = "355680000000";
 
-            const carKey = document.getElementById('bookCarSelect').value;
-            const carName = carDatabase[carKey].name;
-            const startDate = document.getElementById('bookDateStart').value;
-            const endDate = document.getElementById('bookDateEnd').value;
-            const name = document.getElementById('clientName').value;
-            const phone = document.getElementById('clientPhone').value;
-            const location = document.getElementById('pickupLocation').value;
-            
-            const daysText = document.getElementById('dispDays').innerText;
-            const rateText = document.getElementById('dispRate').innerText;
-            const totalText = document.getElementById('dispTotal').innerText;
+            const carKey = document.getElementById('modalCarSelect').value;
+            const carName = carData[carKey].name;
+            const dStart = document.getElementById('modalDateStart').value;
+            const dEnd = document.getElementById('modalDateEnd').value;
+            const name = document.getElementById('modalClientName').value;
+            const phone = document.getElementById('modalClientPhone').value;
+            const location = document.getElementById('modalPickupLoc').value;
 
-            const isDiscounted = !document.getElementById('offerSurpriseBanner').classList.contains('hidden');
+            const daysText = document.getElementById('modalOutDays').innerText;
+            const rateText = document.getElementById('modalOutRate').innerText;
+            const totalText = document.getElementById('modalOutTotal').innerText;
 
-            let message = `Përshëndetje Auto Aleks! Dëshiroj të bëj këtë rezervim:\n\n` +
+            const isDiscounted = !document.getElementById('modalSurpriseBanner').classList.contains('hidden');
+
+            let msg = `Përshëndetje Auto Aleks! Dëshiroj të bëj një rezervim makine:\n\n` +
                 `🚗 *Makina:* ${carName}\n` +
-                `📅 *Data e Marrjes:* ${startDate}\n` +
-                `📅 *Data e Dorëzimit:* ${endDate} (${daysText})\n` +
+                `📅 *Data e Marrjes:* ${dStart}\n` +
+                `📅 *Data e Dorëzimit:* ${dEnd} (${daysText})\n` +
                 `📍 *Vendndodhja:* ${location}\n` +
                 `💳 *Tarifa Ditoje:* ${rateText}\n`;
 
             if (isDiscounted) {
-                message += `🎉 *Oferta e Aplikuar:* Zbritje -5€/ditë (>5 ditë)\n`;
+                msg += `🎉 *Oferta e Aplikuar:* Zbritje -5€/ditë (>5 ditë)\n`;
             }
 
-            message += `💰 *Çmimi Total:* ${totalText}\n\n` +
-                `👤 *Emri i Klientit:* ${name}\n` +
-                `📞 *Telefon Contact:* ${phone}`;
+            msg += `💰 *Çmimi Total:* ${totalText}\n\n` +
+                `👤 *Klienti:* ${name}\n` +
+                `📞 *Telefon:* ${phone}`;
 
-            const waUrl = `https://wa.me/${businessWhatsApp}?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
+            window.open(`https://wa.me/${phoneNum}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
