@@ -49,7 +49,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .glass-nav {
-            background: rgba(9, 9, 11, 0.85);
+            background: rgba(9, 9, 11, 0.90);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -65,9 +65,20 @@
             transform: translateX(-50%);
             width: 600px;
             height: 400px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(0,0,0,0) 70%);
             pointer-events: none;
             z-index: 0;
+        }
+        /* Drawer Smooth Transition */
+        .drawer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+        .drawer-content.active {
+            max-height: 2500px;
+            opacity: 1;
         }
     </style>
 </head>
@@ -81,7 +92,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
+            <a href="#" onclick="openMainSection('fleet'); return false;" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-black text-xl font-black shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-car-side"></i>
                 </div>
@@ -92,12 +103,13 @@
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-zinc-300">
-                <a href="#hero" class="hover:text-amber-400 transition-colors">Kreu</a>
-                <a href="#fleet" class="hover:text-amber-400 transition-colors">Makinat</a>
-                <a href="#why-us" class="hover:text-amber-400 transition-colors">Pse Ne?</a>
-                <a href="#faq" class="hover:text-amber-400 transition-colors">FAQ</a>
-                <a href="#contact" class="hover:text-amber-400 transition-colors">Kontakt</a>
+            <nav class="hidden md:flex items-center space-x-6 font-medium text-sm text-zinc-300">
+                <button onclick="openMainSection('hero-quick')" class="hover:text-amber-400 transition-colors">Kreu</button>
+                <button onclick="openMainSection('fleet')" class="hover:text-amber-400 transition-colors">Flota e Makinave</button>
+                <button onclick="openMainSection('why-us')" class="hover:text-amber-400 transition-colors">Pse Ne?</button>
+                <button onclick="openMainSection('how-it-works')" class="hover:text-amber-400 transition-colors">Si Funksionon</button>
+                <button onclick="openMainSection('faq')" class="hover:text-amber-400 transition-colors">FAQ</button>
+                <button onclick="openMainSection('contact')" class="hover:text-amber-400 transition-colors">Kontakt</button>
             </nav>
 
             <!-- Action Buttons -->
@@ -120,11 +132,12 @@
 
         <!-- Mobile Menu Drawer -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-800/80 bg-zinc-950/95 px-6 py-6 space-y-4">
-            <a href="#hero" class="mobile-link block text-lg font-medium text-zinc-200 hover:text-amber-400">Kreu</a>
-            <a href="#fleet" class="mobile-link block text-lg font-medium text-zinc-200 hover:text-amber-400">Makinat</a>
-            <a href="#why-us" class="mobile-link block text-lg font-medium text-zinc-200 hover:text-amber-400">Pse Ne?</a>
-            <a href="#faq" class="mobile-link block text-lg font-medium text-zinc-200 hover:text-amber-400">FAQ</a>
-            <a href="#contact" class="mobile-link block text-lg font-medium text-zinc-200 hover:text-amber-400">Kontakt</a>
+            <button onclick="openMainSection('hero-quick'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">Kreu</button>
+            <button onclick="openMainSection('fleet'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">Flota e Makinave</button>
+            <button onclick="openMainSection('why-us'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">Pse Ne?</button>
+            <button onclick="openMainSection('how-it-works'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">Si Funksionon</button>
+            <button onclick="openMainSection('faq'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">FAQ</button>
+            <button onclick="openMainSection('contact'); toggleMobileMenu();" class="block w-full text-left text-lg font-medium text-zinc-200 hover:text-amber-400">Kontakt</button>
             <div class="pt-4 flex flex-col gap-3">
                 <a href="tel:+355690000000" class="w-full py-3 text-center rounded-xl border border-zinc-700 bg-zinc-900 text-sm font-semibold flex items-center justify-center gap-2">
                     <i class="fa-solid fa-phone text-amber-400"></i>
@@ -138,356 +151,347 @@
         </div>
     </header>
 
-    <!-- ================= HERO SECTION ================= -->
-    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Hero Text -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-widest">
-                        <i class="fa-solid fa-shield-halved"></i> Pa Kartë Krediti • Pa Depozitë të Fshehur
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none">
-                        Makina me Qira me Çmimet <span class="gold-gradient-text">Më Të Mira</span> në Shqipëri
-                    </h1>
-                    <p class="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
-                        Dorëzim i menjëhershëm në <strong class="text-zinc-200">Aeroportin e Rinasit (TIA)</strong> dhe në të gjithë Tiranën 24/7. Makina të pastra, me siguracion të përfshirë dhe me kilometrazh të pakufizuar.
-                    </p>
+    <!-- ================= HERO HEADLINE ================= -->
+    <section id="hero" class="relative pt-32 pb-10 md:pt-40 md:pb-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-widest mb-6">
+                <i class="fa-solid fa-shield-halved"></i> Pa Kartë Krediti • Pa Depozitë të Fshehur
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none max-w-4xl mx-auto">
+                Makina me Qira me Çmimet <span class="gold-gradient-text">Më Të Mira</span> në Shqipëri
+            </h1>
+            <p class="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed mx-auto mt-4">
+                Dorëzim i menjëhershëm në <strong class="text-zinc-200">Aeroportin e Rinasit (TIA)</strong> dhe në të gjithë Tiranën 24/7.
+            </p>
 
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#fleet" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-bold text-base flex items-center justify-center gap-3 shadow-lg shadow-amber-500/25 transition-all hover:scale-105">
-                            <i class="fa-solid fa-car"></i>
-                            <span>Shiko Fleet-in e Makinave</span>
-                        </a>
-                        <a href="https://wa.me/355690000000?text=Pershendetje%20Auto%20Aleks,%20doja%20te%20pyesja%20per%20makina%20me%20qira" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-zinc-800 text-white font-semibold text-base flex items-center justify-center gap-3 transition-all">
-                            <i class="fa-brands fa-whatsapp text-whatsapp text-xl"></i>
-                            <span>Pyet në WhatsApp</span>
-                        </a>
-                    </div>
+            <!-- Quick Action Cards Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-8">
+                <div onclick="openMainSection('fleet')" class="glass-card p-4 rounded-xl cursor-pointer hover:border-amber-500/50 transition-all text-center group">
+                    <i class="fa-solid fa-car text-amber-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="block font-bold text-sm text-white">Shiko Makinave</span>
+                    <span class="text-[11px] text-zinc-400">Flota me Qira</span>
+                </div>
+                <div onclick="openMainSection('why-us')" class="glass-card p-4 rounded-xl cursor-pointer hover:border-amber-500/50 transition-all text-center group">
+                    <i class="fa-solid fa-star text-amber-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="block font-bold text-sm text-white">Pse Auto Aleks</span>
+                    <span class="text-[11px] text-zinc-400">Avantazhet tona</span>
+                </div>
+                <div onclick="openMainSection('how-it-works')" class="glass-card p-4 rounded-xl cursor-pointer hover:border-amber-500/50 transition-all text-center group">
+                    <i class="fa-solid fa-list-check text-amber-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="block font-bold text-sm text-white">Si Funksionon</span>
+                    <span class="text-[11px] text-zinc-400">3 Hapa të thjeshtë</span>
+                </div>
+                <div onclick="openMainSection('contact')" class="glass-card p-4 rounded-xl cursor-pointer hover:border-amber-500/50 transition-all text-center group">
+                    <i class="fa-solid fa-location-dot text-amber-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="block font-bold text-sm text-white">Vendndodhja</span>
+                    <span class="text-[11px] text-zinc-400">Google Maps & Tel</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <!-- Highlights Stats -->
-                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-zinc-800/80 max-w-xl mx-auto lg:mx-0">
-                        <div class="text-center lg:text-left">
-                            <span class="block text-2xl sm:text-3xl font-black text-amber-400">50+</span>
-                            <span class="text-xs text-zinc-400 font-medium">Makina Premium</span>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <span class="block text-2xl sm:text-3xl font-black text-amber-400">24 / 7</span>
-                            <span class="text-xs text-zinc-400 font-medium">Shërbim në Rinas</span>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <span class="block text-2xl sm:text-3xl font-black text-amber-400">100%</span>
-                            <span class="text-xs text-zinc-400 font-medium">Klientë të Kënaqur</span>
-                        </div>
+    <!-- ================= MAIN INTERACTIVE ACCORDION CONTAINER ================= -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-6">
+
+        <!-- ITEM 1: FLOTA E MAKINAVE (DEFAULT OPEN OR ON DEMAND) -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 transition-all" id="sec-fleet-container">
+            <!-- Header Trigger Button -->
+            <button onclick="toggleMainSection('fleet')" class="w-full p-6 text-left flex items-center justify-between bg-zinc-900/60 hover:bg-zinc-900 transition-colors focus:outline-none">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-car-rear"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Katalogu i Makinave</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Flota e Makinave me Qira</h2>
                     </div>
                 </div>
+                <div class="flex items-center gap-3">
+                    <span class="hidden sm:inline-block text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-semibold">Kliko për ta hapur / mbyllur</span>
+                    <i class="fa-solid fa-chevron-down text-amber-400 text-xl transition-transform duration-300 transform" id="icon-fleet"></i>
+                </div>
+            </button>
 
-                <!-- Hero Image & Quick Search Card -->
-                <div class="lg:col-span-5 relative">
-                    <div class="glass-card p-6 rounded-2xl relative z-10 shadow-2xl border border-zinc-800">
-                        <div class="flex items-center justify-between pb-4 border-b border-zinc-800 mb-4">
-                            <h3 class="font-bold text-lg text-white flex items-center gap-2">
-                                <i class="fa-solid fa-sliders text-amber-400"></i> Kërkesë e Shpejtë
-                            </h3>
-                            <span class="text-xs bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full font-semibold">Konfirmim i menjëhershëm</span>
-                        </div>
-                        
-                        <form id="hero-quick-form" onsubmit="event.preventDefault(); scrollToFleetWithFilter();" class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-zinc-400 mb-1">Vendi i Marrjes</label>
-                                <div class="relative">
-                                    <i class="fa-solid fa-location-dot absolute left-3 top-3.5 text-zinc-500 text-sm"></i>
-                                    <select id="hero-pickup-location" class="w-full bg-zinc-900 border border-zinc-700/80 rounded-xl pl-9 pr-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400">
-                                        <option value="Rinas">Aeroporti i Rinasit (TIA)</option>
-                                        <option value="Tirane">Tiranë Qendër / Hotel</option>
-                                        <option value="Durres">Durrës</option>
-                                        <option value="Vlore">Vlorë</option>
-                                        <option value="Sarande">Sarandë</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-xs font-semibold text-zinc-400 mb-1">Data Marrjes</label>
-                                    <input type="date" id="hero-date-from" class="w-full bg-zinc-900 border border-zinc-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-zinc-400 mb-1">Data Dorëzimit</label>
-                                    <input type="date" id="hero-date-to" class="w-full bg-zinc-900 border border-zinc-700/80 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold text-zinc-400 mb-1">Tipi i Makinës</label>
-                                <select id="hero-car-type" class="w-full bg-zinc-900 border border-zinc-700/80 rounded-xl px-3 py-3 text-sm text-white focus:outline-none focus:border-amber-400">
-                                    <option value="all">Të gjitha kategoritë</option>
-                                    <option value="ekonomike">Ekonomike</option>
-                                    <option value="suv">SUV & Crossover</option>
-                                    <option value="luksoze">Luksoze / Premium</option>
-                                    <option value="automatike">Me Kambio Automatike</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-md">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <span>Kërko Makinën Tuaj</span>
+            <!-- Collapsible Drawer Body -->
+            <div class="drawer-content px-6 pb-8" id="drawer-fleet">
+                <div class="pt-6 border-t border-zinc-800/80">
+                    
+                    <!-- Filters & Search -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                        <!-- Category Tabs -->
+                        <div class="flex flex-wrap items-center gap-2 bg-zinc-950 p-1.5 rounded-2xl border border-zinc-800" id="filter-tabs">
+                            <button onclick="filterCars('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-amber-500 text-zinc-950 shadow" data-category="all">
+                                Të gjitha
                             </button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= FLEET SECTION ================= -->
-    <section id="fleet" class="py-20 bg-zinc-900/50 border-t border-b border-zinc-800/80 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">Koleksioni Ynë</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">Flota e Makinave Auto Aleks</h2>
-                <p class="text-zinc-400 text-sm sm:text-base mt-2">Zgjidhni makinën idealë për udhëtimin tuaj në Shqipëri. Të gjitha makinat kontrollohen rregullisht dhe dorëzohen me rezervuar plot ose sipas marrëveshjes.</p>
-            </div>
-
-            <!-- Filter Buttons & Search -->
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
-                <!-- Category Tabs -->
-                <div class="flex flex-wrap items-center gap-2 bg-zinc-950 p-1.5 rounded-2xl border border-zinc-800" id="filter-tabs">
-                    <button onclick="filterCars('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-amber-500 text-zinc-950 shadow" data-category="all">
-                        Të gjitha
-                    </button>
-                    <button onclick="filterCars('ekonomike')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="ekonomike">
-                        Ekonomike
-                    </button>
-                    <button onclick="filterCars('suv')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="suv">
-                        SUV & Offroad
-                    </button>
-                    <button onclick="filterCars('luksoze')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="luksoze">
-                        Luksoze
-                    </button>
-                    <button onclick="filterCars('automatike')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="automatike">
-                        Automatike
-                    </button>
-                </div>
-
-                <!-- Search Input -->
-                <div class="relative w-full sm:w-64">
-                    <i class="fa-solid fa-search absolute left-3 top-3 text-zinc-500 text-sm"></i>
-                    <input type="text" id="car-search-input" onkeyup="searchCars()" placeholder="Kërko me emër..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-amber-400">
-                </div>
-            </div>
-
-            <!-- Cars Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="fleet-grid">
-                <!-- Dynamically populated or rendered via JS -->
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ================= WHY CHOOSE US ================= -->
-    <section id="why-us" class="py-20 bg-zinc-950 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">Avantazhet Tona</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">Pse të zgjidhni Auto Aleks?</h2>
-                <p class="text-zinc-400 text-sm sm:text-base mt-2">Përvoja më e lehtë dhe me transparencë të plotë për të marrë makinë me qira në Shqipëri.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Feature 1 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-amber-500/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-plane-arrival"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Dorëzim 24/7 në Rinas (TIA)</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">Ekipi ynë ju pret direkt te dalja e Aeroportit me çelësat e makinës gati, pavarësisht orës së fluturimit.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-amber-500/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-credit-card-slash"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Pa Kartë Krediti / Depozitë</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">Pagesa bëhet me para në dorë (Cash) ose transfertë gjatë marrjes së makinës. Pa bllokime kartash bancare.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-amber-500/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-shield-cat"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Siguracion i Përfshirë</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">Të gjitha mjetet tona janë të pajisura me siguracion TPL & Kasko për një udhëtim plotësisht pa stres.</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-amber-500/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-road"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Kilometrazh i Pakufizuar</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">Eksploroni Veriun e Shqipërisë apo Rivierën e Jugut (Vlorë, Sarandë, Ksamil) pa kufizime kilometrash.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= HOW IT WORKS ================= -->
-    <section class="py-16 bg-zinc-900 border-t border-b border-zinc-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-black text-white">Si funksionon rezervimi?</h2>
-                <p class="text-zinc-400 text-sm mt-1">Vetëm 3 hapa të thjeshtë për të pasur makinën tuaj gati.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="p-6">
-                    <div class="w-12 h-12 bg-amber-500 text-zinc-950 text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">1</div>
-                    <h4 class="text-lg font-bold text-white mb-2">Zgjidhni Makinën</h4>
-                    <p class="text-zinc-400 text-sm">Shfletoni katalogun tonë dhe zgjidhni modelin që i përshtatet më së miri udhëtimit tuaj.</p>
-                </div>
-                <div class="p-6">
-                    <div class="w-12 h-12 bg-amber-500 text-zinc-950 text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">2</div>
-                    <h4 class="text-lg font-bold text-white mb-2">Plotësoni Datat</h4>
-                    <p class="text-zinc-400 text-sm">Klikoni "Rezervo në WhatsApp", vendosni datat e udhëtimit dhe vendin e marrjes.</p>
-                </div>
-                <div class="p-6">
-                    <div class="w-12 h-12 bg-whatsapp text-white text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white mb-2">Konfirmimi në WhatsApp</h4>
-                    <p class="text-zinc-400 text-sm">Dërgoni mesazhin e përgatitur direkt. Ekipi ynë ju konfirmon disponueshmërinë në pak minuta.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= FAQ SECTION ================= -->
-    <section id="faq" class="py-20 bg-zinc-950">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">Informacion</span>
-                <h2 class="text-3xl font-black text-white mt-3">Pyetjet e Shpeshta (FAQ)</h2>
-            </div>
-
-            <div class="space-y-4" id="faq-accordion">
-                
-                <!-- FAQ item 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                        <span class="font-bold text-white text-base sm:text-lg">Çfarë dokumentesh më nevojiten për të marrë makinën me qira?</span>
-                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-6 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/60 pt-4">
-                        Ju nevojiten vetëm një patentë valide (Leje Drejtimi) dhe një Pasaportë apo Kartë Identiteti. Nuk është e nevojshme kartë krediti.
-                    </div>
-                </div>
-
-                <!-- FAQ item 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                        <span class="font-bold text-white text-base sm:text-lg">Si bëhet marrja e makinës në Aeroportin e Rinasit (TIA)?</span>
-                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-6 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/60 pt-4">
-                        Pas pranimit të valizave tuaja, një përfaqësues i Auto Aleks do t'ju presë në zonën e arritjeve (Arrivals) me emrin tuaj. Makina do të jetë e parkuar pranë aeroportit gati për dorëzim.
-                    </div>
-                </div>
-
-                <!-- FAQ item 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                        <span class="font-bold text-white text-base sm:text-lg">A ka depozitë apo garanci monetare gjatë marrjes?</span>
-                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-6 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/60 pt-4">
-                        Jo! Auto Aleks nuk kërkon bllokime të mëdha monetare. Çmimi që shihni është çmimi përfundimtar pa kosto të fshehura.
-                    </div>
-                </div>
-
-                <!-- FAQ item 4 -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                        <span class="font-bold text-white text-base sm:text-lg">Cila është mosha minimale për të marrë makinë?</span>
-                        <i class="fa-solid fa-chevron-down text-amber-400 transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-6 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/60 pt-4">
-                        Mosha minimale e drejtuesit të mjetit duhet të jetë 21 vjeç dhe me të paktën 1-2 vite përvojë me leje drejtimi.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= CONTACT SECTION ================= -->
-    <section id="contact" class="py-20 bg-zinc-900/60 border-t border-zinc-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12">
-                
-                <!-- Contact info -->
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">Na Kontaktoni</span>
-                    <h2 class="text-3xl font-black text-white">Ne jemi gjithmonë në dispozicionin tuaj</h2>
-                    <p class="text-zinc-400 text-sm leading-relaxed">Për çdo pyetje apo rezervim urgjent, mund të na telefononi direkt ose të na shkruani në WhatsApp 24 orë në ditë.</p>
-
-                    <div class="space-y-4 pt-2">
-                        <div class="flex items-center gap-4 glass-card p-4 rounded-xl">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div>
-                                <span class="block text-xs text-zinc-400 font-medium">Telefon & Celular</span>
-                                <a href="tel:+355690000000" class="text-white font-bold hover:text-amber-400 transition-colors">+355 69 000 0000</a>
-                            </div>
+                            <button onclick="filterCars('ekonomike')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="ekonomike">
+                                Ekonomike
+                            </button>
+                            <button onclick="filterCars('suv')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="suv">
+                                SUV & Offroad
+                            </button>
+                            <button onclick="filterCars('luksoze')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="luksoze">
+                                Luksoze
+                            </button>
+                            <button onclick="filterCars('automatike')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-zinc-400 hover:text-white" data-category="automatike">
+                                Automatike
+                            </button>
                         </div>
 
-                        <div class="flex items-center gap-4 glass-card p-4 rounded-xl">
-                            <div class="w-12 h-12 rounded-xl bg-whatsapp/10 text-whatsapp flex items-center justify-center text-xl shrink-0">
+                        <!-- Search Input -->
+                        <div class="relative w-full sm:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-zinc-500 text-sm"></i>
+                            <input type="text" id="car-search-input" onkeyup="searchCars()" placeholder="Kërko makinën..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <!-- Cars Grid Container -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="fleet-grid">
+                        <!-- Dynamically Populated via Javascript -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEM 2: PSE NA ZGJIDHNI NI (WHY US) -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 transition-all" id="sec-why-us-container">
+            <!-- Header Trigger Button -->
+            <button onclick="toggleMainSection('why-us')" class="w-full p-6 text-left flex items-center justify-between bg-zinc-900/60 hover:bg-zinc-900 transition-colors focus:outline-none">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Avantazhet Tona</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Pse të zgjidhni Auto Aleks?</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="hidden sm:inline-block text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-semibold">Kliko për ta hapur</span>
+                    <i class="fa-solid fa-chevron-down text-amber-400 text-xl transition-transform duration-300 transform" id="icon-why-us"></i>
+                </div>
+            </button>
+
+            <!-- Collapsible Drawer Body -->
+            <div class="drawer-content px-6 pb-8" id="drawer-why-us">
+                <div class="pt-6 border-t border-zinc-800/80">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-plane-arrival"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Dorëzim 24/7 në Rinas (TIA)</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Ekipi ynë ju pret direkt te dalja e Aeroportit me çelësat e makinës gati, pavarësisht orës së fluturimit.</p>
+                        </div>
+
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-credit-card-slash"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Pa Kartë Krediti / Depozitë</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Pagesa bëhet me para në dorë (Cash) ose transfertë gjatë marrjes së makinës. Pa bllokime kartash bancare.</p>
+                        </div>
+
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Siguracion i Përfshirë</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Të gjitha mjetet tona janë të pajisura me siguracion TPL & Kasko për një udhëtim plotësisht pa stres.</p>
+                        </div>
+
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Kilometrazh i Pakufizuar</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Eksploroni Veriun e Shqipërisë apo Rivierën e Jugut (Vlorë, Sarandë, Ksamil) pa kufizime kilometrash.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEM 3: SI FUNKSIONON? (HOW IT WORKS) -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 transition-all" id="sec-how-it-works-container">
+            <!-- Header Trigger Button -->
+            <button onclick="toggleMainSection('how-it-works')" class="w-full p-6 text-left flex items-center justify-between bg-zinc-900/60 hover:bg-zinc-900 transition-colors focus:outline-none">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Udhëzuesi i thjeshtë</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Si Funksionon Rezervimi?</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="hidden sm:inline-block text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-semibold">Kliko për ta hapur</span>
+                    <i class="fa-solid fa-chevron-down text-amber-400 text-xl transition-transform duration-300 transform" id="icon-how-it-works"></i>
+                </div>
+            </button>
+
+            <!-- Collapsible Drawer Body -->
+            <div class="drawer-content px-6 pb-8" id="drawer-how-it-works">
+                <div class="pt-6 border-t border-zinc-800/80">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 bg-amber-500 text-zinc-950 text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">1</div>
+                            <h4 class="text-lg font-bold text-white mb-2">Zgjidhni Makinën</h4>
+                            <p class="text-zinc-400 text-sm">Shfletoni katalogun tonë dhe zgjidhni modelin që i përshtatet më së miri udhëtimit tuaj.</p>
+                        </div>
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 bg-amber-500 text-zinc-950 text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">2</div>
+                            <h4 class="text-lg font-bold text-white mb-2">Plotësoni Datat</h4>
+                            <p class="text-zinc-400 text-sm">Klikoni "Rezervo në WhatsApp", vendosni datat e udhëtimit dhe vendin e marrjes.</p>
+                        </div>
+                        <div class="bg-zinc-950/80 p-6 rounded-xl border border-zinc-800">
+                            <div class="w-12 h-12 bg-whatsapp text-white text-xl font-black rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </div>
-                            <div>
-                                <span class="block text-xs text-zinc-400 font-medium">WhatsApp Direct</span>
-                                <a href="https://wa.me/355690000000" target="_blank" class="text-white font-bold hover:text-whatsapp transition-colors">+355 69 000 0000</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4 glass-card p-4 rounded-xl">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl shrink-0">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div>
-                                <span class="block text-xs text-zinc-400 font-medium">Lokacionet Kryesore</span>
-                                <span class="text-white font-bold text-sm">Aeroporti Nënë Tereza (Rinas) & Tiranë Qendër</span>
-                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">Konfirmimi në WhatsApp</h4>
+                            <p class="text-zinc-400 text-sm">Dërgoni mesazhin e përgatitur direkt. Ekipi ynë ju konfirmon disponueshmërinë në pak minuta.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Google Map Placeholder / Frame -->
-                <div class="lg:col-span-7 glass-card p-2 rounded-2xl overflow-hidden min-h-[350px] relative">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47915.223847255!2d19.7029541!3d41.4147775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350311d4d2d4fd5%3A0x6b44a30e8c0570b5!2sTirana%20International%20Airport%20N%C3%ABn%C3%AB%20Tereza!5e0!3m2!1sen!2sal!4v1700000000000!5m2!1sen!2sal" 
-                        class="w-full h-full rounded-xl border-0 min-h-[350px]" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
             </div>
         </div>
-    </section>
+
+        <!-- ITEM 4: PYETJET E SHPESHTA (FAQ) -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 transition-all" id="sec-faq-container">
+            <!-- Header Trigger Button -->
+            <button onclick="toggleMainSection('faq')" class="w-full p-6 text-left flex items-center justify-between bg-zinc-900/60 hover:bg-zinc-900 transition-colors focus:outline-none">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Informacion nga Auto Aleks</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Pyetjet e Shpeshta (FAQ)</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="hidden sm:inline-block text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-semibold">Kliko për ta hapur</span>
+                    <i class="fa-solid fa-chevron-down text-amber-400 text-xl transition-transform duration-300 transform" id="icon-faq"></i>
+                </div>
+            </button>
+
+            <!-- Collapsible Drawer Body -->
+            <div class="drawer-content px-6 pb-8" id="drawer-faq">
+                <div class="pt-6 border-t border-zinc-800/80 space-y-4">
+                    
+                    <div class="bg-zinc-950/80 rounded-xl p-5 border border-zinc-800">
+                        <h4 class="font-bold text-white text-base mb-2">Çfarë dokumentesh më nevojiten për të marrë makinën me qira?</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Ju nevojiten vetëm një patentë valide (Leje Drejtimi) dhe një Pasaportë apo Kartë Identiteti. Nuk është e nevojshme kartë krediti.</p>
+                    </div>
+
+                    <div class="bg-zinc-950/80 rounded-xl p-5 border border-zinc-800">
+                        <h4 class="font-bold text-white text-base mb-2">Si bëhet marrja e makinës në Aeroportin e Rinasit (TIA)?</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Pas pranimit të valizave tuaja, një përfaqësues i Auto Aleks do t'ju presë në zonën e arritjeve (Arrivals) me emrin tuaj. Makina do të jetë e parkuar pranë aeroportit gati për dorëzim.</p>
+                    </div>
+
+                    <div class="bg-zinc-950/80 rounded-xl p-5 border border-zinc-800">
+                        <h4 class="font-bold text-white text-base mb-2">A ka depozitë apo garanci monetare gjatë marrjes?</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Jo! Auto Aleks nuk kërkon bllokime të mëdha monetare. Çmimi që shihni është çmimi përfundimtar pa kosto të fshehura.</p>
+                    </div>
+
+                    <div class="bg-zinc-950/80 rounded-xl p-5 border border-zinc-800">
+                        <h4 class="font-bold text-white text-base mb-2">Cila është mosha minimale për të marrë makinë?</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Mosha minimale e drejtuesit të mjetit duhet të jetë 21 vjeç dhe me të paktën 1-2 vite përvojë me leje drejtimi.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEM 5: KONTAKT DHE VENDNDODHJA GOOGLE MAPS -->
+        <div class="glass-card rounded-2xl overflow-hidden border border-zinc-800 transition-all" id="sec-contact-container">
+            <!-- Header Trigger Button -->
+            <button onclick="toggleMainSection('contact')" class="w-full p-6 text-left flex items-center justify-between bg-zinc-900/60 hover:bg-zinc-900 transition-colors focus:outline-none">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Kontakt & Lokacioni</span>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Na Gjeni në Google Maps</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="hidden sm:inline-block text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-semibold">Kliko për ta hapur</span>
+                    <i class="fa-solid fa-chevron-down text-amber-400 text-xl transition-transform duration-300 transform" id="icon-contact"></i>
+                </div>
+            </button>
+
+            <!-- Collapsible Drawer Body -->
+            <div class="drawer-content px-6 pb-8" id="drawer-contact">
+                <div class="pt-6 border-t border-zinc-800/80">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Info Column -->
+                        <div class="lg:col-span-5 space-y-4">
+                            <p class="text-zinc-300 text-sm leading-relaxed">
+                                Jemi me shërbim të menjëhershëm 24/7 në Aeroportin Nënë Tereza (Rinas) dhe në të gjithë zonën e Tiranës.
+                            </p>
+
+                            <div class="space-y-3 pt-2">
+                                <a href="https://maps.app.goo.gl/YbCoihoHTgAE9YNF9?g_st=ic" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-amber-500/50 transition-all group">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs text-zinc-400 font-medium">Lokacioni i Auto Aleks</span>
+                                        <span class="text-white font-bold text-sm underline group-hover:text-amber-400">Hap Vendndodhjen në Google Maps ➔</span>
+                                    </div>
+                                </a>
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg shrink-0">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs text-zinc-400 font-medium">Telefon & Celular</span>
+                                        <a href="tel:+355690000000" class="text-white font-bold text-sm hover:text-amber-400">+355 69 000 0000</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+                                    <div class="w-10 h-10 rounded-lg bg-whatsapp/10 text-whatsapp flex items-center justify-center text-lg shrink-0">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs text-zinc-400 font-medium">WhatsApp Direct</span>
+                                        <a href="https://wa.me/355690000000" target="_blank" class="text-white font-bold text-sm hover:text-whatsapp">+355 69 000 0000</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map & Direct Google Link Button -->
+                        <div class="lg:col-span-7 bg-zinc-950 p-4 rounded-2xl border border-zinc-800 text-center space-y-4">
+                            <div class="relative w-full h-[280px] rounded-xl overflow-hidden border border-zinc-800">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47915.223847255!2d19.7029541!3d41.4147775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350311d4d2d4fd5%3A0x6b44a30e8c0570b5!2sTirana%20International%20Airport%20N%C3%ABn%C3%AB%20Tereza!5e0!3m2!1sen!2sal!4v1700000000000!5m2!1sen!2sal" 
+                                    class="w-full h-full border-0" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                            <a href="https://maps.app.goo.gl/YbCoihoHTgAE9YNF9?g_st=ic" target="_blank" class="inline-flex items-center justify-center gap-3 w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-bold rounded-xl transition-all shadow-md">
+                                <i class="fa-solid fa-map-pin"></i>
+                                <span>Kliko Këtu për të Hapur Harta (Google Maps)</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
 
     <!-- ================= FOOTER ================= -->
     <footer class="bg-zinc-950 border-t border-zinc-800 text-zinc-400 py-12">
@@ -500,17 +504,14 @@
                     <span class="text-xl font-black text-white">AUTO <span class="gold-gradient-text">ALEKS</span></span>
                 </div>
                 <div class="flex items-center space-x-6 text-sm font-medium">
-                    <a href="#hero" class="hover:text-amber-400 transition-colors">Kreu</a>
-                    <a href="#fleet" class="hover:text-amber-400 transition-colors">Makinat</a>
-                    <a href="#why-us" class="hover:text-amber-400 transition-colors">Pse Ne</a>
-                    <a href="#faq" class="hover:text-amber-400 transition-colors">FAQ</a>
+                    <button onclick="openMainSection('fleet')" class="hover:text-amber-400 transition-colors">Flota</button>
+                    <button onclick="openMainSection('why-us')" class="hover:text-amber-400 transition-colors">Pse Ne</button>
+                    <button onclick="openMainSection('faq')" class="hover:text-amber-400 transition-colors">FAQ</button>
+                    <button onclick="openMainSection('contact')" class="hover:text-amber-400 transition-colors">Kontakt</button>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-amber-400 hover:border-amber-400 transition-all">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-amber-400 hover:border-amber-400 transition-all">
-                        <i class="fa-brands fa-facebook-f"></i>
+                    <a href="https://maps.app.goo.gl/YbCoihoHTgAE9YNF9?g_st=ic" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 hover:text-amber-400 hover:border-amber-400 transition-all">
+                        <i class="fa-solid fa-map-location-dot"></i>
                     </a>
                     <a href="https://wa.me/355690000000" target="_blank" class="w-10 h-10 rounded-full bg-whatsapp/20 border border-whatsapp/40 flex items-center justify-center text-whatsapp hover:bg-whatsapp hover:text-white transition-all">
                         <i class="fa-brands fa-whatsapp"></i>
@@ -519,14 +520,14 @@
             </div>
             <div class="pt-8 text-center text-xs text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p>&copy; 2026 Auto Aleks Car Rental Albania. Të gjitha të drejtat të rezervuara.</p>
-                <p>Krijuar për shërbim elitar në Shqipëri 🇦🇱</p>
+                <p>Marrje ne Aeroportin e Rinasit (TIA) & Tiranë 🇦🇱</p>
             </div>
         </div>
     </footer>
 
     <!-- ================= WHATSAPP BOOKING MODAL ================= -->
     <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4 overflow-y-auto">
-        <div class="glass-card w-full max-w-lg rounded-2xl border border-zinc-700/80 p-6 relative shadow-2xl my-8 animate-fade-in">
+        <div class="glass-card w-full max-w-lg rounded-2xl border border-zinc-700/80 p-6 relative shadow-2xl my-8">
             
             <!-- Close button -->
             <button onclick="closeModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
@@ -612,7 +613,7 @@
 
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        // WhatsApp Business Phone Number (Format: 35569XXXXXXX without +)
+        // WhatsApp Business Phone Number
         const PHONE_WHATSAPP = "355690000000";
 
         // Fleet Dataset
@@ -725,34 +726,82 @@
 
         let currentActiveCar = null;
 
+        // List of all section IDs for Accordion state handling
+        const allSections = ['fleet', 'why-us', 'how-it-works', 'faq', 'contact'];
+
         // Initialize Page
         document.addEventListener('DOMContentLoaded', () => {
             renderFleetGrid(fleetData);
             initDefaultDates();
             setupMobileMenu();
+            
+            // Open 'fleet' section by default on load
+            openMainSection('fleet');
         });
+
+        // SINGLE ACTIVE SECTION ACCORDION LOGIC:
+        // Opens the targeted section and automatically closes ALL other sections.
+        function openMainSection(targetSectionId) {
+            allSections.forEach(sec => {
+                const drawer = document.getElementById(`drawer-${sec}`);
+                const icon = document.getElementById(`icon-${sec}`);
+                const container = document.getElementById(`sec-${sec}-container`);
+
+                if (sec === targetSectionId) {
+                    if (drawer) drawer.classList.add('active');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                    if (container) container.classList.add('border-amber-500/50');
+                } else {
+                    if (drawer) drawer.classList.remove('active');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                    if (container) container.classList.remove('border-amber-500/50');
+                }
+            });
+
+            // Scroll smoothly to the requested section
+            if (targetSectionId !== 'hero-quick') {
+                const element = document.getElementById(`sec-${targetSectionId}-container`);
+                if (element) {
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Toggle section when header is clicked (if open -> close it, if closed -> open it & close others)
+        function toggleMainSection(targetSectionId) {
+            const currentDrawer = document.getElementById(`drawer-${targetSectionId}`);
+            if (currentDrawer && currentDrawer.classList.contains('active')) {
+                // If it's already active, close it
+                currentDrawer.classList.remove('active');
+                const icon = document.getElementById(`icon-${targetSectionId}`);
+                if (icon) icon.style.transform = 'rotate(0deg)';
+                const container = document.getElementById(`sec-${targetSectionId}-container`);
+                if (container) container.classList.remove('border-amber-500/50');
+            } else {
+                // Otherwise open it and close others
+                openMainSection(targetSectionId);
+            }
+        }
 
         // Mobile Menu Toggle
         function setupMobileMenu() {
             const btn = document.getElementById('mobile-menu-btn');
+            btn.addEventListener('click', toggleMobileMenu);
+        }
+
+        function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
-
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                if(menu.classList.contains('hidden')) {
-                    icon.className = 'fa-solid fa-bars';
-                } else {
-                    icon.className = 'fa-solid fa-xmark';
-                }
-            });
-
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                    icon.className = 'fa-solid fa-bars';
-                });
-            });
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars';
+            } else {
+                icon.className = 'fa-solid fa-xmark';
+            }
         }
 
         // Render Fleet Grid Cards
@@ -772,17 +821,17 @@
 
             cars.forEach(car => {
                 const card = document.createElement('div');
-                card.className = "glass-card rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 group flex flex-col justify-between";
+                card.className = "bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 hover:border-amber-500/50 transition-all duration-300 group flex flex-col justify-between";
                 
                 card.innerHTML = `
                     <div>
                         <!-- Image Container -->
-                        <div class="relative h-52 overflow-hidden bg-zinc-900">
+                        <div class="relative h-48 overflow-hidden bg-zinc-900">
                             <img src="${car.image}" alt="${car.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                             <span class="absolute top-3 left-3 bg-amber-500 text-zinc-950 text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow">
                                 ${car.badge}
                             </span>
-                            <div class="absolute bottom-3 right-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-lg border border-zinc-700/60 text-xs font-bold text-amber-400">
+                            <div class="absolute bottom-3 right-3 bg-zinc-950/90 backdrop-blur-md px-3 py-1 rounded-lg border border-zinc-700/60 text-xs font-bold text-amber-400">
                                 €${car.price} <span class="text-[10px] text-zinc-400 font-normal">/ ditë</span>
                             </div>
                         </div>
@@ -792,22 +841,22 @@
                             <h3 class="text-xl font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">${car.name}</h3>
                             
                             <!-- Specs Grid -->
-                            <div class="grid grid-cols-2 gap-2.5 text-xs text-zinc-300 mb-6">
-                                <div class="flex items-center gap-2 bg-zinc-900/80 px-3 py-2 rounded-xl border border-zinc-800">
+                            <div class="grid grid-cols-2 gap-2 text-xs text-zinc-300 mb-4">
+                                <div class="flex items-center gap-2 bg-zinc-900 px-3 py-2 rounded-lg border border-zinc-800/80">
                                     <i class="fa-solid fa-gear text-amber-400 w-4"></i>
                                     <span>${car.transmission}</span>
                                 </div>
-                                <div class="flex items-center gap-2 bg-zinc-900/80 px-3 py-2 rounded-xl border border-zinc-800">
+                                <div class="flex items-center gap-2 bg-zinc-900 px-3 py-2 rounded-lg border border-zinc-800/80">
                                     <i class="fa-solid fa-gas-pump text-amber-400 w-4"></i>
                                     <span>${car.fuel}</span>
                                 </div>
-                                <div class="flex items-center gap-2 bg-zinc-900/80 px-3 py-2 rounded-xl border border-zinc-800">
+                                <div class="flex items-center gap-2 bg-zinc-900 px-3 py-2 rounded-lg border border-zinc-800/80">
                                     <i class="fa-solid fa-users text-amber-400 w-4"></i>
                                     <span>${car.seats}</span>
                                 </div>
-                                <div class="flex items-center gap-2 bg-zinc-900/80 px-3 py-2 rounded-xl border border-zinc-800">
+                                <div class="flex items-center gap-2 bg-zinc-900 px-3 py-2 rounded-lg border border-zinc-800/80">
                                     <i class="fa-solid fa-snowflake text-amber-400 w-4"></i>
-                                    <span>Kondicioner A/C</span>
+                                    <span>Kondicioner</span>
                                 </div>
                             </div>
                         </div>
@@ -828,7 +877,6 @@
 
         // Filter functionality
         function filterCars(category) {
-            // Update active tab button style
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
                 if (btn.getAttribute('data-category') === category) {
@@ -838,7 +886,6 @@
                 }
             });
 
-            // Filter logic
             if (category === 'all') {
                 renderFleetGrid(fleetData);
             } else if (category === 'automatike') {
@@ -859,16 +906,7 @@
             renderFleetGrid(filtered);
         }
 
-        // Scroll to Fleet from Hero Form
-        function scrollToFleetWithFilter() {
-            const selectedCategory = document.getElementById('hero-car-type').value;
-            filterCars(selectedCategory);
-
-            const fleetSection = document.getElementById('fleet');
-            fleetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Set default dates (Today and Tomorrow)
+        // Set default dates
         function initDefaultDates() {
             const today = new Date();
             const tomorrow = new Date(today);
@@ -876,9 +914,6 @@
 
             const formatDate = (date) => date.toISOString().split('T')[0];
 
-            document.getElementById('hero-date-from').value = formatDate(today);
-            document.getElementById('hero-date-to').value = formatDate(tomorrow);
-            
             document.getElementById('modal-pickup-date').value = formatDate(today);
             document.getElementById('modal-return-date').value = formatDate(tomorrow);
         }
@@ -890,33 +925,12 @@
 
             currentActiveCar = car;
 
-            // Populate Modal Info
             document.getElementById('modal-car-name').innerText = car.name;
             document.getElementById('modal-car-price').innerText = car.price;
             document.getElementById('modal-car-img').src = car.image;
             document.getElementById('modal-selected-car-id').value = car.id;
 
-            // Sync hero location if set
-            const heroLoc = document.getElementById('hero-pickup-location').value;
-            if (heroLoc) {
-                const select = document.getElementById('modal-pickup-location');
-                for(let i=0; i<select.options.length; i++) {
-                    if(select.options[i].value.toLowerCase().includes(heroLoc.toLowerCase())) {
-                        select.selectedIndex = i;
-                        break;
-                    }
-                }
-            }
-
-            // Sync dates if available
-            const hFrom = document.getElementById('hero-date-from').value;
-            const hTo = document.getElementById('hero-date-to').value;
-            if (hFrom) document.getElementById('modal-pickup-date').value = hFrom;
-            if (hTo) document.getElementById('modal-return-date').value = hTo;
-
             calculateModalTotal();
-
-            // Display Modal
             document.getElementById('booking-modal').classList.remove('hidden');
         }
 
@@ -925,14 +939,14 @@
             document.getElementById('booking-modal').classList.add('hidden');
         }
 
-        // Close modal when clicking on backdrop
+        // Close modal when clicking backdrop
         document.getElementById('booking-modal').addEventListener('click', (e) => {
             if (e.target.id === 'booking-modal') {
                 closeModal();
             }
         });
 
-        // Calculate Modal Price & Days
+        // Calculate Modal Total Price
         function calculateModalTotal() {
             if (!currentActiveCar) return;
 
@@ -944,25 +958,23 @@
             const pDate = new Date(pickupVal);
             const rDate = new Date(returnVal);
 
-            // Calculate difference in days
             const diffTime = rDate - pDate;
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             if (isNaN(diffDays) || diffDays <= 0) {
-                diffDays = 1; // Minimum 1 day
+                diffDays = 1;
             }
 
             const totalPrice = diffDays * currentActiveCar.price;
 
-            document.getElementById('summary-days').innerText = `${diffDays} ${diffDays === 1 ? 'Ditë' : 'Ditë'}`;
+            document.getElementById('summary-days').innerText = `${diffDays} Ditë`;
             document.getElementById('summary-daily-rate').innerText = `${currentActiveCar.price} €`;
             document.getElementById('summary-total-price').innerText = `${totalPrice} €`;
         }
 
-        // Format and Trigger WhatsApp Message
+        // Trigger WhatsApp Action
         function submitWhatsAppBooking(event) {
             event.preventDefault();
-
             if (!currentActiveCar) return;
 
             const pickupDate = document.getElementById('modal-pickup-date').value;
@@ -973,7 +985,6 @@
             const totalPrice = document.getElementById('summary-total-price').innerText;
             const daysText = document.getElementById('summary-days').innerText;
 
-            // Format clean message for WhatsApp
             const message = 
 `🚗 *REZERVIM I RI - AUTO ALEKS*
 ----------------------------------
@@ -987,31 +998,13 @@
 💰 *Çmimi Ditor:* ${currentActiveCar.price} €
 💳 *TOTALI ESTIMUAR:* ${totalPrice}
 
-Përshëndetje Auto Aleks! A është kjo makinë e lirë për këto data?`;
+Përshëndetje Auto Aleks! Desha të konfirmoj nëse kjo makinë është e lirë për këto data?`;
 
-            // Encode text for URL
             const encodedText = encodeURIComponent(message);
             const waUrl = `https://wa.me/${PHONE_WHATSAPP}?text=${encodedText}`;
 
-            // Open WhatsApp in new tab
             window.open(waUrl, '_blank');
-
-            // Close modal after submission
             closeModal();
-        }
-
-        // Accordion functionality for FAQ
-        function toggleFaq(btn) {
-            const answer = btn.nextElementSibling;
-            const icon = btn.querySelector('i');
-
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                answer.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
         }
     </script>
 </body>
